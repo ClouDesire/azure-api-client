@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * @author Manuel Mazzuola <manuel.mazzuola@liberologico.com>
  */
-@XmlRootElement (name = "Location" )
+@XmlRootElement ( name = "Location" )
 @XmlAccessorType ( value = XmlAccessType.FIELD )
 public class Location
 {
@@ -20,7 +20,7 @@ public class Location
 	@XmlElement ( name = "DisplayName" )
 	private String displayName;
 
-	@XmlElement ( name = "AvailableServices")
+	@XmlElement ( name = "AvailableServices" )
 	private List<String> avaiableServices;
 
 	public String getName ()
@@ -39,7 +39,7 @@ public class Location
 	}
 
 	@Override
-	public String toString()
+	public String toString ()
 	{
 		return "Name: " + name + " DisplayName: " + displayName + " AvailableServices: " + Arrays.toString(avaiableServices.toArray(new String[0]));
 	}

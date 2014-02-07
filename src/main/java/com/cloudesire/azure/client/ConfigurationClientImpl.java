@@ -13,7 +13,7 @@ class ConfigurationClientImpl implements ConfigurationClient
 	private final URL endpoint;
 	private final RestClient restClient;
 
-	public ConfigurationClientImpl(URL endpoint, RestClient restClient)
+	public ConfigurationClientImpl ( URL endpoint, RestClient restClient )
 	{
 		this.endpoint = endpoint;
 		this.restClient = restClient;

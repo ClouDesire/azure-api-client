@@ -9,9 +9,9 @@ import javax.xml.bind.annotation.XmlType;
 /**
  * @author Manuel Mazzuola <manuel.mazzuola@liberologico.com>
  */
-@XmlRootElement (name = "CreateHostedService" )
-@XmlType (propOrder = {"serviceName" , "label" , "description" , "location", "affinityGroup" })
-@XmlAccessorType( value = XmlAccessType.FIELD )
+@XmlRootElement ( name = "CreateHostedService" )
+@XmlType ( propOrder = {"serviceName", "label", "description", "location", "affinityGroup"} )
+@XmlAccessorType ( value = XmlAccessType.FIELD )
 public class CloudService
 {
 	@XmlElement ( name = "ServiceName" )
@@ -80,7 +80,7 @@ public class CloudService
 	}
 
 	@Override
-	public String toString()
+	public String toString ()
 	{
 		return "ServiceName: " + serviceName + " Label: " + " Description: " + description + " Location: " + location + " AfiinityGroup: " + affinityGroup;
 	}

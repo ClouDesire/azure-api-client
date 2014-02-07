@@ -9,11 +9,11 @@ import java.util.List;
 /**
  * @author Manuel Mazzuola <manuel.mazzuola@liberologico.com>
  */
-@XmlRootElement (name = "Images" )
+@XmlRootElement ( name = "Images" )
 @XmlAccessorType ( value = XmlAccessType.FIELD )
 public class Images
 {
-	@XmlElement ( name = "OSImage")
+	@XmlElement (name = "OSImage")
 	private List<OSImage> osImages;
 
 	public List<OSImage> getOsImages ()
@@ -24,5 +24,16 @@ public class Images
 	public void setOsImages ( List<OSImage> osImages )
 	{
 		this.osImages = osImages;
+	}
+
+	@Override
+	public String toString ()
+	{
+		String ret = " Images: ";
+		for (OSImage image : osImages)
+		{
+			ret += " OSImage: " + image;
+		}
+		return ret;
 	}
 }

@@ -3,12 +3,12 @@ package com.cloudesire.azure.client.apiobjects;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
 
 /**
  * @author Manuel Mazzuola <manuel.mazzuola@liberologico.com>
  */
-@XmlRootElement (name = "OSImage" )
+@XmlType ( name = "OSImage" )
 @XmlAccessorType ( value = XmlAccessType.FIELD )
 public class OSImage
 {
@@ -276,8 +276,8 @@ public class OSImage
 	}
 
 	@Override
-	public String toString()
+	public String toString ()
 	{
-		return "Name: " + name + " OS: " + os;
+		return "Name: " + name + " OS: " + os + " MediaLink: " + mediaLink + " Location: " + location;
 	}
 }

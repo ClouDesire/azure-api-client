@@ -20,7 +20,7 @@ public class ObjectCache<T>
 
 	private volatile T objects;
 
-	public ObjectCache(CacheLoader<T> loader, long duration, TimeUnit unit)
+	public ObjectCache ( CacheLoader<T> loader, long duration, TimeUnit unit )
 	{
 		this.loader = loader;
 		this.duration = duration;
