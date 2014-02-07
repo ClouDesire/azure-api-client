@@ -1,79 +1,78 @@
 package com.cloudesire.azure.client.apiobjects;
 
-import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
-import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
-
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * @author Manuel Mazzuola <manuel.mazzuola@liberologico.com>
  */
-@XmlAccessorType ( XmlAccessType.FIELD )
-@JacksonXmlRootElement ( localName = "OSImage" )
+@XmlRootElement (name = "OSImage" )
+@XmlAccessorType ( value = XmlAccessType.FIELD )
 public class OSImage
 {
-	@JacksonXmlProperty ( localName = "AffinityGroup" )
+	@XmlElement ( name = "AffinityGroup" )
 	private String affinityGroup;
 
-	@JacksonXmlProperty ( localName = "Category" )
+	@XmlElement ( name = "Category" )
 	private String category;
 
-	@JacksonXmlProperty ( localName = "Label" )
+	@XmlElement ( name = "Label" )
 	private String label;
 
-	@JacksonXmlProperty ( localName = "Location" )
+	@XmlElement ( name = "Location" )
 	private String location;
 
-	@JacksonXmlProperty ( localName = "LogicalSizeInGB" )
+	@XmlElement ( name = "LogicalSizeInGB" )
 	private int logicalSizeInGB;
 
-	@JacksonXmlProperty ( localName = "MediaLink" )
+	@XmlElement ( name = "MediaLink" )
 	private String mediaLink;
 
-	@JacksonXmlProperty ( localName = "Name" )
+	@XmlElement ( name = "Name" )
 	private String name;
 
-	@JacksonXmlProperty ( localName = "OS" )
+	@XmlElement ( name = "OS" )
 	private String os;
 
-	@JacksonXmlProperty ( localName = "Eula" )
+	@XmlElement ( name = "Eula" )
 	private String eula;
 
-	@JacksonXmlProperty ( localName = "Description" )
+	@XmlElement ( name = "Description" )
 	private String description;
 
-	@JacksonXmlProperty ( localName = "ImageFamily" )
+	@XmlElement ( name = "ImageFamily" )
 	private String imageFamily;
 
-	@JacksonXmlProperty ( localName = "ShowInGui" )
+	@XmlElement ( name = "ShowInGui" )
 	private boolean showInGui;
 
-	@JacksonXmlProperty ( localName = "PublishedDate" )
+	@XmlElement ( name = "PublishedDate" )
 	private String publishedDate;
 
-	@JacksonXmlProperty ( localName = "IsPremium" )
+	@XmlElement ( name = "IsPremium" )
 	private boolean isPremium;
 
-	@JacksonXmlProperty ( localName = "PrivacyUri" )
+	@XmlElement ( name = "PrivacyUri" )
 	private String privacyUri;
 
-	@JacksonXmlProperty ( localName = "RecommendedVMSize" )
+	@XmlElement ( name = "RecommendedVMSize" )
 	private String recommendedVMSize;
 
-	@JacksonXmlProperty ( localName = "PublisherName" )
+	@XmlElement ( name = "PublisherName" )
 	private String publisherName;
 
-	@JacksonXmlProperty ( localName = "PricingDetailLink" )
+	@XmlElement ( name = "PricingDetailLink" )
 	private String pricingDetailLink;
 
-	@JacksonXmlProperty ( localName = "SmallIconUri" )
+	@XmlElement ( name = "SmallIconUri" )
 	private String smallIconUri;
 
-	@JacksonXmlProperty ( localName = "IconUri" )
+	@XmlElement ( name = "IconUri" )
 	private String IconUri;
 
-	@JacksonXmlProperty ( localName = "Language" )
+	@XmlElement ( name = "Language" )
 	private String language;
 
 	public String getAffinityGroup ()

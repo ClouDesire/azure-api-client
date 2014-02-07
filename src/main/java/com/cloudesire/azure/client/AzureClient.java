@@ -5,6 +5,7 @@ import com.cloudesire.tisana4j.RestClient;
 import javax.net.ssl.KeyManagerFactory;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManagerFactory;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.security.KeyManagementException;
 import java.security.KeyStore;
@@ -19,7 +20,7 @@ public class AzureClient
 {
 	private final RestClient restClient;
 	private URL endpoint;
-	//private MachineOperationsClient machineClient;
+	private ServiceClientImpl serviceClient;
 	private ConfigurationClientImpl configurationClient;
 
 	public AzureClient ( String subscriptionId, KeyStore keyStore, String password, URL endpoint ) throws Exception
@@ -31,11 +32,10 @@ public class AzureClient
 
 		this.endpoint = new URL(endpoint, subscriptionId + "/");
 		Map<String, String> defaultHeaders = new HashMap<>();
-		defaultHeaders.put("x-ms-version", "2013-03-01");
+		defaultHeaders.put("x-ms-version", "2012-03-01");
 		restClient = new RestClient(null, null, true, defaultHeaders, generateSSLSocketFactory(keyStore, password));
 		restClient.setExceptionTranslator(new AzureExceptionTranslator());
 		restClient.setUseXml(Boolean.TRUE);
-
 	}
 
 	private SSLContext generateSSLSocketFactory ( KeyStore keyStore, String password )
@@ -65,10 +65,11 @@ public class AzureClient
 
 	}
 
-	/*public synchronized MachineOperationsClient getMachineOperationsClient () throws MalformedURLException
+	public synchronized ServiceClient getServiceClient () throws MalformedURLException
 	{
-		if (machineClient == null) machineClient = new MachineOperationsClientImpl(endpoint, restClient, authGenerator);
-		return machineClient;
-
-	}*/
+		if (serviceClient == null) serviceClient = new ServiceClientImpl(
+				endpoint, restClient
+		);
+		return serviceClient;
+	}
 }

@@ -9,20 +9,20 @@ import java.util.List;
 /**
  * @author Manuel Mazzuola <manuel.mazzuola@liberologico.com>
  */
-@XmlRootElement (name = "Images" )
+@XmlRootElement (name = "Locations" )
 @XmlAccessorType ( value = XmlAccessType.FIELD )
-public class Images
+public class Locations
 {
-	@XmlElement ( name = "OSImage")
-	private List<OSImage> osImages;
+	@XmlElement ( name = "Location")
+	private List<Location> locations;
 
-	public List<OSImage> getOsImages ()
+	public List<Location> getLocations ()
 	{
-		return osImages;
+		return locations;
 	}
 
-	public void setOsImages ( List<OSImage> osImages )
+	public void setLocations ( List<Location> locations )
 	{
-		this.osImages = osImages;
+		this.locations = locations;
 	}
 }
