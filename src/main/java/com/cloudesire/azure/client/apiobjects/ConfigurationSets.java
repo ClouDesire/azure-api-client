@@ -9,11 +9,11 @@ import java.util.List;
 /**
  * @author Manuel Mazzuola <manuel.mazzuola@liberologico.com>
  */
-@XmlAccessorType ( XmlAccessType.FIELD )
-@XmlType ( name = "ConfigurationSets" )
+@XmlAccessorType (XmlAccessType.FIELD)
+@XmlType (name = "ConfigurationSets")
 public class ConfigurationSets
 {
-	@XmlElement ( name = "ConfigurationSet" )
+	@XmlElement (name = "ConfigurationSet")
 	private List<ConfigurationSet> configurationSets;
 
 	public List<ConfigurationSet> getConfigurationSets ()

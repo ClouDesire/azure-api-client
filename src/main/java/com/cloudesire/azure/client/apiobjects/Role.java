@@ -8,24 +8,24 @@ import javax.xml.bind.annotation.XmlType;
 /**
  * @author Manuel Mazzuola <manuel.mazzuola@liberologico.com>
  */
-@XmlType ( name = "Role", propOrder = {
-		"roleName", "roleType", "configurationSets", "osVirtualHardDisk", "roleSize"} )
-@XmlAccessorType ( value = XmlAccessType.FIELD )
+@XmlType (name = "Role", propOrder = {
+		"roleName", "roleType", "configurationSets", "osVirtualHardDisk", "roleSize"})
+@XmlAccessorType (value = XmlAccessType.FIELD)
 public class Role
 {
-	@XmlElement ( name = "RoleName" )
+	@XmlElement (name = "RoleName")
 	private String roleName;
 
-	@XmlElement ( name = "RoleType" )
+	@XmlElement (name = "RoleType")
 	private String roleType = "PersistentVMRole";
 
-	@XmlElement ( name = "ConfigurationSets" )
-	private ConfigurationSets configurationSets;
+	@XmlElement (name = "ConfigurationSets")
+	private ConfigurationSets configurationSets = new ConfigurationSets();
 
-	@XmlElement ( name = "OSVirtualHardDisk" )
+	@XmlElement (name = "OSVirtualHardDisk")
 	private OSVirtualHardDisk osVirtualHardDisk = new OSVirtualHardDisk();
 
-	@XmlElement ( name = "RoleSize" )
+	@XmlElement (name = "RoleSize")
 	private String roleSize;
 
 	public String getRoleName ()

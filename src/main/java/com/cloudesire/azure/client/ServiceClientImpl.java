@@ -83,6 +83,7 @@ public class ServiceClientImpl implements ServiceClient
 	@Override
 	public Deployment createDeployment ( Deployment deployment, String serviceName ) throws Exception
 	{
+		// FIXME: list VirtualMachines from Azure and return the right one
 		restClient.post(
 				new URL(
 						ServiceClientImpl.this.servicesEndpoint, "hostedservices/" + serviceName + "/deployments"

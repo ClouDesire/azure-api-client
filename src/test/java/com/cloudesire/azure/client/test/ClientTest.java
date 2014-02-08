@@ -2,14 +2,9 @@ package com.cloudesire.azure.client.test;
 
 import com.cloudesire.azure.client.AzureClient;
 import com.cloudesire.azure.client.apiobjects.CloudService;
-import com.cloudesire.azure.client.apiobjects.ConfigurationSet;
-import com.cloudesire.azure.client.apiobjects.ConfigurationSets;
 import com.cloudesire.azure.client.apiobjects.Deployment;
 import com.cloudesire.azure.client.apiobjects.Location;
 import com.cloudesire.azure.client.apiobjects.OSImage;
-import com.cloudesire.azure.client.apiobjects.OSVirtualHardDisk;
-import com.cloudesire.azure.client.apiobjects.Role;
-import com.cloudesire.azure.client.apiobjects.RoleList;
 import com.sun.org.apache.xml.internal.security.utils.Base64;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,7 +12,6 @@ import org.slf4j.LoggerFactory;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.security.KeyStore;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -48,7 +42,7 @@ public class ClientTest
 
 		// Test listLocation
 		final List<Location> locations = client.getConfigurationClient().listLocations();
-		for(Location location : locations)
+		for (Location location : locations)
 		{
 			System.out.println(location);
 		}
@@ -63,39 +57,25 @@ public class ClientTest
 		log.info("Requested CloudService: " + c + " Response CloudService: " + cloudService);
 
 		// Test Deploy Virtual Machine
-		ConfigurationSet set = new ConfigurationSet();
-		set.setDisableSshPasswordAuthentication(false);
-		set.setHostName("testhostname");
-		set.setUserName("cloudesire");
-		set.setUserPassword("cloudesireCl0udesire");
+		Deployment.Builder deploymentBuilder = new Deployment.Builder();
+		Deployment deployment = deploymentBuilder
+				.withName(UUID.randomUUID().toString())
+				.withHostname("hostname")
+				.withLabel(UUID.randomUUID().toString())
+				.withMinCpu(1)
+				.withMinDisk(100)
+				.withMinMemory(100)
+				.withPassword("askd123ASDASD1213")
+				.withSourceImage(testOsImage.getName())
+				.withSourceImageLink("http://test123123.blob.core.windows.net/communityimages/" + UUID.randomUUID().toString() + ".vhd")
+				.withUsername("manuel")
+				.build();
 
-		List<ConfigurationSet> cs = new ArrayList<>();
-		cs.add(set);
-
-		ConfigurationSets configurationSets = new ConfigurationSets();
-		configurationSets.setConfigurationSets(cs);
-
-		OSVirtualHardDisk osvh = new OSVirtualHardDisk();
-		osvh.setSourceImageName(testOsImage.getName());
-		osvh.setMediaLink("http://test123123.blob.core.windows.net/communityimages/"+ UUID.randomUUID().toString() +".vhd");
-
-		Role role = new Role();
-		role.setRoleName(UUID.randomUUID().toString());
-		role.setConfigurationSets(configurationSets);
-		role.setOsVirtualHardDisk(osvh);
-		role.setRoleSize("ExtraSmall");
-
-		List<Role> roles = new ArrayList<>();
-		roles.add(role);
-
-		RoleList roleList = new RoleList();
-		roleList.setRoles(roles);
-
-		Deployment deployment = new Deployment();
-		deployment.setName("Test");
-		deployment.setDeploymentSlot("Production");
-		deployment.setLabel("Label");
-		deployment.setRoleList(roleList);
+		deployment
+				.getRoleList().iterator().next()
+				.getConfigurationSets()
+				.getConfigurationSets().iterator().next()
+				.setDisableSshPasswordAuthentication(false);
 
 		final Deployment deployment1 = client.getServiceClient().createDeployment(deployment, cloudService.getServiceName());
 		log.info("Deployment : " + deployment1);
@@ -103,22 +83,25 @@ public class ClientTest
 
 	// http://gauravmantri.com/2013/08/25/consuming-windows-azure-service-management-api-in-java/
 	// copy and paste
-	private static KeyStore getKeyStore(String keyStoreName, String password) throws IOException
+	private static KeyStore getKeyStore ( String keyStoreName, String password ) throws IOException
 	{
 		KeyStore ks = null;
 		FileInputStream fis = null;
-		try {
+		try
+		{
 			ks = KeyStore.getInstance("JKS");
 			char[] passwordArray = password.toCharArray();
 			fis = new java.io.FileInputStream(keyStoreName);
 			ks.load(fis, passwordArray);
 			fis.close();
 
-		} catch (Exception e) {
+		} catch (Exception e)
+		{
 			e.printStackTrace();
-		}
-		finally {
-			if (fis != null) {
+		} finally
+		{
+			if (fis != null)
+			{
 				fis.close();
 			}
 		}

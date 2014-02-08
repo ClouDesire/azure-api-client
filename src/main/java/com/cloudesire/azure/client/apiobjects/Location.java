@@ -10,17 +10,17 @@ import java.util.List;
 /**
  * @author Manuel Mazzuola <manuel.mazzuola@liberologico.com>
  */
-@XmlRootElement ( name = "Location" )
-@XmlAccessorType ( value = XmlAccessType.FIELD )
+@XmlRootElement (name = "Location")
+@XmlAccessorType (value = XmlAccessType.FIELD)
 public class Location
 {
-	@XmlElement ( name = "Name" )
+	@XmlElement (name = "Name")
 	private String name;
 
-	@XmlElement ( name = "DisplayName" )
+	@XmlElement (name = "DisplayName")
 	private String displayName;
 
-	@XmlElement ( name = "AvailableServices" )
+	@XmlElement (name = "AvailableServices")
 	private List<String> avaiableServices;
 
 	public String getName ()
