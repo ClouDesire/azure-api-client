@@ -9,11 +9,11 @@ import java.util.List;
 /**
  * @author Manuel Mazzuola <manuel.mazzuola@liberologico.com>
  */
-@XmlRootElement (name = "Locations")
-@XmlAccessorType (value = XmlAccessType.FIELD)
+@XmlRootElement ( name = "Locations" )
+@XmlAccessorType ( value = XmlAccessType.FIELD )
 public class Locations
 {
-	@XmlElement (name = "Location")
+	@XmlElement ( name = "Location" )
 	private List<Location> locations;
 
 	public List<Location> getLocations ()

@@ -202,7 +202,6 @@ public class Deployment
 		role.setConfigurationSets(configurationSets);
 		role.setOsVirtualHardDisk(osvh);
 
-		// FIXME: Use enums instead strings
 		VirtualMachineSize size = VirtualMachineSize.ExtraSmall;
 
 		if (builder.minCpu >= 0) size = VirtualMachineSize.Small;
@@ -227,7 +226,7 @@ public class Deployment
 		roleList.setRoles(roles);
 
 		this.setName(builder.name);
-		this.setLabel(builder.name);
+		this.setLabel(builder.label);
 	}
 
 	@Override

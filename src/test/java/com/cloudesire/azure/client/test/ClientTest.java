@@ -1,10 +1,12 @@
 package com.cloudesire.azure.client.test;
 
 import com.cloudesire.azure.client.AzureClient;
+import com.cloudesire.azure.client.apiobjects.AffinityGroup;
 import com.cloudesire.azure.client.apiobjects.CloudService;
 import com.cloudesire.azure.client.apiobjects.Deployment;
 import com.cloudesire.azure.client.apiobjects.Location;
 import com.cloudesire.azure.client.apiobjects.OSImage;
+import com.cloudesire.azure.client.apiobjects.StorageService;
 import com.sun.org.apache.xml.internal.security.utils.Base64;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -47,14 +49,28 @@ public class ClientTest
 			System.out.println(location);
 		}
 
+		AffinityGroup affinityGroup = new AffinityGroup();
+		affinityGroup.setName(UUID.randomUUID().toString());
+		affinityGroup.setLabel(Base64.encode(affinityGroup.getName().getBytes("UTF-8")));
+		affinityGroup.setLocation(locations.iterator().next().getName());
+		final AffinityGroup group = client.getConfigurationClient().createAffinityGroup(affinityGroup);
+		log.info("Requested AffinityGroup: " + affinityGroup);
+
 		// Create CloudService
 		CloudService c = new CloudService();
 		c.setServiceName(UUID.randomUUID().toString());
 		c.setLabel(Base64.encode(c.getServiceName().getBytes("UTF-8")));
 		c.setDescription(c.getServiceName());
-		c.setLocation(locations.iterator().next().getName());
+		c.setAffinityGroup(affinityGroup.getName());
 		final CloudService cloudService = client.getServiceClient().createCloudService(c);
-		log.info("Requested CloudService: " + c + " Response CloudService: " + cloudService);
+		log.info("Requested CloudService: " + cloudService);
+
+		StorageService s = new StorageService();
+		s.setServiceName("myst0rages3rvic399");
+		s.setLabel(Base64.encode(s.getServiceName().getBytes("UTF-8")));
+		s.setAffinityGroup(group.getName());
+		final StorageService storageService = client.getServiceClient().createStorageService(s);
+		log.info("Requested StorageService: " + storageService);
 
 		// Test Deploy Virtual Machine
 		Deployment.Builder deploymentBuilder = new Deployment.Builder();
@@ -67,7 +83,7 @@ public class ClientTest
 				.withMinMemory(100)
 				.withPassword("askd123ASDASD1213")
 				.withSourceImage(testOsImage.getName())
-				.withSourceImageLink("http://test123123.blob.core.windows.net/communityimages/" + UUID.randomUUID().toString() + ".vhd")
+				.withSourceImageLink("http://" + storageService.getServiceName() + ".blob.core.windows.net/communityimages/" + UUID.randomUUID().toString() + ".vhd")
 				.withUsername("manuel")
 				.build();
 

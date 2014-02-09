@@ -4,6 +4,7 @@ import com.cloudesire.azure.client.apiobjects.CloudService;
 import com.cloudesire.azure.client.apiobjects.Deployment;
 import com.cloudesire.azure.client.apiobjects.Images;
 import com.cloudesire.azure.client.apiobjects.OSImage;
+import com.cloudesire.azure.client.apiobjects.StorageService;
 import com.cloudesire.tisana4j.RestClient;
 import org.apache.commons.codec.binary.Base64;
 
@@ -76,14 +77,27 @@ public class ServiceClientImpl implements ServiceClient
 				), cloudService, null, null
 		);
 
-		// FIXME: list CloudServices from Azure and return the right one
 		return cloudService;
+	}
+
+	@Override
+	public StorageService createStorageService ( StorageService storageService ) throws Exception
+	{
+		if (storageService.getLabel() != null && ! Base64.isBase64(storageService.getLabel()))
+			throw new AzureResponseException("400", "Label must be 64 base encoded");
+
+		restClient.post(
+				new URL(
+						ServiceClientImpl.this.servicesEndpoint, "storageservices"
+				), storageService, null, null
+		);
+
+		return storageService;
 	}
 
 	@Override
 	public Deployment createDeployment ( Deployment deployment, String serviceName ) throws Exception
 	{
-		// FIXME: list VirtualMachines from Azure and return the right one
 		restClient.post(
 				new URL(
 						ServiceClientImpl.this.servicesEndpoint, "hostedservices/" + serviceName + "/deployments"

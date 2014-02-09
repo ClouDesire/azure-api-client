@@ -9,13 +9,13 @@ import javax.xml.bind.annotation.XmlType;
 /**
  * @author Manuel Mazzuola <manuel.mazzuola@liberologico.com>
  */
-@XmlRootElement ( name = "CreateHostedService" )
-@XmlType ( propOrder = {"serviceName", "label", "description", "location", "affinityGroup"} )
+@XmlRootElement ( name = "CreateAffinityGroup" )
+@XmlType ()
 @XmlAccessorType ( value = XmlAccessType.FIELD )
-public class CloudService
+public class AffinityGroup
 {
-	@XmlElement ( name = "ServiceName" )
-	private String serviceName;
+	@XmlElement ( name = "Name" )
+	private String name;
 
 	@XmlElement ( name = "Label" )
 	private String label;
@@ -26,17 +26,14 @@ public class CloudService
 	@XmlElement ( name = "Location" )
 	private String location;
 
-	@XmlElement ( name = "AffinityGroup" )
-	private String affinityGroup;
-
-	public String getServiceName ()
+	public String getName ()
 	{
-		return serviceName;
+		return name;
 	}
 
-	public void setServiceName ( String serviceName )
+	public void setName ( String name )
 	{
-		this.serviceName = serviceName;
+		this.name = name;
 	}
 
 	public String getLabel ()
@@ -67,21 +64,5 @@ public class CloudService
 	public void setLocation ( String location )
 	{
 		this.location = location;
-	}
-
-	public String getAffinityGroup ()
-	{
-		return affinityGroup;
-	}
-
-	public void setAffinityGroup ( String affinityGroup )
-	{
-		this.affinityGroup = affinityGroup;
-	}
-
-	@Override
-	public String toString ()
-	{
-		return "ServiceName: " + serviceName + " Label: " + " Description: " + description + " Location: " + location + " AfiinityGroup: " + affinityGroup;
 	}
 }

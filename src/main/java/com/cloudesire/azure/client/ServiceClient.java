@@ -3,6 +3,7 @@ package com.cloudesire.azure.client;
 import com.cloudesire.azure.client.apiobjects.CloudService;
 import com.cloudesire.azure.client.apiobjects.Deployment;
 import com.cloudesire.azure.client.apiobjects.OSImage;
+import com.cloudesire.azure.client.apiobjects.StorageService;
 
 import java.util.List;
 
@@ -16,6 +17,8 @@ public interface ServiceClient
 	List<OSImage> listImages () throws Exception;
 
 	CloudService createCloudService ( CloudService cloudService ) throws Exception;
+
+	StorageService createStorageService ( StorageService cloudService ) throws Exception;
 
 	Deployment createDeployment ( Deployment deployment, String serviceName ) throws Exception;
 }

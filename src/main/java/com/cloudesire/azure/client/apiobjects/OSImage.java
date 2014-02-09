@@ -8,71 +8,71 @@ import javax.xml.bind.annotation.XmlType;
 /**
  * @author Manuel Mazzuola <manuel.mazzuola@liberologico.com>
  */
-@XmlType (name = "OSImage")
-@XmlAccessorType (value = XmlAccessType.FIELD)
+@XmlType ( name = "OSImage" )
+@XmlAccessorType ( value = XmlAccessType.FIELD )
 public class OSImage
 {
-	@XmlElement (name = "AffinityGroup")
+	@XmlElement ( name = "AffinityGroup" )
 	private String affinityGroup;
 
-	@XmlElement (name = "Category")
+	@XmlElement ( name = "Category" )
 	private String category;
 
-	@XmlElement (name = "Label")
+	@XmlElement ( name = "Label" )
 	private String label;
 
-	@XmlElement (name = "Location")
+	@XmlElement ( name = "Location" )
 	private String location;
 
-	@XmlElement (name = "LogicalSizeInGB")
+	@XmlElement ( name = "LogicalSizeInGB" )
 	private int logicalSizeInGB;
 
-	@XmlElement (name = "MediaLink")
+	@XmlElement ( name = "MediaLink" )
 	private String mediaLink;
 
-	@XmlElement (name = "Name")
+	@XmlElement ( name = "Name" )
 	private String name;
 
-	@XmlElement (name = "OS")
+	@XmlElement ( name = "OS" )
 	private String os;
 
-	@XmlElement (name = "Eula")
+	@XmlElement ( name = "Eula" )
 	private String eula;
 
-	@XmlElement (name = "Description")
+	@XmlElement ( name = "Description" )
 	private String description;
 
-	@XmlElement (name = "ImageFamily")
+	@XmlElement ( name = "ImageFamily" )
 	private String imageFamily;
 
-	@XmlElement (name = "ShowInGui")
+	@XmlElement ( name = "ShowInGui" )
 	private boolean showInGui;
 
-	@XmlElement (name = "PublishedDate")
+	@XmlElement ( name = "PublishedDate" )
 	private String publishedDate;
 
-	@XmlElement (name = "IsPremium")
+	@XmlElement ( name = "IsPremium" )
 	private boolean isPremium;
 
-	@XmlElement (name = "PrivacyUri")
+	@XmlElement ( name = "PrivacyUri" )
 	private String privacyUri;
 
-	@XmlElement (name = "RecommendedVMSize")
+	@XmlElement ( name = "RecommendedVMSize" )
 	private String recommendedVMSize;
 
-	@XmlElement (name = "PublisherName")
+	@XmlElement ( name = "PublisherName" )
 	private String publisherName;
 
-	@XmlElement (name = "PricingDetailLink")
+	@XmlElement ( name = "PricingDetailLink" )
 	private String pricingDetailLink;
 
-	@XmlElement (name = "SmallIconUri")
+	@XmlElement ( name = "SmallIconUri" )
 	private String smallIconUri;
 
-	@XmlElement (name = "IconUri")
+	@XmlElement ( name = "IconUri" )
 	private String IconUri;
 
-	@XmlElement (name = "Language")
+	@XmlElement ( name = "Language" )
 	private String language;
 
 	public String getAffinityGroup ()

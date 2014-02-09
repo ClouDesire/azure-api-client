@@ -9,26 +9,26 @@ import javax.xml.bind.annotation.XmlType;
 /**
  * @author Manuel Mazzuola <manuel.mazzuola@liberologico.com>
  */
-@XmlAccessorType (XmlAccessType.FIELD)
-@XmlType (name = "ConfigurationSet")
+@XmlAccessorType ( XmlAccessType.FIELD )
+@XmlType ( name = "ConfigurationSet" )
 public class ConfigurationSet
 {
-	@XmlAttribute (name = "type", namespace = "i")
+	@XmlAttribute ( name = "type", namespace = "i" )
 	private String configurationSetTypeAttribute = "LinuxProvisioningConfiguration";
 
-	@XmlElement (name = "ConfigurationSetType")
+	@XmlElement ( name = "ConfigurationSetType" )
 	private String configurationSetType = "LinuxProvisioningConfiguration";
 
-	@XmlElement (name = "HostName")
+	@XmlElement ( name = "HostName" )
 	private String hostName;
 
-	@XmlElement (name = "UserName")
+	@XmlElement ( name = "UserName" )
 	private String userName;
 
-	@XmlElement (name = "UserPassword")
+	@XmlElement ( name = "UserPassword" )
 	private String userPassword;
 
-	@XmlElement (name = "DisableSshPasswordAuthentication")
+	@XmlElement ( name = "DisableSshPasswordAuthentication" )
 	private Boolean disableSshPasswordAuthentication;
 
 	public String getConfigurationSetTypeAttribute ()

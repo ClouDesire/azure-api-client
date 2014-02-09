@@ -4,16 +4,18 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlType;
 
 /**
  * @author Manuel Mazzuola <manuel.mazzuola@liberologico.com>
  */
-@XmlRootElement ( name = "CreateHostedService" )
-@XmlType ( propOrder = {"serviceName", "label", "description", "location", "affinityGroup"} )
+@XmlRootElement ( name = "CreateStorageServiceInput" )
 @XmlAccessorType ( value = XmlAccessType.FIELD )
-public class CloudService
+public class StorageService
 {
+	/**
+	 * Storage account names must be between 3 and 24 characters in length
+	 * and use numbers and lower-case letters only.
+	 */
 	@XmlElement ( name = "ServiceName" )
 	private String serviceName;
 
@@ -28,6 +30,18 @@ public class CloudService
 
 	@XmlElement ( name = "AffinityGroup" )
 	private String affinityGroup;
+
+	@XmlElement ( name = "GeoReplicationEnabled" )
+	private boolean geoReplicationEnabled;
+
+	@XmlElement ( name = "Value" )
+	private boolean value;
+
+	@XmlElement ( name = "SecondaryReadEnabled" )
+	private boolean secondaryReadEnabled;
+
+	@XmlElement ( name = "Name" )
+	private boolean name;
 
 	public String getServiceName ()
 	{
@@ -79,9 +93,50 @@ public class CloudService
 		this.affinityGroup = affinityGroup;
 	}
 
+	public boolean isGeoReplicationEnabled ()
+	{
+		return geoReplicationEnabled;
+	}
+
+	public void setGeoReplicationEnabled ( boolean geoReplicationEnabled )
+	{
+		this.geoReplicationEnabled = geoReplicationEnabled;
+	}
+
+	public boolean isValue ()
+	{
+		return value;
+	}
+
+	public void setValue ( boolean value )
+	{
+		this.value = value;
+	}
+
+	public boolean isSecondaryReadEnabled ()
+	{
+		return secondaryReadEnabled;
+	}
+
+	public void setSecondaryReadEnabled ( boolean secondaryReadEnabled )
+	{
+		this.secondaryReadEnabled = secondaryReadEnabled;
+	}
+
+	public boolean isName ()
+	{
+		return name;
+	}
+
+	public void setName ( boolean name )
+	{
+		this.name = name;
+	}
+
 	@Override
 	public String toString ()
 	{
-		return "ServiceName: " + serviceName + " Label: " + " Description: " + description + " Location: " + location + " AfiinityGroup: " + affinityGroup;
+		return "ServiceName: " + serviceName + " Description: " + description
+				+ " Label: " + label + " Location: " + location + " AffinityGroup: " + affinityGroup;
 	}
 }
