@@ -1,5 +1,6 @@
 package com.cloudesire.azure.client;
 
+import com.cloudesire.azure.client.apiobjects.ErrorResponse;
 import com.cloudesire.tisana4j.ExceptionTranslator;
 import org.apache.http.HttpStatus;
 

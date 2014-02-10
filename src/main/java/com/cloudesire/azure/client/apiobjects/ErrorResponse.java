@@ -1,11 +1,11 @@
-package com.cloudesire.azure.client;
+package com.cloudesire.azure.client.apiobjects;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement (name = "Error")
+@XmlRootElement (name = "Error", namespace = "http://schemas.microsoft.com/windowsazure")
 @XmlAccessorType (value = XmlAccessType.FIELD)
 public class ErrorResponse
 {
