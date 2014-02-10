@@ -9,21 +9,21 @@ import javax.xml.bind.annotation.XmlType;
 /**
  * @author Manuel Mazzuola <manuel.mazzuola@liberologico.com>
  */
-@XmlRootElement ( name = "CreateAffinityGroup" )
+@XmlRootElement (name = "CreateAffinityGroup")
 @XmlType ()
-@XmlAccessorType ( value = XmlAccessType.FIELD )
+@XmlAccessorType (value = XmlAccessType.FIELD)
 public class AffinityGroup
 {
-	@XmlElement ( name = "Name" )
+	@XmlElement (name = "Name")
 	private String name;
 
-	@XmlElement ( name = "Label" )
+	@XmlElement (name = "Label")
 	private String label;
 
-	@XmlElement ( name = "Description" )
+	@XmlElement (name = "Description")
 	private String description;
 
-	@XmlElement ( name = "Location" )
+	@XmlElement (name = "Location")
 	private String location;
 
 	public String getName ()

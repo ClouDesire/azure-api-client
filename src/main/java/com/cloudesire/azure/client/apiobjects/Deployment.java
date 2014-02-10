@@ -14,24 +14,24 @@ import java.util.UUID;
 /**
  * @author Manuel Mazzuola <manuel.mazzuola@liberologico.com>
  */
-@XmlRootElement ( name = "Deployment" )
-@XmlType ( propOrder = {"name", "deploymentSlot", "label", "roleList", "virtualNetworkName"} )
-@XmlAccessorType ( value = XmlAccessType.FIELD )
+@XmlRootElement (name = "Deployment")
+@XmlType (propOrder = {"name", "deploymentSlot", "label", "roleList", "virtualNetworkName"})
+@XmlAccessorType (value = XmlAccessType.FIELD)
 public class Deployment
 {
-	@XmlElement ( name = "Name" )
+	@XmlElement (name = "Name")
 	private String name;
 
-	@XmlElement ( name = "DeploymentSlot" )
+	@XmlElement (name = "DeploymentSlot")
 	private String deploymentSlot = "Production";
 
-	@XmlElement ( name = "Label" )
+	@XmlElement (name = "Label")
 	private String label;
 
-	@XmlElement ( name = "RoleList" )
+	@XmlElement (name = "RoleList")
 	private RoleList roleList = new RoleList();
 
-	@XmlElement ( name = "VirtualNetworkName" )
+	@XmlElement (name = "VirtualNetworkName")
 	private String virtualNetworkName;
 
 	public String getName ()

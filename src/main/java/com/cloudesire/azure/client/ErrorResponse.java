@@ -1,15 +1,18 @@
 package com.cloudesire.azure.client;
 
-import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
-import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 
-@JacksonXmlRootElement (localName = "Error", namespace = "http://schemas.microsoft.com/windowsazure")
+@XmlRootElement (name = "Error")
+@XmlAccessorType (value = XmlAccessType.FIELD)
 public class ErrorResponse
 {
-	@JacksonXmlProperty (localName = "Code")
+	@XmlElement (name = "Code")
 	private String code;
 
-	@JacksonXmlProperty (localName = "Message")
+	@XmlElement (name = "Message")
 	private String message;
 
 	public String getCode ()
@@ -31,5 +34,4 @@ public class ErrorResponse
 	{
 		this.message = message;
 	}
-
 }

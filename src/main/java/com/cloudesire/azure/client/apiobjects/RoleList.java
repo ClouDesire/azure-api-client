@@ -10,11 +10,11 @@ import java.util.List;
 /**
  * @author Manuel Mazzuola <manuel.mazzuola@liberologico.com>
  */
-@XmlType ( name = "RoleList" )
-@XmlAccessorType ( value = XmlAccessType.FIELD )
+@XmlType (name = "RoleList")
+@XmlAccessorType (value = XmlAccessType.FIELD)
 public class RoleList implements Iterable<Role>
 {
-	@XmlElement ( name = "Role" )
+	@XmlElement (name = "Role")
 	private List<Role> roles;
 
 	@Override

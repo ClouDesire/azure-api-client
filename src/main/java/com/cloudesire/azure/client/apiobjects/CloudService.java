@@ -9,24 +9,24 @@ import javax.xml.bind.annotation.XmlType;
 /**
  * @author Manuel Mazzuola <manuel.mazzuola@liberologico.com>
  */
-@XmlRootElement ( name = "CreateHostedService" )
-@XmlType ( propOrder = {"serviceName", "label", "description", "location", "affinityGroup"} )
-@XmlAccessorType ( value = XmlAccessType.FIELD )
+@XmlRootElement (name = "CreateHostedService")
+@XmlType (propOrder = {"serviceName", "label", "description", "location", "affinityGroup"})
+@XmlAccessorType (value = XmlAccessType.FIELD)
 public class CloudService
 {
-	@XmlElement ( name = "ServiceName" )
+	@XmlElement (name = "ServiceName")
 	private String serviceName;
 
-	@XmlElement ( name = "Label" )
+	@XmlElement (name = "Label")
 	private String label;
 
-	@XmlElement ( name = "Description" )
+	@XmlElement (name = "Description")
 	private String description;
 
-	@XmlElement ( name = "Location" )
+	@XmlElement (name = "Location")
 	private String location;
 
-	@XmlElement ( name = "AffinityGroup" )
+	@XmlElement (name = "AffinityGroup")
 	private String affinityGroup;
 
 	public String getServiceName ()

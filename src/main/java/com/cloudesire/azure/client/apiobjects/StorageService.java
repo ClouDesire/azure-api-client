@@ -8,39 +8,39 @@ import javax.xml.bind.annotation.XmlRootElement;
 /**
  * @author Manuel Mazzuola <manuel.mazzuola@liberologico.com>
  */
-@XmlRootElement ( name = "CreateStorageServiceInput" )
-@XmlAccessorType ( value = XmlAccessType.FIELD )
+@XmlRootElement (name = "CreateStorageServiceInput")
+@XmlAccessorType (value = XmlAccessType.FIELD)
 public class StorageService
 {
 	/**
 	 * Storage account names must be between 3 and 24 characters in length
 	 * and use numbers and lower-case letters only.
 	 */
-	@XmlElement ( name = "ServiceName" )
+	@XmlElement (name = "ServiceName")
 	private String serviceName;
 
-	@XmlElement ( name = "Label" )
+	@XmlElement (name = "Label")
 	private String label;
 
-	@XmlElement ( name = "Description" )
+	@XmlElement (name = "Description")
 	private String description;
 
-	@XmlElement ( name = "Location" )
+	@XmlElement (name = "Location")
 	private String location;
 
-	@XmlElement ( name = "AffinityGroup" )
+	@XmlElement (name = "AffinityGroup")
 	private String affinityGroup;
 
-	@XmlElement ( name = "GeoReplicationEnabled" )
+	@XmlElement (name = "GeoReplicationEnabled")
 	private boolean geoReplicationEnabled;
 
-	@XmlElement ( name = "Value" )
+	@XmlElement (name = "Value")
 	private boolean value;
 
-	@XmlElement ( name = "SecondaryReadEnabled" )
+	@XmlElement (name = "SecondaryReadEnabled")
 	private boolean secondaryReadEnabled;
 
-	@XmlElement ( name = "Name" )
+	@XmlElement (name = "Name")
 	private boolean name;
 
 	public String getServiceName ()

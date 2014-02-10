@@ -8,23 +8,23 @@ import javax.xml.bind.annotation.XmlType;
 /**
  * @author Manuel Mazzuola <manuel.mazzuola@liberologico.com>
  */
-@XmlAccessorType ( value = XmlAccessType.FIELD )
-@XmlType ( name = "OSVirtualHardDisk" )
+@XmlAccessorType (value = XmlAccessType.FIELD)
+@XmlType (name = "OSVirtualHardDisk")
 public class OSVirtualHardDisk
 {
-	@XmlElement ( name = "HostCaching" )
+	@XmlElement (name = "HostCaching")
 	private String hostCaching;
 
-	@XmlElement ( name = "DiskLabel" )
+	@XmlElement (name = "DiskLabel")
 	private String diskLabel;
 
-	@XmlElement ( name = "DiskName" )
+	@XmlElement (name = "DiskName")
 	private String diskName;
 
-	@XmlElement ( name = "MediaLink" )
+	@XmlElement (name = "MediaLink")
 	private String mediaLink;
 
-	@XmlElement ( name = "SourceImageName" )
+	@XmlElement (name = "SourceImageName")
 	private String sourceImageName;
 
 	public String getDiskLabel ()

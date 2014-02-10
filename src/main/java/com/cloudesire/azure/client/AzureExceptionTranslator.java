@@ -1,11 +1,11 @@
 package com.cloudesire.azure.client;
 
 import com.cloudesire.tisana4j.ExceptionTranslator;
-import com.fasterxml.jackson.dataformat.xml.JacksonXmlModule;
-import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import org.apache.http.HttpStatus;
 
-import java.io.IOException;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Unmarshaller;
 import java.io.InputStream;
 
 public class AzureExceptionTranslator implements ExceptionTranslator
@@ -18,17 +18,14 @@ public class AzureExceptionTranslator implements ExceptionTranslator
 		if (responseCode == HttpStatus.SC_GONE) return null;
 		try
 		{
-			JacksonXmlModule module = new JacksonXmlModule();
-			module.setDefaultUseWrapper(false);
-			XmlMapper xmlMapper = new XmlMapper(module);
-			ErrorResponse errorResponse = xmlMapper.readValue(errorStream, ErrorResponse.class);
+			JAXBContext contextB = JAXBContext.newInstance(ErrorResponse.class);
+			Unmarshaller unmarshallerB = contextB.createUnmarshaller();
+			ErrorResponse errorResponse = (ErrorResponse) unmarshallerB.unmarshal(errorStream);
 			return new AzureResponseException(errorResponse.getCode(), errorResponse.getMessage());
-
-		} catch (IOException e)
+		} catch (JAXBException e)
 		{
 			return new AzureResponseException(Integer.toString(responseCode), responseMessage);
 		}
-
 	}
 
 }
