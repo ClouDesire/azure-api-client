@@ -2,9 +2,10 @@ package com.cloudesire.azure.client.test;
 
 import com.cloudesire.azure.client.apiobjects.Images;
 import com.cloudesire.azure.client.apiobjects.OSImage;
-import com.fasterxml.jackson.dataformat.xml.JacksonXmlModule;
-import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.Marshaller;
+import java.io.ByteArrayOutputStream;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -28,11 +29,11 @@ public class SerializationTest
 
 		images.setOsImages(list);
 
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		JAXBContext context = JAXBContext.newInstance(Images.class);
+		Marshaller m = context.createMarshaller();
+		m.marshal(images, baos);
 
-		JacksonXmlModule module = new JacksonXmlModule();
-		module.setDefaultUseWrapper(false);
-		XmlMapper mapper = new XmlMapper(module);
-
-		mapper.writeValue(System.out, images);
+		System.out.println(baos.toString());
 	}
 }
