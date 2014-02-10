@@ -25,6 +25,9 @@ public class Role
 	@XmlElement (name = "OSVirtualHardDisk")
 	private OSVirtualHardDisk osVirtualHardDisk = new OSVirtualHardDisk();
 
+	@XmlElement (name = "DataVirtualHardDisks")
+	private DataVirtualHardDisks dataVirtualHardDisks = new DataVirtualHardDisks();
+
 	@XmlElement (name = "RoleSize")
 	private String roleSize;
 
@@ -66,6 +69,16 @@ public class Role
 	public void setOsVirtualHardDisk ( OSVirtualHardDisk osVirtualHardDisk )
 	{
 		this.osVirtualHardDisk = osVirtualHardDisk;
+	}
+
+	public DataVirtualHardDisks getDataVirtualHardDisks ()
+	{
+		return dataVirtualHardDisks;
+	}
+
+	public void setDataVirtualHardDisks ( DataVirtualHardDisks dataVirtualHardDisks )
+	{
+		this.dataVirtualHardDisks = dataVirtualHardDisks;
 	}
 
 	public String getRoleSize ()

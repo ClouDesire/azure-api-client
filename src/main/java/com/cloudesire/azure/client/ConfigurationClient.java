@@ -9,5 +9,5 @@ public interface ConfigurationClient
 {
 	List<Location> listLocations () throws Exception;
 
-	AffinityGroup createAffinityGroup ( AffinityGroup group ) throws Exception;
+	Integer createAffinityGroup ( AffinityGroup group ) throws Exception;
 }

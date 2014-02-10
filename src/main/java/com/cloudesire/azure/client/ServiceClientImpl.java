@@ -10,7 +10,9 @@ import org.apache.commons.codec.binary.Base64;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -64,47 +66,51 @@ public class ServiceClientImpl implements ServiceClient
 	}
 
 	@Override
-	public CloudService createCloudService ( CloudService cloudService ) throws Exception
+	public Integer createCloudService ( CloudService cloudService ) throws Exception
 	{
 		if (cloudService.getLabel() != null && ! Base64.isBase64(cloudService.getLabel()))
 			throw new AzureResponseException("400", "Label must be 64 base encoded");
 
-		// Azure returns none on post requests ._.
-		// FIXME: check avaibility of ServiceName
+		// TODO: check avaibility of ServiceName
+		Map<String, String> responseHeaders = new HashMap<>();
 		restClient.post(
 				new URL(
 						ServiceClientImpl.this.servicesEndpoint, "hostedservices"
-				), cloudService, null, null
+				), cloudService, null, null, responseHeaders
 		);
 
-		return cloudService;
+		if (! responseHeaders.containsKey("x-ms-request-id")) return null;
+		return new Integer(responseHeaders.get("x-ms-request-id"));
 	}
 
 	@Override
-	public StorageService createStorageService ( StorageService storageService ) throws Exception
+	public Integer createStorageService ( StorageService storageService ) throws Exception
 	{
 		if (storageService.getLabel() != null && ! Base64.isBase64(storageService.getLabel()))
 			throw new AzureResponseException("400", "Label must be 64 base encoded");
 
+		Map<String, String> responseHeaders = new HashMap<>();
 		restClient.post(
 				new URL(
 						ServiceClientImpl.this.servicesEndpoint, "storageservices"
 				), storageService, null, null
 		);
 
-		return storageService;
+		if (! responseHeaders.containsKey("x-ms-request-id")) return null;
+		return new Integer(responseHeaders.get("x-ms-request-id"));
 	}
 
 	@Override
-	public Deployment createDeployment ( Deployment deployment, String serviceName ) throws Exception
+	public Integer createDeployment ( Deployment deployment, String serviceName ) throws Exception
 	{
+		Map<String, String> responseHeaders = new HashMap<>();
 		restClient.post(
 				new URL(
 						ServiceClientImpl.this.servicesEndpoint, "hostedservices/" + serviceName + "/deployments"
 				), deployment, null, null
 		);
 
-		return deployment;
+		if (! responseHeaders.containsKey("x-ms-request-id")) return null;
+		return new Integer(responseHeaders.get("x-ms-request-id"));
 	}
-
 }

@@ -96,7 +96,6 @@ public class Deployment
 		private String sourceImageLink;
 		private int minMemory;
 		private int minCpu;
-		// TODO: Add custom data disk
 		private int minDisk;
 
 		public Builder ()
@@ -155,7 +154,7 @@ public class Deployment
 		 * Specify the minimum amount of memory in MB
 		 *
 		 * @param minMemory
-		 * @return
+		 * @return Builder
 		 */
 		public Builder withMinMemory ( int minMemory )
 		{
@@ -163,6 +162,12 @@ public class Deployment
 			return this;
 		}
 
+		/**
+		 * Specify the minimum amount of disk in GB
+		 *
+		 * @param minDisk
+		 * @return Builder
+		 */
 		public Builder withMinDisk ( int minDisk )
 		{
 			this.minDisk = minDisk;
@@ -188,6 +193,9 @@ public class Deployment
 		List<ConfigurationSet> configurationList = new ArrayList<>();
 		ConfigurationSet set = new ConfigurationSet();
 		OSVirtualHardDisk osvh = role.getOsVirtualHardDisk();
+		DataVirtualHardDisks disks = role.getDataVirtualHardDisks();
+		List<DataVirtualHardDisk> disksList = new ArrayList<>();
+		DataVirtualHardDisk disk = new DataVirtualHardDisk();
 
 		set.setHostName(builder.hostname);
 		set.setUserName(builder.username);
@@ -202,6 +210,10 @@ public class Deployment
 		role.setRoleName(UUID.randomUUID().toString());
 		role.setConfigurationSets(configurationSets);
 		role.setOsVirtualHardDisk(osvh);
+
+		disk.setLogicalDiskSizeInGB(builder.minDisk);
+		disksList.add(disk);
+		disks.setDataVirtualHardDisks(disksList);
 
 		VirtualMachineSize size = VirtualMachineSize.ExtraSmall;
 

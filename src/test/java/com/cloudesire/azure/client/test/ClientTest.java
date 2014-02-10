@@ -53,8 +53,8 @@ public class ClientTest
 		affinityGroup.setName(UUID.randomUUID().toString());
 		affinityGroup.setLabel(Base64.encode(affinityGroup.getName().getBytes("UTF-8")));
 		affinityGroup.setLocation(locations.iterator().next().getName());
-		final AffinityGroup group = client.getConfigurationClient().createAffinityGroup(affinityGroup);
-		log.info("Requested AffinityGroup: " + affinityGroup);
+		final Integer group = client.getConfigurationClient().createAffinityGroup(affinityGroup);
+		log.info("Requested AffinityGroup: " + affinityGroup + " ID: " + group.toString());
 
 		// Create CloudService
 		CloudService c = new CloudService();
@@ -62,15 +62,15 @@ public class ClientTest
 		c.setLabel(Base64.encode(c.getServiceName().getBytes("UTF-8")));
 		c.setDescription(c.getServiceName());
 		c.setAffinityGroup(affinityGroup.getName());
-		final CloudService cloudService = client.getServiceClient().createCloudService(c);
-		log.info("Requested CloudService: " + cloudService);
+		final Integer cloudService = client.getServiceClient().createCloudService(c);
+		log.info("Requested CloudService: " + c + " ID: " + cloudService.toString());
 
 		StorageService s = new StorageService();
 		s.setServiceName("myst0rages3rvic399");
 		s.setLabel(Base64.encode(s.getServiceName().getBytes("UTF-8")));
-		s.setAffinityGroup(group.getName());
-		final StorageService storageService = client.getServiceClient().createStorageService(s);
-		log.info("Requested StorageService: " + storageService);
+		s.setAffinityGroup(affinityGroup.getName());
+		final Integer storageService = client.getServiceClient().createStorageService(s);
+		log.info("Requested StorageService: " + s + " ID: " + storageService.toString());
 
 		// Test Deploy Virtual Machine
 		Deployment.Builder deploymentBuilder = new Deployment.Builder();
@@ -79,11 +79,11 @@ public class ClientTest
 				.withHostname("hostname")
 				.withLabel(UUID.randomUUID().toString())
 				.withMinCpu(1)
-				.withMinDisk(100)
+				.withMinDisk(5)
 				.withMinMemory(100)
 				.withPassword("askd123ASDASD1213")
 				.withSourceImage(testOsImage.getName())
-				.withSourceImageLink("http://" + storageService.getServiceName() + ".blob.core.windows.net/communityimages/" + UUID.randomUUID().toString() + ".vhd")
+				.withSourceImageLink("http://" + s.getServiceName() + ".blob.core.windows.net/communityimages/" + UUID.randomUUID().toString() + ".vhd")
 				.withUsername("manuel")
 				.build();
 
@@ -93,8 +93,8 @@ public class ClientTest
 				.getConfigurationSets().iterator().next()
 				.setDisableSshPasswordAuthentication(false);
 
-		final Deployment deployment1 = client.getServiceClient().createDeployment(deployment, cloudService.getServiceName());
-		log.info("Deployment : " + deployment1);
+		final Integer deployment1 = client.getServiceClient().createDeployment(deployment, c.getServiceName());
+		log.info("Deployment : " + deployment1 + " ID: " + deployment1);
 	}
 
 	// http://gauravmantri.com/2013/08/25/consuming-windows-azure-service-management-api-in-java/
