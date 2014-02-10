@@ -9,7 +9,7 @@ import javax.xml.bind.annotation.XmlType;
  * @author Manuel Mazzuola <manuel.mazzuola@liberologico.com>
  */
 @XmlType (name = "Role", propOrder = {
-		"roleName", "roleType", "configurationSets", "osVirtualHardDisk", "roleSize"})
+		"roleName", "roleType", "configurationSets", "osVirtualHardDisk", "dataVirtualHardDisks", "roleSize"})
 @XmlAccessorType (value = XmlAccessType.FIELD)
 public class Role
 {

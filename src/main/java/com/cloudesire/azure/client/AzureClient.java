@@ -22,6 +22,7 @@ public class AzureClient
 	private URL endpoint;
 	private ServiceClientImpl serviceClient;
 	private ConfigurationClientImpl configurationClient;
+	private OperationClientImpl operationClient;
 
 	public AzureClient ( String subscriptionId, KeyStore keyStore, String password, URL endpoint ) throws Exception
 	{
@@ -71,5 +72,13 @@ public class AzureClient
 				endpoint, restClient
 		);
 		return serviceClient;
+	}
+
+	public synchronized OperationClient getOperationClient () throws MalformedURLException
+	{
+		if (operationClient == null) operationClient = new OperationClientImpl(
+				endpoint, restClient
+		);
+		return operationClient;
 	}
 }

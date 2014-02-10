@@ -34,7 +34,7 @@ class ConfigurationClientImpl implements ConfigurationClient
 	}
 
 	@Override
-	public Integer createAffinityGroup ( AffinityGroup group ) throws Exception
+	public String createAffinityGroup ( AffinityGroup group ) throws Exception
 	{
 		if (group.getLabel() != null && ! Base64.isBase64(group.getLabel()))
 			throw new AzureResponseException("400", "Label must be 64 base encoded");
@@ -47,7 +47,7 @@ class ConfigurationClientImpl implements ConfigurationClient
 		);
 
 		if (! responseHeaders.containsKey("x-ms-request-id")) return null;
-		return new Integer(responseHeaders.get("x-ms-request-id"));
+		return responseHeaders.get("x-ms-request-id");
 	}
 
 }

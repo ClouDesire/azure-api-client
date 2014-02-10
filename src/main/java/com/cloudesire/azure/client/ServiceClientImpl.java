@@ -66,7 +66,7 @@ public class ServiceClientImpl implements ServiceClient
 	}
 
 	@Override
-	public Integer createCloudService ( CloudService cloudService ) throws Exception
+	public String createCloudService ( CloudService cloudService ) throws Exception
 	{
 		if (cloudService.getLabel() != null && ! Base64.isBase64(cloudService.getLabel()))
 			throw new AzureResponseException("400", "Label must be 64 base encoded");
@@ -80,11 +80,11 @@ public class ServiceClientImpl implements ServiceClient
 		);
 
 		if (! responseHeaders.containsKey("x-ms-request-id")) return null;
-		return new Integer(responseHeaders.get("x-ms-request-id"));
+		return responseHeaders.get("x-ms-request-id");
 	}
 
 	@Override
-	public Integer createStorageService ( StorageService storageService ) throws Exception
+	public String createStorageService ( StorageService storageService ) throws Exception
 	{
 		if (storageService.getLabel() != null && ! Base64.isBase64(storageService.getLabel()))
 			throw new AzureResponseException("400", "Label must be 64 base encoded");
@@ -93,24 +93,24 @@ public class ServiceClientImpl implements ServiceClient
 		restClient.post(
 				new URL(
 						ServiceClientImpl.this.servicesEndpoint, "storageservices"
-				), storageService, null, null
+				), storageService, null, null, responseHeaders
 		);
 
 		if (! responseHeaders.containsKey("x-ms-request-id")) return null;
-		return new Integer(responseHeaders.get("x-ms-request-id"));
+		return responseHeaders.get("x-ms-request-id");
 	}
 
 	@Override
-	public Integer createDeployment ( Deployment deployment, String serviceName ) throws Exception
+	public String createDeployment ( Deployment deployment, String serviceName ) throws Exception
 	{
 		Map<String, String> responseHeaders = new HashMap<>();
 		restClient.post(
 				new URL(
 						ServiceClientImpl.this.servicesEndpoint, "hostedservices/" + serviceName + "/deployments"
-				), deployment, null, null
+				), deployment, null, null, responseHeaders
 		);
 
 		if (! responseHeaders.containsKey("x-ms-request-id")) return null;
-		return new Integer(responseHeaders.get("x-ms-request-id"));
+		return responseHeaders.get("x-ms-request-id");
 	}
 }
