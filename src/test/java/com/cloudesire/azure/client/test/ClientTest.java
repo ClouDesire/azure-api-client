@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.security.KeyStore;
 import java.util.List;
 import java.util.UUID;
+import java.util.concurrent.TimeUnit;
 
 public class ClientTest
 {
@@ -93,11 +94,7 @@ public class ClientTest
 		final String deploymentID = client.getServiceClient().createDeployment(deployment, "cloudesiretest");
 		log.info("Waiting creation deployment ID: " + deploymentID.toString());
 
-		Status status = Status.INPROGRESS;
-		while (status != Status.SUCCEEDED)
-		{
-			status = client.getOperationClient().OperationStatus(deploymentID);
-		}
+		client.getOperationClient().waitForState(deploymentID, Status.SUCCEEDED, 5, TimeUnit.MINUTES);
 
 		log.info("Deployment created: " + deployment + " ID: " + deploymentID);
 	}
