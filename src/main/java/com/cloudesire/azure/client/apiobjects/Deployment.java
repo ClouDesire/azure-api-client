@@ -96,6 +96,7 @@ public class Deployment
 		private String sourceImageLink;
 		private int minMemory;
 		private int minCpu;
+		// TODO: Add custom data disk
 		private int minDisk;
 
 		public Builder ()

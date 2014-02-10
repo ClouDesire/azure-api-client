@@ -29,7 +29,7 @@ public class ConfigurationSet
 	private String userPassword;
 
 	@XmlElement (name = "DisableSshPasswordAuthentication")
-	private Boolean disableSshPasswordAuthentication;
+	private Boolean disableSshPasswordAuthentication = Boolean.TRUE;
 
 	public String getConfigurationSetTypeAttribute ()
 	{
