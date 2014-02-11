@@ -4,7 +4,6 @@ import com.cloudesire.azure.client.apiobjects.AffinityGroup;
 import com.cloudesire.azure.client.apiobjects.Location;
 import com.cloudesire.azure.client.apiobjects.Locations;
 import com.cloudesire.tisana4j.RestClient;
-import org.apache.commons.codec.binary.Base64;
 
 import java.net.URL;
 import java.util.HashMap;
@@ -36,9 +35,6 @@ class ConfigurationClientImpl implements ConfigurationClient
 	@Override
 	public String createAffinityGroup ( AffinityGroup group ) throws Exception
 	{
-		if (group.getLabel() != null && ! Base64.isBase64(group.getLabel()))
-			throw new AzureResponseException("400", "Label must be 64 base encoded");
-
 		Map<String, String> responseHeaders = new HashMap<>();
 		restClient.post(
 				new URL(

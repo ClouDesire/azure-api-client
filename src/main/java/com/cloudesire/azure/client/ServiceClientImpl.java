@@ -6,7 +6,6 @@ import com.cloudesire.azure.client.apiobjects.Images;
 import com.cloudesire.azure.client.apiobjects.OSImage;
 import com.cloudesire.azure.client.apiobjects.StorageService;
 import com.cloudesire.tisana4j.RestClient;
-import org.apache.commons.codec.binary.Base64;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -79,9 +78,6 @@ public class ServiceClientImpl implements ServiceClient
 	@Override
 	public String createCloudService ( CloudService cloudService ) throws Exception
 	{
-		if (cloudService.getLabel() != null && ! Base64.isBase64(cloudService.getLabel()))
-			throw new AzureResponseException("400", "Label must be 64 base encoded");
-
 		// TODO: check avaibility of ServiceName
 		Map<String, String> responseHeaders = new HashMap<>();
 		restClient.post(
@@ -97,9 +93,6 @@ public class ServiceClientImpl implements ServiceClient
 	@Override
 	public String createStorageService ( StorageService storageService ) throws Exception
 	{
-		if (storageService.getLabel() != null && ! Base64.isBase64(storageService.getLabel()))
-			throw new AzureResponseException("400", "Label must be 64 base encoded");
-
 		Map<String, String> responseHeaders = new HashMap<>();
 		restClient.post(
 				new URL(
