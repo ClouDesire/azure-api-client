@@ -65,6 +65,17 @@ public class ServiceClientImpl implements ServiceClient
 		return imageCache.get().getOsImages();
 	}
 
+	public Deployment getDeployment ( String serviceName, String deploymentName ) throws Exception
+	{
+		Deployment deployment = restClient.get(
+				new URL(
+						ServiceClientImpl.this.servicesEndpoint, "hostedservices/" + serviceName + "/deployments/" + deploymentName
+				), Deployment.class
+		);
+
+		return deployment;
+	}
+
 	@Override
 	public String createCloudService ( CloudService cloudService ) throws Exception
 	{

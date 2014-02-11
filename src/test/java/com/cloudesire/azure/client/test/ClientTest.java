@@ -71,17 +71,19 @@ public class ClientTest
 		log.info("Requested StorageService: " + s + " ID: " + storageServiceID);*/
 
 		// Test Deploy Virtual Machine
+		String name = UUID.randomUUID().toString();
 		Deployment.Builder deploymentBuilder = new Deployment.Builder();
 		Deployment deployment = deploymentBuilder
-				.withName(UUID.randomUUID().toString())
+				.withName(name)
 				.withHostname("hostname")
 				.withLabel(UUID.randomUUID().toString())
 				.withMinCpu(1)
-				.withMinDisk(5)
+				.withMinDisk(50)
 				.withMinMemory(100)
 				.withPassword("askd123ASDASD1213")
 				.withSourceImage(testOsImage.getName())
-				.withSourceImageLink("http://" + "cloudesiretest" + ".blob.core.windows.net/communityimages/" + UUID.randomUUID().toString() + ".vhd")
+				.withSourceImageLink("http://" + "cloudesiretest" + ".blob.core.windows.net/communityimages/" + name + UUID.randomUUID().toString() + ".vhd")
+				.withDataImageLink("http://" + "cloudesiretest" + ".blob.core.windows.net/disks/" + name + UUID.randomUUID().toString() + ".vhd")
 				.withUsername("manuel")
 				.build();
 
@@ -96,7 +98,8 @@ public class ClientTest
 
 		client.getOperationClient().waitForState(deploymentID, Status.SUCCEEDED, 5, TimeUnit.MINUTES);
 
-		log.info("Deployment created: " + deployment + " ID: " + deploymentID);
+		Deployment ret = client.getServiceClient().getDeployment("cloudesiretest", deployment.getName());
+		log.info("Deployment created: " + ret + " ID: " + deploymentID);
 	}
 
 	// http://gauravmantri.com/2013/08/25/consuming-windows-azure-service-management-api-in-java/

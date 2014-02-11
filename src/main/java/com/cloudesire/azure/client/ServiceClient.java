@@ -16,6 +16,8 @@ public interface ServiceClient
 
 	List<OSImage> listImages () throws Exception;
 
+	Deployment getDeployment ( String serviceName, String deploymentName ) throws Exception;
+
 	String createCloudService ( CloudService cloudService ) throws Exception;
 
 	String createStorageService ( StorageService cloudService ) throws Exception;

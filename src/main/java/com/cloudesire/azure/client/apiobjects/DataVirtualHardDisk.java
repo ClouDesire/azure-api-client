@@ -9,21 +9,22 @@ import javax.xml.bind.annotation.XmlType;
  * @author Manuel Mazzuola <manuel.mazzuola@liberologico.com>
  */
 @XmlAccessorType (value = XmlAccessType.FIELD)
-@XmlType (name = "DataVirtualHardDisk")
+@XmlType (name = "DataVirtualHardDisk",
+          propOrder = {"hostCaching", "diskLabel", "diskName", "lun", "logicalDiskSizeInGB", "mediaLink", "sourceImageName"})
 public class DataVirtualHardDisk extends Disk
 {
 	@XmlElement (name = "Lun")
-	private int lun;
+	private Integer lun;
 
 	@XmlElement (name = "LogicalDiskSizeInGB")
 	private int logicalDiskSizeInGB;
 
-	public int getLun ()
+	public Integer getLun ()
 	{
 		return lun;
 	}
 
-	public void setLun ( int lun )
+	public void setLun ( Integer lun )
 	{
 		this.lun = lun;
 	}

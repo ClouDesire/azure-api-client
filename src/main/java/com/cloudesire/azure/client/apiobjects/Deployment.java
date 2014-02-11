@@ -6,7 +6,6 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlType;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -15,7 +14,6 @@ import java.util.UUID;
  * @author Manuel Mazzuola <manuel.mazzuola@liberologico.com>
  */
 @XmlRootElement (name = "Deployment")
-@XmlType (propOrder = {"name", "deploymentSlot", "label", "roleList", "virtualNetworkName"})
 @XmlAccessorType (value = XmlAccessType.FIELD)
 public class Deployment
 {
@@ -25,8 +23,20 @@ public class Deployment
 	@XmlElement (name = "DeploymentSlot")
 	private String deploymentSlot = "Production";
 
+	@XmlElement (name = "PrivateID")
+	private String privateIp;
+
+	@XmlElement (name = "Status")
+	private String status;
+
 	@XmlElement (name = "Label")
 	private String label;
+
+	@XmlElement (name = "Url")
+	private String url;
+
+	@XmlElement (name = "RoleInstanceList")
+	private RoleInstanceList roleInstanceList = new RoleInstanceList();
 
 	@XmlElement (name = "RoleList")
 	private RoleList roleList = new RoleList();
@@ -94,6 +104,7 @@ public class Deployment
 		private String password;
 		private String sourceImage;
 		private String sourceImageLink;
+		private String dataImageLink;
 		private int minMemory;
 		private int minCpu;
 		private int minDisk;
@@ -141,6 +152,12 @@ public class Deployment
 		public Builder withSourceImageLink ( String sourceImageLink )
 		{
 			this.sourceImageLink = sourceImageLink;
+			return this;
+		}
+
+		public Builder withDataImageLink ( String dataImageLink )
+		{
+			this.dataImageLink = dataImageLink;
 			return this;
 		}
 
@@ -192,16 +209,32 @@ public class Deployment
 		ConfigurationSets configurationSets = role.getConfigurationSets();
 		List<ConfigurationSet> configurationList = new ArrayList<>();
 		ConfigurationSet set = new ConfigurationSet();
+		ConfigurationSet newtworkSet = new ConfigurationSet();
 		OSVirtualHardDisk osvh = role.getOsVirtualHardDisk();
 		DataVirtualHardDisks disks = role.getDataVirtualHardDisks();
 		List<DataVirtualHardDisk> disksList = new ArrayList<>();
 		DataVirtualHardDisk disk = new DataVirtualHardDisk();
+
+		InputEndpoints endpoints = new InputEndpoints();
+		InputEndpoint endpoint = new InputEndpoint();
+		List<InputEndpoint> listEndpoints = new ArrayList<>();
+		endpoint.setName("ssh");
+		endpoint.setLocalPort(22);
+		endpoint.setPort(22);
+		endpoint.setProtocol("TCP");
+		listEndpoints.add(endpoint);
+		endpoints.setEndpoints(listEndpoints);
+
+		newtworkSet.setConfigurationSetType("NetworkConfiguration");
+		newtworkSet.setConfigurationSetTypeAttribute("NetworkConfiguration");
+		newtworkSet.setInputEndpoints(endpoints);
 
 		set.setHostName(builder.hostname);
 		set.setUserName(builder.username);
 		set.setUserPassword(builder.password);
 
 		configurationList.add(set);
+		configurationList.add(newtworkSet);
 		configurationSets.setConfigurationSets(configurationList);
 
 		osvh.setSourceImageName(builder.sourceImage);
@@ -212,8 +245,12 @@ public class Deployment
 		role.setOsVirtualHardDisk(osvh);
 
 		disk.setLogicalDiskSizeInGB(builder.minDisk);
+		disk.setMediaLink(builder.dataImageLink);
+		disk.setDiskLabel(builder.label);
 		disksList.add(disk);
 		disks.setDataVirtualHardDisks(disksList);
+
+		role.setDataVirtualHardDisks(disks);
 
 		VirtualMachineSize size = VirtualMachineSize.ExtraSmall;
 
@@ -245,8 +282,8 @@ public class Deployment
 	@Override
 	public String toString ()
 	{
-		return "Name: " + name + " deploymentSlot: "
+		return "Name: " + name + " DeloymentSlot: "
 				+ deploymentSlot + " label: " + label + " RoleList: "
-				+ roleList + " VirtualNetworkName: " + virtualNetworkName;
+				+ roleList + " RoleInstanceList: " + roleInstanceList + " VirtualNetworkName: " + virtualNetworkName;
 	}
 }

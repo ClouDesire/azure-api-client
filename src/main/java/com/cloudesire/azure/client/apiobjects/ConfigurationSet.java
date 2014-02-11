@@ -31,6 +31,22 @@ public class ConfigurationSet
 	@XmlElement (name = "DisableSshPasswordAuthentication")
 	private Boolean disableSshPasswordAuthentication = Boolean.TRUE;
 
+	@XmlElement (name = "InputEndpoints")
+	private InputEndpoints inputEndpoints;
+
+	@XmlElement (name = "StaticVirtualNetworkIPAddress")
+	private String staticVirtualNetworkIPAddress;
+
+	public void setConfigurationSetTypeAttribute ( String configurationSetTypeAttribute )
+	{
+		this.configurationSetTypeAttribute = configurationSetTypeAttribute;
+	}
+
+	public void setConfigurationSetType ( String configurationSetType )
+	{
+		this.configurationSetType = configurationSetType;
+	}
+
 	public String getConfigurationSetTypeAttribute ()
 	{
 		return configurationSetTypeAttribute;
@@ -79,6 +95,26 @@ public class ConfigurationSet
 	public void setDisableSshPasswordAuthentication ( Boolean disableSshPasswordAuthentication )
 	{
 		this.disableSshPasswordAuthentication = disableSshPasswordAuthentication;
+	}
+
+	public InputEndpoints getInputEndpoints ()
+	{
+		return inputEndpoints;
+	}
+
+	public void setInputEndpoints ( InputEndpoints inputEndpoints )
+	{
+		this.inputEndpoints = inputEndpoints;
+	}
+
+	public String getStaticVirtualNetworkIPAddress ()
+	{
+		return staticVirtualNetworkIPAddress;
+	}
+
+	public void setStaticVirtualNetworkIPAddress ( String staticVirtualNetworkIPAddress )
+	{
+		this.staticVirtualNetworkIPAddress = staticVirtualNetworkIPAddress;
 	}
 
 	@Override

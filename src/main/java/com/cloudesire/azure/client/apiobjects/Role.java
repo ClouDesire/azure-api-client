@@ -8,8 +8,7 @@ import javax.xml.bind.annotation.XmlType;
 /**
  * @author Manuel Mazzuola <manuel.mazzuola@liberologico.com>
  */
-@XmlType (name = "Role", propOrder = {
-		"roleName", "roleType", "configurationSets", "osVirtualHardDisk", "dataVirtualHardDisks", "roleSize"})
+@XmlType (name = "Role")
 @XmlAccessorType (value = XmlAccessType.FIELD)
 public class Role
 {
@@ -22,11 +21,11 @@ public class Role
 	@XmlElement (name = "ConfigurationSets")
 	private ConfigurationSets configurationSets = new ConfigurationSets();
 
-	@XmlElement (name = "OSVirtualHardDisk")
-	private OSVirtualHardDisk osVirtualHardDisk = new OSVirtualHardDisk();
-
 	@XmlElement (name = "DataVirtualHardDisks")
 	private DataVirtualHardDisks dataVirtualHardDisks = new DataVirtualHardDisks();
+
+	@XmlElement (name = "OSVirtualHardDisk")
+	private OSVirtualHardDisk osVirtualHardDisk = new OSVirtualHardDisk();
 
 	@XmlElement (name = "RoleSize")
 	private String roleSize;
@@ -95,6 +94,7 @@ public class Role
 	public String toString ()
 	{
 		return " RoleName: " + roleName + " RoleType: " + roleType + " ConfigurationSets: "
-				+ configurationSets + " OSVirtualDisk: " + osVirtualHardDisk + " RoleSize: " + roleSize;
+				+ configurationSets + " OSVirtualDisk: " + osVirtualHardDisk
+				+ " DataVirtualDisk: " + dataVirtualHardDisks + " RoleSize: " + roleSize;
 	}
 }
