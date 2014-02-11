@@ -79,6 +79,16 @@ public class Deployment
 		return roleList;
 	}
 
+	public RoleInstanceList getRoleInstanceList ()
+	{
+		return roleInstanceList;
+	}
+
+	public void setRoleInstanceList ( RoleInstanceList roleInstanceList )
+	{
+		this.roleInstanceList = roleInstanceList;
+	}
+
 	public void setRoleList ( RoleList roleList )
 	{
 		this.roleList = roleList;
