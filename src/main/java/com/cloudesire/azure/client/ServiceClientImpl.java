@@ -82,7 +82,6 @@ public class ServiceClientImpl implements ServiceClient
 	@Override
 	public String createCloudService ( CloudService cloudService ) throws Exception
 	{
-		// TODO: check avaibility of ServiceName
 		Map<String, String> responseHeaders = new HashMap<>();
 		restClient.post(
 				new URL(
