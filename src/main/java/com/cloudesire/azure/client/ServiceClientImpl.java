@@ -193,7 +193,7 @@ public class ServiceClientImpl implements ServiceClient
 	{
 		AvailabilityResponse availabilityResponse = restClient.get(
 				new URL(
-						ServiceClientImpl.this.servicesEndpoint, "hostedservices/operations/isavailable" + serviceName
+						ServiceClientImpl.this.servicesEndpoint, "hostedservices/operations/isavailable/" + serviceName
 				), AvailabilityResponse.class
 		);
 
