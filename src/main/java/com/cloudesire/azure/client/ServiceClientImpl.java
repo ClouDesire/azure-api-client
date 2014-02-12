@@ -5,6 +5,8 @@ import com.cloudesire.azure.client.apiobjects.CloudService;
 import com.cloudesire.azure.client.apiobjects.Deployment;
 import com.cloudesire.azure.client.apiobjects.Images;
 import com.cloudesire.azure.client.apiobjects.OSImage;
+import com.cloudesire.azure.client.apiobjects.ShutdownRoleOperation;
+import com.cloudesire.azure.client.apiobjects.StartRoleOperation;
 import com.cloudesire.azure.client.apiobjects.StorageService;
 import com.cloudesire.tisana4j.RestClient;
 
@@ -147,6 +149,40 @@ public class ServiceClientImpl implements ServiceClient
 		URL url = new URL(ServiceClientImpl.this.servicesEndpoint, "hostedservices/" + serviceName);
 		Map<String, String> responseHeaders = new HashMap<>();
 		restClient.delete(url, null, responseHeaders);
+
+		if (! responseHeaders.containsKey("x-ms-request-id")) return null;
+		return responseHeaders.get("x-ms-request-id");
+	}
+
+	@Override
+	public String resumeMachine ( String serviceName, String deploymentName, String roleName ) throws Exception
+	{
+		StartRoleOperation startRoleOperation = new StartRoleOperation();
+		startRoleOperation.setOperationType("StartRoleOperation");
+
+		Map<String, String> responseHeaders = new HashMap<>();
+		restClient.post(
+				new URL(
+						ServiceClientImpl.this.servicesEndpoint, "hostedservices/" + serviceName + "/deployments/" + deploymentName + "/roleinstances/" + roleName + "/Operations"
+				), startRoleOperation, null, null, responseHeaders
+		);
+
+		if (! responseHeaders.containsKey("x-ms-request-id")) return null;
+		return responseHeaders.get("x-ms-request-id");
+	}
+
+	@Override
+	public String stopMachine ( String serviceName, String deploymentName, String roleName ) throws Exception
+	{
+		ShutdownRoleOperation shutdownRoleOperation = new ShutdownRoleOperation();
+		shutdownRoleOperation.setOperationType("ShutdownRoleOperation");
+
+		Map<String, String> responseHeaders = new HashMap<>();
+		restClient.post(
+				new URL(
+						ServiceClientImpl.this.servicesEndpoint, "hostedservices/" + serviceName + "/deployments/" + deploymentName + "/roleinstances/" + roleName + "/Operations"
+				), shutdownRoleOperation, null, null, responseHeaders
+		);
 
 		if (! responseHeaders.containsKey("x-ms-request-id")) return null;
 		return responseHeaders.get("x-ms-request-id");

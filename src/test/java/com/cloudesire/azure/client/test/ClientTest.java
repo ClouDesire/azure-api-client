@@ -1,12 +1,14 @@
 package com.cloudesire.azure.client.test;
 
 import com.cloudesire.azure.client.AzureClient;
+import com.cloudesire.azure.client.apiobjects.CloudService;
 import com.cloudesire.azure.client.apiobjects.Deployment;
 import com.cloudesire.azure.client.apiobjects.Location;
 import com.cloudesire.azure.client.apiobjects.OSImage;
 import com.cloudesire.azure.client.apiobjects.enums.Status;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import sun.misc.BASE64Encoder;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -70,6 +72,16 @@ public class ClientTest
 		final String storageServiceID = client.getServiceClient().createStorageService(s);
 		log.info("Requested StorageService: " + s + " ID: " + storageServiceID);*/
 
+		BASE64Encoder encoder = new BASE64Encoder();
+
+		CloudService c = new CloudService();
+		c.setServiceName("cloudesiretest");
+		c.setLabel(encoder.encode(c.getServiceName().getBytes()));
+		c.setDescription(c.getServiceName());
+		c.setAffinityGroup("eu-cloudesire");
+		final String cloudServiceID = client.getServiceClient().createCloudService(c);
+		log.debug("Created CloudService: " + c + " ID: " + cloudServiceID);
+
 		// Test Deploy Virtual Machine
 		String name = "test-120";
 		Deployment.Builder deploymentBuilder = new Deployment.Builder();
@@ -100,6 +112,24 @@ public class ClientTest
 
 		Deployment ret = client.getServiceClient().getDeployment("cloudesiretest", deployment.getName());
 		log.info("Deployment created: " + ret + " ID: " + deploymentID);
+
+		log.info("Shutdow now test!!");
+		String shutupID = client.getServiceClient().stopMachine("cloudesiretest", deployment.getName(), ret.getRoleInstanceList().getRoles().iterator().next().getRoleName());
+		log.info("Waiting...");
+		client.getOperationClient().waitForState(shutupID, Status.SUCCEEDED, 10, TimeUnit.MINUTES);
+		log.info("TANGO DOWN !!");
+
+		log.info("Start now test!!");
+		String startID = client.getServiceClient().resumeMachine("cloudesiretest", deployment.getName(), ret.getRoleInstanceList().getRoles().iterator().next().getRoleName());
+		log.info("Waiting...");
+		client.getOperationClient().waitForState(startID, Status.SUCCEEDED, 10, TimeUnit.MINUTES);
+		log.info("READY !!");
+
+		log.info("Killing machine..");
+		String killID = client.getServiceClient().destroyCloudService(c.getServiceName(), Boolean.TRUE);
+		log.info("Waiting...");
+		client.getOperationClient().waitForState(killID, Status.SUCCEEDED, 10, TimeUnit.MINUTES);
+		log.info("DESTROYED UAHAU !!");
 	}
 
 	// http://gauravmantri.com/2013/08/25/consuming-windows-azure-service-management-api-in-java/

@@ -27,4 +27,8 @@ public interface ServiceClient
 	String createDeployment ( Deployment deployment, String serviceName ) throws Exception;
 
 	String destroyCloudService ( String serviceName, boolean cascadeDelete ) throws Exception;
+
+	String resumeMachine ( String serviceName, String deploymentName, String roleName ) throws Exception;
+
+	String stopMachine ( String serviceName, String deploymentName, String roleName ) throws Exception;
 }
