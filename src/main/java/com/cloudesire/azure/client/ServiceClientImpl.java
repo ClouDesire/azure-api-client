@@ -138,4 +138,17 @@ public class ServiceClientImpl implements ServiceClient
 		if (! responseHeaders.containsKey("x-ms-request-id")) return null;
 		return responseHeaders.get("x-ms-request-id");
 	}
+
+	@Override
+	public String destroyCloudService ( String serviceName, boolean cascadeDelete ) throws Exception
+	{
+		if(cascadeDelete)
+			serviceName = serviceName.concat("?comp=media");
+		URL url = new URL(ServiceClientImpl.this.servicesEndpoint, "hostedservices/" + serviceName);
+		Map<String, String> responseHeaders = new HashMap<>();
+		restClient.delete(url, null, responseHeaders);
+
+		if (! responseHeaders.containsKey("x-ms-request-id")) return null;
+		return responseHeaders.get("x-ms-request-id");
+	}
 }

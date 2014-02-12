@@ -25,4 +25,6 @@ public interface ServiceClient
 	String addServiceCertificate ( String data, String format, String password, String serviceName ) throws Exception;
 
 	String createDeployment ( Deployment deployment, String serviceName ) throws Exception;
+
+	String destroyCloudService ( String serviceName, boolean cascadeDelete ) throws Exception;
 }
