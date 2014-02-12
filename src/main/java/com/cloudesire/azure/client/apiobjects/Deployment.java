@@ -119,6 +119,7 @@ public class Deployment
 		private int minMemory;
 		private int minCpu;
 		private int minDisk;
+		private List<InputEndpoint> inputEndpoints;
 
 		public Builder ()
 		{
@@ -208,6 +209,12 @@ public class Deployment
 			return this;
 		}
 
+		public Builder withInputEndpoints ( List<InputEndpoint> ie )
+		{
+			this.inputEndpoints = ie;
+			return this;
+		}
+
 		public Deployment build ()
 		{
 			return new Deployment(this);
@@ -231,14 +238,7 @@ public class Deployment
 		List<DataVirtualHardDisk> disksList = new ArrayList<>();
 
 		InputEndpoints endpoints = new InputEndpoints();
-		InputEndpoint endpoint = new InputEndpoint();
-		List<InputEndpoint> listEndpoints = new ArrayList<>();
-		endpoint.setName("ssh");
-		endpoint.setLocalPort(22);
-		endpoint.setPort(22);
-		endpoint.setProtocol("TCP");
-		listEndpoints.add(endpoint);
-		endpoints.setEndpoints(listEndpoints);
+		endpoints.setEndpoints(builder.inputEndpoints);
 
 		newtworkSet.setConfigurationSetType("NetworkConfiguration");
 		newtworkSet.setConfigurationSetTypeAttribute("NetworkConfiguration");
