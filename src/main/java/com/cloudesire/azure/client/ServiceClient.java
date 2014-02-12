@@ -31,4 +31,6 @@ public interface ServiceClient
 	String resumeMachine ( String serviceName, String deploymentName, String roleName ) throws Exception;
 
 	String stopMachine ( String serviceName, String deploymentName, String roleName ) throws Exception;
+
+	Boolean isCloudServiceAvailable ( String serviceName ) throws Exception;
 }

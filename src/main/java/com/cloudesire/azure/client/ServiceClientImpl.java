@@ -1,5 +1,6 @@
 package com.cloudesire.azure.client;
 
+import com.cloudesire.azure.client.apiobjects.AvailabilityResponse;
 import com.cloudesire.azure.client.apiobjects.CertificateFile;
 import com.cloudesire.azure.client.apiobjects.CloudService;
 import com.cloudesire.azure.client.apiobjects.Deployment;
@@ -187,4 +188,17 @@ public class ServiceClientImpl implements ServiceClient
 		if (! responseHeaders.containsKey("x-ms-request-id")) return null;
 		return responseHeaders.get("x-ms-request-id");
 	}
+
+	@Override
+	public Boolean isCloudServiceAvailable ( String serviceName ) throws Exception
+	{
+		AvailabilityResponse availabilityResponse = restClient.get(
+				new URL(
+						ServiceClientImpl.this.servicesEndpoint, "hostedservices/operations/isavailable" + serviceName
+				), AvailabilityResponse.class
+		);
+
+		return new Boolean(availabilityResponse.getResult());
+	}
+
 }
