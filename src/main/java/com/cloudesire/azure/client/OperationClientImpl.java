@@ -50,6 +50,6 @@ public class OperationClientImpl implements OperationClient
 			);
 			Thread.sleep(5000L);
 			realStatus = OperationClientImpl.this.OperationStatus(requestId);
-		} while (!realStatus.equals(status));
+		} while (! realStatus.equals(status));
 	}
 }

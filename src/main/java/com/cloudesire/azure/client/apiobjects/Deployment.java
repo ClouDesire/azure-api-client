@@ -172,7 +172,7 @@ public class Deployment
 			return this;
 		}
 
-		public Builder withFingerprint( String fingerprint )
+		public Builder withFingerprint ( String fingerprint )
 		{
 			this.fingerprint = fingerprint;
 			return this;
@@ -248,7 +248,7 @@ public class Deployment
 		PublicKey pk = new PublicKey();
 		KeyPair kp = new KeyPair();
 
-		if(builder.fingerprint != null)
+		if (builder.fingerprint != null)
 		{
 			pk.setFingerPrint(builder.fingerprint);
 			pk.setPath(String.format("/home/%s/.ssh/authorized_keys", builder.username));
@@ -278,7 +278,7 @@ public class Deployment
 		role.setConfigurationSets(configurationSets);
 		role.setOsVirtualHardDisk(osvh);
 
-		if(builder.dataImageLink != null)
+		if (builder.dataImageLink != null)
 		{
 			DataVirtualHardDisks disks = role.getDataVirtualHardDisks();
 			DataVirtualHardDisk disk = new DataVirtualHardDisk();

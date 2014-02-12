@@ -28,7 +28,7 @@ public enum VirtualMachineSize
 		return memory;
 	}
 
-	public static VirtualMachineSize getSize (int core, int memory)
+	public static VirtualMachineSize getSize ( int core, int memory )
 	{
 		VirtualMachineSize size = VirtualMachineSize.ExtraSmall;
 

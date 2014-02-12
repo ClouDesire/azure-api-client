@@ -106,7 +106,8 @@ public class ServiceClientImpl implements ServiceClient
 	}
 
 	@Override
-	public 	String addServiceCertificate ( String data, String format, String password, String serviceName ) throws Exception
+	public String addServiceCertificate (
+			String data, String format, String password, String serviceName ) throws Exception
 	{
 		CertificateFile certificate = new CertificateFile();
 		certificate.setData(data);
