@@ -71,7 +71,7 @@ public class ClientTest
 		log.info("Requested StorageService: " + s + " ID: " + storageServiceID);*/
 
 		// Test Deploy Virtual Machine
-		String name = UUID.randomUUID().toString();
+		String name = "test-120";
 		Deployment.Builder deploymentBuilder = new Deployment.Builder();
 		Deployment deployment = deploymentBuilder
 				.withName(name)

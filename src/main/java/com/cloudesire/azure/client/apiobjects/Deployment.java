@@ -115,6 +115,7 @@ public class Deployment
 		private String sourceImage;
 		private String sourceImageLink;
 		private String dataImageLink;
+		private String fingerprint;
 		private int minMemory;
 		private int minCpu;
 		private int minDisk;
@@ -171,6 +172,12 @@ public class Deployment
 			return this;
 		}
 
+		public Builder withFingerprint( String fingerprint )
+		{
+			this.fingerprint = fingerprint;
+			return this;
+		}
+
 		public Builder withMinCpu ( int minCpu )
 		{
 			this.minCpu = minCpu;
@@ -221,9 +228,7 @@ public class Deployment
 		ConfigurationSet set = new ConfigurationSet();
 		ConfigurationSet newtworkSet = new ConfigurationSet();
 		OSVirtualHardDisk osvh = role.getOsVirtualHardDisk();
-		DataVirtualHardDisks disks = role.getDataVirtualHardDisks();
 		List<DataVirtualHardDisk> disksList = new ArrayList<>();
-		DataVirtualHardDisk disk = new DataVirtualHardDisk();
 
 		InputEndpoints endpoints = new InputEndpoints();
 		InputEndpoint endpoint = new InputEndpoint();
@@ -239,6 +244,25 @@ public class Deployment
 		newtworkSet.setConfigurationSetTypeAttribute("NetworkConfiguration");
 		newtworkSet.setInputEndpoints(endpoints);
 
+		SshKeyContainer ssh = new SshKeyContainer();
+		PublicKey pk = new PublicKey();
+		KeyPair kp = new KeyPair();
+
+		if(builder.fingerprint != null)
+		{
+			pk.setFingerPrint(builder.fingerprint);
+			pk.setPath(String.format("/home/%s/.ssh/authorized_keys", builder.username));
+
+			kp.setFingerPrint(builder.fingerprint);
+			kp.setPath(String.format("/home/%s/.ssh/id_rsa", builder.username));
+
+			ssh.getPublicKeys().add(pk);
+			ssh.getKeyPairs().add(kp);
+
+			set.setSsh(ssh);
+		}
+
+
 		set.setHostName(builder.hostname);
 		set.setUserName(builder.username);
 		set.setUserPassword(builder.password);
@@ -250,35 +274,24 @@ public class Deployment
 		osvh.setSourceImageName(builder.sourceImage);
 		osvh.setMediaLink(builder.sourceImageLink);
 
-		role.setRoleName(UUID.randomUUID().toString());
+		role.setRoleName(builder.name + "-" + UUID.randomUUID().toString());
 		role.setConfigurationSets(configurationSets);
 		role.setOsVirtualHardDisk(osvh);
 
-		disk.setLogicalDiskSizeInGB(builder.minDisk);
-		disk.setMediaLink(builder.dataImageLink);
-		disk.setDiskLabel(builder.label);
-		disksList.add(disk);
-		disks.setDataVirtualHardDisks(disksList);
+		if(builder.dataImageLink != null)
+		{
+			DataVirtualHardDisks disks = role.getDataVirtualHardDisks();
+			DataVirtualHardDisk disk = new DataVirtualHardDisk();
+			disk.setLogicalDiskSizeInGB(builder.minDisk);
+			disk.setMediaLink(builder.dataImageLink);
+			disk.setDiskLabel(builder.label);
+			disksList.add(disk);
+			disks.setDataVirtualHardDisks(disksList);
 
-		role.setDataVirtualHardDisks(disks);
+			role.setDataVirtualHardDisks(disks);
+		}
 
-		VirtualMachineSize size = VirtualMachineSize.ExtraSmall;
-
-		if (builder.minCpu >= 0) size = VirtualMachineSize.Small;
-		if (builder.minCpu >= 1) size = VirtualMachineSize.Medium;
-		if (builder.minCpu >= 2) size = VirtualMachineSize.Large;
-		if (builder.minCpu >= 4) size = VirtualMachineSize.ExtraLarge;
-
-		if (builder.minMemory >= 0 && size.getSize() < VirtualMachineSize.Small.getSize())
-			size = VirtualMachineSize.Small;
-		if (builder.minMemory >= 1792 && size.getSize() < VirtualMachineSize.Medium.getSize())
-			size = VirtualMachineSize.Medium;
-		if (builder.minMemory >= 3584 && size.getSize() < VirtualMachineSize.Large.getSize())
-			size = VirtualMachineSize.Large;
-		if (builder.minMemory >= 7168 && size.getSize() < VirtualMachineSize.ExtraLarge.getSize())
-			size = VirtualMachineSize.ExtraLarge;
-
-		if (builder.minCpu <= 1 && builder.minMemory < 1792) size = VirtualMachineSize.ExtraSmall;
+		VirtualMachineSize size = VirtualMachineSize.getSize(builder.minCpu, builder.minMemory);
 
 		role.setRoleSize(size.toString());
 

@@ -1,5 +1,6 @@
 package com.cloudesire.azure.client;
 
+import com.cloudesire.azure.client.apiobjects.CertificateFile;
 import com.cloudesire.azure.client.apiobjects.CloudService;
 import com.cloudesire.azure.client.apiobjects.Deployment;
 import com.cloudesire.azure.client.apiobjects.Images;
@@ -98,6 +99,25 @@ public class ServiceClientImpl implements ServiceClient
 				new URL(
 						ServiceClientImpl.this.servicesEndpoint, "storageservices"
 				), storageService, null, null, responseHeaders
+		);
+
+		if (! responseHeaders.containsKey("x-ms-request-id")) return null;
+		return responseHeaders.get("x-ms-request-id");
+	}
+
+	@Override
+	public 	String addServiceCertificate ( String data, String format, String password, String serviceName ) throws Exception
+	{
+		CertificateFile certificate = new CertificateFile();
+		certificate.setData(data);
+		certificate.setCertificateFormat(format);
+		certificate.setPassword(password);
+
+		Map<String, String> responseHeaders = new HashMap<>();
+		restClient.post(
+				new URL(
+						ServiceClientImpl.this.servicesEndpoint, "hostedservices/" + serviceName + "/certificates"
+				), certificate, null, null, responseHeaders
 		);
 
 		if (! responseHeaders.containsKey("x-ms-request-id")) return null;

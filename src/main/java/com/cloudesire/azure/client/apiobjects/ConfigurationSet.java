@@ -31,6 +31,9 @@ public class ConfigurationSet
 	@XmlElement (name = "DisableSshPasswordAuthentication")
 	private Boolean disableSshPasswordAuthentication = Boolean.TRUE;
 
+	@XmlElement (name = "SSH")
+	private SshKeyContainer ssh;
+
 	@XmlElement (name = "InputEndpoints")
 	private InputEndpoints inputEndpoints;
 
@@ -95,6 +98,16 @@ public class ConfigurationSet
 	public void setDisableSshPasswordAuthentication ( Boolean disableSshPasswordAuthentication )
 	{
 		this.disableSshPasswordAuthentication = disableSshPasswordAuthentication;
+	}
+
+	public SshKeyContainer getSsh ()
+	{
+		return ssh;
+	}
+
+	public void setSsh ( SshKeyContainer ssh )
+	{
+		this.ssh = ssh;
 	}
 
 	public InputEndpoints getInputEndpoints ()
