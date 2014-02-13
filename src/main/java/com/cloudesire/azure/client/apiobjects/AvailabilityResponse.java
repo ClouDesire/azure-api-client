@@ -12,10 +12,10 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement (name = "AvailabilityResponse")
 public class AvailabilityResponse
 {
-	@XmlElement(name = "Result")
+	@XmlElement (name = "Result")
 	private String result;
 
-	@XmlElement(name = "Reason")
+	@XmlElement (name = "Reason")
 	private String reason;
 
 	public String getResult ()

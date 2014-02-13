@@ -145,7 +145,7 @@ public class ServiceClientImpl implements ServiceClient
 	@Override
 	public String destroyCloudService ( String serviceName, boolean cascadeDelete ) throws Exception
 	{
-		if(cascadeDelete)
+		if (cascadeDelete)
 			serviceName = serviceName.concat("?comp=media");
 		URL url = new URL(ServiceClientImpl.this.servicesEndpoint, "hostedservices/" + serviceName);
 		Map<String, String> responseHeaders = new HashMap<>();
