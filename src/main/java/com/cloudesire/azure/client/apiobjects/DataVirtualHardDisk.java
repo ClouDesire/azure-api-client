@@ -38,10 +38,4 @@ public class DataVirtualHardDisk extends Disk
 	{
 		this.logicalDiskSizeInGB = logicalDiskSizeInGB;
 	}
-
-	@Override
-	public String toString ()
-	{
-		return " HostCachine: " + hostCaching + " DiskLabel: " + diskLabel + " DiskName: " + diskLabel + " MediaLink: " + mediaLink + " SourceImageName: " + sourceImageName;
-	}
 }

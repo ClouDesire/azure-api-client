@@ -26,6 +26,7 @@ public class ServiceClientImpl implements ServiceClient
 	private final URL servicesEndpoint;
 	private final RestClient restClient;
 	private ObjectCache<Images> imageCache;
+	private final String XMSID = "x-ms-request-id";
 
 	public ServiceClientImpl ( URL endpoint, RestClient restClient ) throws MalformedURLException
 	{
@@ -89,8 +90,8 @@ public class ServiceClientImpl implements ServiceClient
 				), cloudService, null, null, responseHeaders
 		);
 
-		if (! responseHeaders.containsKey("x-ms-request-id")) return null;
-		return responseHeaders.get("x-ms-request-id");
+		if (! responseHeaders.containsKey(XMSID)) return null;
+		return responseHeaders.get(XMSID);
 	}
 
 	@Override
@@ -103,8 +104,8 @@ public class ServiceClientImpl implements ServiceClient
 				), storageService, null, null, responseHeaders
 		);
 
-		if (! responseHeaders.containsKey("x-ms-request-id")) return null;
-		return responseHeaders.get("x-ms-request-id");
+		if (! responseHeaders.containsKey(XMSID)) return null;
+		return responseHeaders.get(XMSID);
 	}
 
 	@Override
@@ -123,8 +124,8 @@ public class ServiceClientImpl implements ServiceClient
 				), certificate, null, null, responseHeaders
 		);
 
-		if (! responseHeaders.containsKey("x-ms-request-id")) return null;
-		return responseHeaders.get("x-ms-request-id");
+		if (! responseHeaders.containsKey(XMSID)) return null;
+		return responseHeaders.get(XMSID);
 	}
 
 	@Override
@@ -137,8 +138,8 @@ public class ServiceClientImpl implements ServiceClient
 				), deployment, null, null, responseHeaders
 		);
 
-		if (! responseHeaders.containsKey("x-ms-request-id")) return null;
-		return responseHeaders.get("x-ms-request-id");
+		if (! responseHeaders.containsKey(XMSID)) return null;
+		return responseHeaders.get(XMSID);
 	}
 
 	@Override
@@ -150,8 +151,8 @@ public class ServiceClientImpl implements ServiceClient
 		Map<String, String> responseHeaders = new HashMap<>();
 		restClient.delete(url, null, responseHeaders);
 
-		if (! responseHeaders.containsKey("x-ms-request-id")) return null;
-		return responseHeaders.get("x-ms-request-id");
+		if (! responseHeaders.containsKey(XMSID)) return null;
+		return responseHeaders.get(XMSID);
 	}
 
 	@Override
@@ -167,8 +168,8 @@ public class ServiceClientImpl implements ServiceClient
 				), startRoleOperation, null, null, responseHeaders
 		);
 
-		if (! responseHeaders.containsKey("x-ms-request-id")) return null;
-		return responseHeaders.get("x-ms-request-id");
+		if (! responseHeaders.containsKey(XMSID)) return null;
+		return responseHeaders.get(XMSID);
 	}
 
 	@Override
@@ -184,8 +185,8 @@ public class ServiceClientImpl implements ServiceClient
 				), shutdownRoleOperation, null, null, responseHeaders
 		);
 
-		if (! responseHeaders.containsKey("x-ms-request-id")) return null;
-		return responseHeaders.get("x-ms-request-id");
+		if (! responseHeaders.containsKey(XMSID)) return null;
+		return responseHeaders.get(XMSID);
 	}
 
 	@Override
@@ -197,7 +198,7 @@ public class ServiceClientImpl implements ServiceClient
 				), AvailabilityResponse.class
 		);
 
-		return new Boolean(availabilityResponse.getResult());
+		return Boolean.valueOf(availabilityResponse.getResult());
 	}
 
 }

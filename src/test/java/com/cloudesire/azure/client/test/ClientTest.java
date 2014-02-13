@@ -106,7 +106,7 @@ public class ClientTest
 				.setDisableSshPasswordAuthentication(false);
 
 		final String deploymentID = client.getServiceClient().createDeployment(deployment, "cloudesiretest");
-		log.info("Waiting creation deployment ID: " + deploymentID.toString());
+		log.info("Waiting creation deployment ID: " + deploymentID);
 
 		client.getOperationClient().waitForState(deploymentID, Status.SUCCEEDED, 5, TimeUnit.MINUTES);
 

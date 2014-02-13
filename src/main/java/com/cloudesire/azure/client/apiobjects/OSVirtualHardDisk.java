@@ -11,9 +11,4 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType (name = "OSVirtualHardDisk")
 public class OSVirtualHardDisk extends Disk
 {
-	@Override
-	public String toString ()
-	{
-		return " HostCachine: " + hostCaching + " DiskLabel: " + diskLabel + " DiskName: " + diskLabel + " MediaLink: " + mediaLink + " SourceImageName: " + sourceImageName;
-	}
 }

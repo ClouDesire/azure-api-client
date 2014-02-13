@@ -76,4 +76,10 @@ public class Disk
 	{
 		this.sourceImageName = sourceImageName;
 	}
+
+	@Override
+	public String toString ()
+	{
+		return " HostCachine: " + hostCaching + " DiskLabel: " + diskLabel + " DiskName: " + diskLabel + " MediaLink: " + mediaLink + " SourceImageName: " + sourceImageName;
+	}
 }
