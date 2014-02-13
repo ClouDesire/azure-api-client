@@ -3,6 +3,7 @@ package com.cloudesire.azure.client;
 import com.cloudesire.azure.client.apiobjects.AvailabilityResponse;
 import com.cloudesire.azure.client.apiobjects.CertificateFile;
 import com.cloudesire.azure.client.apiobjects.CloudService;
+import com.cloudesire.azure.client.apiobjects.DataVirtualHardDisk;
 import com.cloudesire.azure.client.apiobjects.Deployment;
 import com.cloudesire.azure.client.apiobjects.Images;
 import com.cloudesire.azure.client.apiobjects.OSImage;
@@ -201,4 +202,18 @@ public class ServiceClientImpl implements ServiceClient
 		return Boolean.valueOf(availabilityResponse.getResult());
 	}
 
+	@Override
+	public String addDataDisk (
+			String serviceName, String deploymentName, String roleName, DataVirtualHardDisk disk ) throws Exception
+	{
+		Map<String, String> responseHeaders = new HashMap<>();
+		restClient.post(
+				new URL(
+						ServiceClientImpl.this.servicesEndpoint, "hostedservices/" + serviceName + "/deployments/" + deploymentName + "/roles/" + roleName + "/DataDisks"
+				), disk, null, null, responseHeaders
+		);
+
+		if (! responseHeaders.containsKey(XMSID)) return null;
+		return responseHeaders.get(XMSID);
+	}
 }

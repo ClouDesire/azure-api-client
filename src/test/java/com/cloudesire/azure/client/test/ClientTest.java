@@ -2,6 +2,7 @@ package com.cloudesire.azure.client.test;
 
 import com.cloudesire.azure.client.AzureClient;
 import com.cloudesire.azure.client.apiobjects.CloudService;
+import com.cloudesire.azure.client.apiobjects.DataVirtualHardDisk;
 import com.cloudesire.azure.client.apiobjects.Deployment;
 import com.cloudesire.azure.client.apiobjects.Location;
 import com.cloudesire.azure.client.apiobjects.OSImage;
@@ -95,7 +96,6 @@ public class ClientTest
 				.withPassword("askd123ASDASD1213")
 				.withSourceImage(testOsImage.getName())
 				.withSourceImageLink("http://" + "cloudesiretest" + ".blob.core.windows.net/communityimages/" + name + UUID.randomUUID().toString() + ".vhd")
-				.withDataImageLink("http://" + "cloudesiretest" + ".blob.core.windows.net/disks/" + name + UUID.randomUUID().toString() + ".vhd")
 				.withUsername("manuel")
 				.build();
 
@@ -112,6 +112,14 @@ public class ClientTest
 
 		Deployment ret = client.getServiceClient().getDeployment("cloudesiretest", deployment.getName());
 		log.info("Deployment created: " + ret + " ID: " + deploymentID);
+
+		log.info("Attaching disk...");
+		DataVirtualHardDisk disk = new DataVirtualHardDisk();
+		disk.setLogicalDiskSizeInGB(10);
+		disk.setMediaLink("http://" + "cloudesiretest" + ".blob.core.windows.net/disks/data-" + name + UUID.randomUUID().toString() + ".vhd");
+		String diskID = client.getServiceClient().addDataDisk("cloudesiretest", deployment.getName(), ret.getRoleInstanceList().getRoles().iterator().next().getRoleName(), disk);
+		client.getOperationClient().waitForState(diskID, Status.SUCCEEDED, 10, TimeUnit.MINUTES);
+		log.info("Disk attached");
 
 		log.info("Shutdow now test!!");
 		String shutupID = client.getServiceClient().stopMachine("cloudesiretest", deployment.getName(), ret.getRoleInstanceList().getRoles().iterator().next().getRoleName());

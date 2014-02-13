@@ -1,6 +1,7 @@
 package com.cloudesire.azure.client;
 
 import com.cloudesire.azure.client.apiobjects.CloudService;
+import com.cloudesire.azure.client.apiobjects.DataVirtualHardDisk;
 import com.cloudesire.azure.client.apiobjects.Deployment;
 import com.cloudesire.azure.client.apiobjects.OSImage;
 import com.cloudesire.azure.client.apiobjects.StorageService;
@@ -33,4 +34,7 @@ public interface ServiceClient
 	String stopMachine ( String serviceName, String deploymentName, String roleName ) throws Exception;
 
 	Boolean isCloudServiceAvailable ( String serviceName ) throws Exception;
+
+	String addDataDisk (
+			String serviceName, String deploymentName, String roleName, DataVirtualHardDisk disk ) throws Exception;
 }

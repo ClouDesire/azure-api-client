@@ -30,10 +30,11 @@ public class DataVirtualHardDisks
 	public String toString ()
 	{
 		String ret = " DataVirtualHardDisks: ";
-		for (DataVirtualHardDisk dd : dataVirtualHardDisks)
-		{
-			ret += " DataVirtualHardDisk: " + dd;
-		}
+		if (dataVirtualHardDisks != null)
+			for (DataVirtualHardDisk dd : dataVirtualHardDisks)
+			{
+				ret += " DataVirtualHardDisk: " + dd;
+			}
 		return ret;
 	}
 }
