@@ -246,19 +246,12 @@ public class Deployment
 
 		SshKeyContainer ssh = new SshKeyContainer();
 		PublicKey pk = new PublicKey();
-		KeyPair kp = new KeyPair();
 
 		if (builder.fingerprint != null)
 		{
 			pk.setFingerPrint(builder.fingerprint);
 			pk.setPath(String.format("/home/%s/.ssh/authorized_keys", builder.username));
-
-			kp.setFingerPrint(builder.fingerprint);
-			kp.setPath(String.format("/home/%s/.ssh/id_rsa", builder.username));
-
 			ssh.getPublicKeys().add(pk);
-			ssh.getKeyPairs().add(kp);
-
 			set.setSsh(ssh);
 		}
 
@@ -266,6 +259,8 @@ public class Deployment
 		set.setHostName(builder.hostname);
 		set.setUserName(builder.username);
 		set.setUserPassword(builder.password);
+		if (builder.password != null)
+			set.setDisableSshPasswordAuthentication(false);
 
 		configurationList.add(set);
 		configurationList.add(newtworkSet);

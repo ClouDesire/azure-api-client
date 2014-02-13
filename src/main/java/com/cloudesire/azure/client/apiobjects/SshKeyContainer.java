@@ -20,8 +20,8 @@ public class SshKeyContainer
 	private List<PublicKey> publicKeys = new ArrayList<>();
 
 	@XmlElementWrapper (name = "KeyPairs")
-	@XmlElement (name = "KeyPair", type = KeyPair.class)
-	private List<KeyPair> keyPairs = new ArrayList<>();
+	@XmlElement (name = "KeyPair", type = KeyPair.class, nillable = true)
+	private List<KeyPair> keyPairs;
 
 	public List<PublicKey> getPublicKeys ()
 	{
