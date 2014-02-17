@@ -24,48 +24,48 @@ public class InputEndpoint
 	@XmlElement (name = "Protocol")
 	private String protocol;
 
-	public int getLocalPort ()
+	public int getLocalPort()
 	{
 		return localPort;
 	}
 
-	public void setLocalPort ( int localPort )
+	public void setLocalPort( int localPort )
 	{
 		this.localPort = localPort;
 	}
 
-	public String getName ()
+	public String getName()
 	{
 		return name;
 	}
 
-	public void setName ( String name )
+	public void setName( String name )
 	{
 		this.name = name;
 	}
 
-	public int getPort ()
+	public int getPort()
 	{
 		return port;
 	}
 
-	public void setPort ( int port )
+	public void setPort( int port )
 	{
 		this.port = port;
 	}
 
-	public String getProtocol ()
+	public String getProtocol()
 	{
 		return protocol;
 	}
 
-	public void setProtocol ( String protocol )
+	public void setProtocol( String protocol )
 	{
 		this.protocol = protocol;
 	}
 
 	@Override
-	public String toString ()
+	public String toString()
 	{
 		return "LocalPort: " + localPort + " Name: " + name + " Protocol: " + protocol + " Port: " + port;
 	}

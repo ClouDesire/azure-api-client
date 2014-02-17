@@ -12,18 +12,18 @@ import java.io.InputStream;
 public class AzureExceptionTranslator implements ExceptionTranslator
 {
 	@Override
-	public Exception translateError ( int responseCode, String responseMessage, InputStream errorStream )
+	public Exception translateError( int responseCode, String responseMessage, InputStream errorStream )
 	{
 		//System.out.println(convertStreamToString(errorStream));
 		// Handle 410 Gone for deleted VMs.
-		if (responseCode == HttpStatus.SC_GONE) return null;
+		if ( responseCode == HttpStatus.SC_GONE ) return null;
 		try
 		{
 			JAXBContext contextB = JAXBContext.newInstance(ErrorResponse.class);
 			Unmarshaller unmarshallerB = contextB.createUnmarshaller();
 			ErrorResponse errorResponse = (ErrorResponse) unmarshallerB.unmarshal(errorStream);
 			return new AzureResponseException(errorResponse.getCode(), errorResponse.getMessage());
-		} catch (JAXBException e)
+		} catch ( JAXBException e )
 		{
 			return new AzureResponseException(Integer.toString(responseCode), responseMessage);
 		}

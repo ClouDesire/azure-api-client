@@ -17,14 +17,14 @@ public class OperationClientImpl implements OperationClient
 	private final URL operationsEndpoint;
 	private final RestClient restClient;
 
-	public OperationClientImpl ( URL endpoint, RestClient restClient ) throws MalformedURLException
+	public OperationClientImpl( URL endpoint, RestClient restClient ) throws MalformedURLException
 	{
 		this.restClient = restClient;
 		this.operationsEndpoint = new URL(endpoint, "operations/");
 	}
 
 	@Override
-	public Status OperationStatus ( String requestId ) throws Exception
+	public Status OperationStatus( String requestId ) throws Exception
 	{
 		return Status.valueOf(
 				OperationClientImpl.this.restClient.get(
@@ -36,20 +36,20 @@ public class OperationClientImpl implements OperationClient
 	}
 
 	@Override
-	public void waitForState (
+	public void waitForState(
 			String requestId, Status status, Integer timeout, TimeUnit measuringUnit ) throws Exception
 	{
 		Status realStatus;
 		long start = System.currentTimeMillis();
 		do
 		{
-			if (start + measuringUnit.toMillis(timeout) < System.currentTimeMillis()) throw new TimeoutException(
+			if ( start + measuringUnit.toMillis(timeout) < System.currentTimeMillis() ) throw new TimeoutException(
 					String.format(
 							"Timeout while waiting for request id %s to reach %s", requestId, status.name()
 					)
 			);
 			Thread.sleep(5000L);
 			realStatus = OperationClientImpl.this.OperationStatus(requestId);
-		} while (! realStatus.equals(status));
+		} while ( !realStatus.equals(status) );
 	}
 }

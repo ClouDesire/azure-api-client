@@ -24,42 +24,42 @@ public class Operation
 	@XmlElement (name = "Error")
 	private ErrorResponse errorResponse;
 
-	public int getRequestId ()
+	public int getRequestId()
 	{
 		return requestId;
 	}
 
-	public void setRequestId ( int requestId )
+	public void setRequestId( int requestId )
 	{
 		this.requestId = requestId;
 	}
 
-	public String getStatus ()
+	public String getStatus()
 	{
 		return status;
 	}
 
-	public void setStatus ( String status )
+	public void setStatus( String status )
 	{
 		this.status = status;
 	}
 
-	public String getHttpStatusCode ()
+	public String getHttpStatusCode()
 	{
 		return httpStatusCode;
 	}
 
-	public void setHttpStatusCode ( String httpStatusCode )
+	public void setHttpStatusCode( String httpStatusCode )
 	{
 		this.httpStatusCode = httpStatusCode;
 	}
 
-	public ErrorResponse getErrorResponse ()
+	public ErrorResponse getErrorResponse()
 	{
 		return errorResponse;
 	}
 
-	public void setErrorResponse ( ErrorResponse errorResponse )
+	public void setErrorResponse( ErrorResponse errorResponse )
 	{
 		this.errorResponse = errorResponse;
 	}

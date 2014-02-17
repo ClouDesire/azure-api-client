@@ -75,208 +75,208 @@ public class OSImage
 	@XmlElement (name = "Language")
 	private String language;
 
-	public String getAffinityGroup ()
+	public String getAffinityGroup()
 	{
 		return affinityGroup;
 	}
 
-	public String getCategory ()
+	public String getCategory()
 	{
 		return category;
 	}
 
-	public String getLabel ()
+	public String getLabel()
 	{
 		return label;
 	}
 
-	public String getLocation ()
+	public String getLocation()
 	{
 		return location;
 	}
 
-	public int getLogicalSizeInGB ()
+	public int getLogicalSizeInGB()
 	{
 		return logicalSizeInGB;
 	}
 
-	public String getMediaLink ()
+	public String getMediaLink()
 	{
 		return mediaLink;
 	}
 
-	public String getName ()
+	public String getName()
 	{
 		return name;
 	}
 
-	public String getOs ()
+	public String getOs()
 	{
 		return os;
 	}
 
-	public String getEula ()
+	public String getEula()
 	{
 		return eula;
 	}
 
-	public String getDescription ()
+	public String getDescription()
 	{
 		return description;
 	}
 
-	public String getImageFamily ()
+	public String getImageFamily()
 	{
 		return imageFamily;
 	}
 
-	public boolean isShowInGui ()
+	public boolean isShowInGui()
 	{
 		return showInGui;
 	}
 
-	public String getPublishedDate ()
+	public String getPublishedDate()
 	{
 		return publishedDate;
 	}
 
-	public boolean isPremium ()
+	public boolean isPremium()
 	{
 		return isPremium;
 	}
 
-	public String getPrivacyUri ()
+	public String getPrivacyUri()
 	{
 		return privacyUri;
 	}
 
-	public String getRecommendedVMSize ()
+	public String getRecommendedVMSize()
 	{
 		return recommendedVMSize;
 	}
 
-	public String getPublisherName ()
+	public String getPublisherName()
 	{
 		return publisherName;
 	}
 
-	public String getPricingDetailLink ()
+	public String getPricingDetailLink()
 	{
 		return pricingDetailLink;
 	}
 
-	public String getSmallIconUri ()
+	public String getSmallIconUri()
 	{
 		return smallIconUri;
 	}
 
-	public String getLanguage ()
+	public String getLanguage()
 	{
 		return language;
 	}
 
-	public void setAffinityGroup ( String affinityGroup )
+	public void setAffinityGroup( String affinityGroup )
 	{
 		this.affinityGroup = affinityGroup;
 	}
 
-	public void setCategory ( String category )
+	public void setCategory( String category )
 	{
 		this.category = category;
 	}
 
-	public void setLabel ( String label )
+	public void setLabel( String label )
 	{
 		this.label = label;
 	}
 
-	public void setLocation ( String location )
+	public void setLocation( String location )
 	{
 		this.location = location;
 	}
 
-	public void setLogicalSizeInGB ( int logicSizeInGB )
+	public void setLogicalSizeInGB( int logicSizeInGB )
 	{
 		this.logicalSizeInGB = logicSizeInGB;
 	}
 
-	public void setMediaLink ( String mediaLink )
+	public void setMediaLink( String mediaLink )
 	{
 		this.mediaLink = mediaLink;
 	}
 
-	public void setName ( String name )
+	public void setName( String name )
 	{
 		this.name = name;
 	}
 
-	public void setOs ( String os )
+	public void setOs( String os )
 	{
 		this.os = os;
 	}
 
-	public void setEula ( String eula )
+	public void setEula( String eula )
 	{
 		this.eula = eula;
 	}
 
-	public void setDescription ( String description )
+	public void setDescription( String description )
 	{
 		this.description = description;
 	}
 
-	public void setImageFamily ( String imageFamily )
+	public void setImageFamily( String imageFamily )
 	{
 		this.imageFamily = imageFamily;
 	}
 
-	public void setShowInGui ( boolean showInGui )
+	public void setShowInGui( boolean showInGui )
 	{
 		this.showInGui = showInGui;
 	}
 
-	public void setPublishedDate ( String publishedDate )
+	public void setPublishedDate( String publishedDate )
 	{
 		this.publishedDate = publishedDate;
 	}
 
-	public void setPremium ( boolean isPremium )
+	public void setPremium( boolean isPremium )
 	{
 		this.isPremium = isPremium;
 	}
 
-	public void setPrivacyUri ( String privacyUri )
+	public void setPrivacyUri( String privacyUri )
 	{
 		this.privacyUri = privacyUri;
 	}
 
-	public void setRecommendedVMSize ( String recommendedVMSize )
+	public void setRecommendedVMSize( String recommendedVMSize )
 	{
 		this.recommendedVMSize = recommendedVMSize;
 	}
 
-	public void setPublisherName ( String publisherName )
+	public void setPublisherName( String publisherName )
 	{
 		this.publisherName = publisherName;
 	}
 
-	public void setPricingDetailLink ( String pricingDetailLink )
+	public void setPricingDetailLink( String pricingDetailLink )
 	{
 		this.pricingDetailLink = pricingDetailLink;
 	}
 
-	public void setSmallIconUri ( String smallIconUri )
+	public void setSmallIconUri( String smallIconUri )
 	{
 		this.smallIconUri = smallIconUri;
 	}
 
-	public void setLanguage ( String language )
+	public void setLanguage( String language )
 	{
 		this.language = language;
 	}
 
 	@Override
-	public String toString ()
+	public String toString()
 	{
 		return "Name: " + name + " OS: " + os + " MediaLink: " + mediaLink + " Location: " + location;
 	}

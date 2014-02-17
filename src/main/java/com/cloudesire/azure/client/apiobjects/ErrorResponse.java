@@ -15,22 +15,22 @@ public class ErrorResponse
 	@XmlElement (name = "Message")
 	private String message;
 
-	public String getCode ()
+	public String getCode()
 	{
 		return code;
 	}
 
-	public String getMessage ()
+	public String getMessage()
 	{
 		return message;
 	}
 
-	public void setCode ( String code )
+	public void setCode( String code )
 	{
 		this.code = code;
 	}
 
-	public void setMessage ( String message )
+	public void setMessage( String message )
 	{
 		this.message = message;
 	}

@@ -30,7 +30,7 @@ public class ServiceClientImpl implements ServiceClient
 	private ObjectCache<Images> imageCache;
 	private final String XMSID = "x-ms-request-id";
 
-	public ServiceClientImpl ( URL endpoint, RestClient restClient ) throws MalformedURLException
+	public ServiceClientImpl( URL endpoint, RestClient restClient ) throws MalformedURLException
 	{
 		this.restClient = restClient;
 		this.servicesEndpoint = new URL(endpoint, "services/");
@@ -39,7 +39,7 @@ public class ServiceClientImpl implements ServiceClient
 				new ObjectCache.CacheLoader<Images>()
 				{
 					@Override
-					public Images loadObjects () throws Exception
+					public Images loadObjects() throws Exception
 					{
 						return ServiceClientImpl.this.restClient.get(
 								new URL(
@@ -53,25 +53,25 @@ public class ServiceClientImpl implements ServiceClient
 	}
 
 	@Override
-	public OSImage findImage ( String name ) throws Exception
+	public OSImage findImage( String name ) throws Exception
 	{
 		List<OSImage> images = listImages();
 		OSImage candidate = null;
-		for (OSImage i : images)
+		for ( OSImage i : images )
 		{
-			if (! i.getName().equals(name)) continue;
-			if (candidate == null) candidate = i;
+			if ( !i.getName().equals(name) ) continue;
+			if ( candidate == null ) candidate = i;
 		}
 		return candidate;
 	}
 
 	@Override
-	public List<OSImage> listImages () throws Exception
+	public List<OSImage> listImages() throws Exception
 	{
 		return imageCache.get().getOsImages();
 	}
 
-	public Deployment getDeployment ( String serviceName, String deploymentName ) throws Exception
+	public Deployment getDeployment( String serviceName, String deploymentName ) throws Exception
 	{
 		Deployment deployment = ServiceClientImpl.this.restClient.get(
 				new URL(
@@ -83,53 +83,55 @@ public class ServiceClientImpl implements ServiceClient
 	}
 
 	@Override
-	public String createCloudService ( CloudService cloudService ) throws Exception
+	public String createCloudService( CloudService cloudService ) throws Exception
 	{
 		Map<String, String> responseHeaders = new HashMap<>();
-        ServiceClientImpl.this.restClient.post(
+		ServiceClientImpl.this.restClient.post(
 				new URL(
 						ServiceClientImpl.this.servicesEndpoint, "hostedservices"
 				), cloudService, null, null, responseHeaders
 		);
 
-		if (! responseHeaders.containsKey(XMSID)) return null;
+		if ( !responseHeaders.containsKey(XMSID) ) return null;
 		return responseHeaders.get(XMSID);
 	}
 
 	@Override
-	public String createStorageService ( StorageService storageService ) throws Exception
+	public String createStorageService( StorageService storageService ) throws Exception
 	{
 		Map<String, String> responseHeaders = new HashMap<>();
-        ServiceClientImpl.this.restClient.post(
+		ServiceClientImpl.this.restClient.post(
 				new URL(
 						ServiceClientImpl.this.servicesEndpoint, "storageservices"
 				), storageService, null, null, responseHeaders
 		);
 
-		if (! responseHeaders.containsKey(XMSID)) return null;
+		if ( !responseHeaders.containsKey(XMSID) ) return null;
 		return responseHeaders.get(XMSID);
 	}
 
-    @Override
-    public void deleteStorageService( String storageServiceName ) throws Exception {
-        ServiceClientImpl.this.restClient.delete(
-                new URL(
-                        ServiceClientImpl.this.servicesEndpoint, "storageservices/" + storageServiceName
-                )
-        );
-    }
+	@Override
+	public void deleteStorageService( String storageServiceName ) throws Exception
+	{
+		ServiceClientImpl.this.restClient.delete(
+				new URL(
+						ServiceClientImpl.this.servicesEndpoint, "storageservices/" + storageServiceName
+				)
+		);
+	}
 
-    @Override
-    public List<StorageService> listStorageServices() throws Exception {
-        return ServiceClientImpl.this.restClient.get(
-                new URL(
-                        ServiceClientImpl.this.servicesEndpoint, "storageservices"
-                ), StorageServices.class
-        ).getStorageServices();
-    }
+	@Override
+	public List<StorageService> listStorageServices() throws Exception
+	{
+		return ServiceClientImpl.this.restClient.get(
+				new URL(
+						ServiceClientImpl.this.servicesEndpoint, "storageservices"
+				), StorageServices.class
+		).getStorageServices();
+	}
 
-    @Override
-	public String addServiceCertificate (
+	@Override
+	public String addServiceCertificate(
 			String data, String format, String password, String serviceName ) throws Exception
 	{
 		CertificateFile certificate = new CertificateFile();
@@ -138,79 +140,79 @@ public class ServiceClientImpl implements ServiceClient
 		certificate.setPassword(password);
 
 		Map<String, String> responseHeaders = new HashMap<>();
-        ServiceClientImpl.this.restClient.post(
-                new URL(
-                        ServiceClientImpl.this.servicesEndpoint, "hostedservices/" + serviceName + "/certificates"
-                ), certificate, null, null, responseHeaders
-        );
+		ServiceClientImpl.this.restClient.post(
+				new URL(
+						ServiceClientImpl.this.servicesEndpoint, "hostedservices/" + serviceName + "/certificates"
+				), certificate, null, null, responseHeaders
+		);
 
-		if (! responseHeaders.containsKey(XMSID)) return null;
+		if ( !responseHeaders.containsKey(XMSID) ) return null;
 		return responseHeaders.get(XMSID);
 	}
 
 	@Override
-	public String createDeployment ( Deployment deployment, String serviceName ) throws Exception
+	public String createDeployment( Deployment deployment, String serviceName ) throws Exception
 	{
 		Map<String, String> responseHeaders = new HashMap<>();
-        ServiceClientImpl.this.restClient.post(
+		ServiceClientImpl.this.restClient.post(
 				new URL(
 						ServiceClientImpl.this.servicesEndpoint, "hostedservices/" + serviceName + "/deployments"
 				), deployment, null, null, responseHeaders
 		);
 
-		if (! responseHeaders.containsKey(XMSID)) return null;
+		if ( !responseHeaders.containsKey(XMSID) ) return null;
 		return responseHeaders.get(XMSID);
 	}
 
 	@Override
-	public String destroyCloudService ( String serviceName, boolean cascadeDelete ) throws Exception
+	public String destroyCloudService( String serviceName, boolean cascadeDelete ) throws Exception
 	{
-		if (cascadeDelete)
+		if ( cascadeDelete )
 			serviceName = serviceName.concat("?comp=media");
 		URL url = new URL(ServiceClientImpl.this.servicesEndpoint, "hostedservices/" + serviceName);
 		Map<String, String> responseHeaders = new HashMap<>();
-        ServiceClientImpl.this.restClient.delete(url, null, responseHeaders);
+		ServiceClientImpl.this.restClient.delete(url, null, responseHeaders);
 
-		if (! responseHeaders.containsKey(XMSID)) return null;
+		if ( !responseHeaders.containsKey(XMSID) ) return null;
 		return responseHeaders.get(XMSID);
 	}
 
 	@Override
-	public String resumeMachine ( String serviceName, String deploymentName, String roleName ) throws Exception
+	public String resumeMachine( String serviceName, String deploymentName, String roleName ) throws Exception
 	{
 		StartRoleOperation startRoleOperation = new StartRoleOperation();
 		startRoleOperation.setOperationType("StartRoleOperation");
 
 		Map<String, String> responseHeaders = new HashMap<>();
-        ServiceClientImpl.this.restClient.post(
+		ServiceClientImpl.this.restClient.post(
 				new URL(
 						ServiceClientImpl.this.servicesEndpoint, "hostedservices/" + serviceName + "/deployments/" + deploymentName + "/roleinstances/" + roleName + "/Operations"
 				), startRoleOperation, null, null, responseHeaders
 		);
 
-		if (! responseHeaders.containsKey(XMSID)) return null;
+		if ( !responseHeaders.containsKey(XMSID) ) return null;
 		return responseHeaders.get(XMSID);
 	}
 
 	@Override
-	public String stopMachine ( String serviceName, String deploymentName, String roleName ) throws Exception
+	public String stopMachine( String serviceName, String deploymentName, String roleName ) throws Exception
 	{
 		ShutdownRoleOperation shutdownRoleOperation = new ShutdownRoleOperation();
 		shutdownRoleOperation.setOperationType("ShutdownRoleOperation");
 
 		Map<String, String> responseHeaders = new HashMap<>();
-        ServiceClientImpl.this.restClient.post(
+		ServiceClientImpl.this.restClient.post(
 				new URL(
 						ServiceClientImpl.this.servicesEndpoint, "hostedservices/" + serviceName + "/deployments/" + deploymentName + "/roleinstances/" + roleName + "/Operations"
 				), shutdownRoleOperation, null, null, responseHeaders
 		);
 
-		if (! responseHeaders.containsKey(XMSID)) return null;
+		if ( !responseHeaders.containsKey(XMSID) ) return null;
 		return responseHeaders.get(XMSID);
 	}
 
 	@Override
-	public Boolean isCloudServiceAvailable ( String serviceName ) throws Exception
+	public Boolean isCloudServiceAvailable( String serviceName ) throws Exception
 	{
 		AvailabilityResponse availabilityResponse = ServiceClientImpl.this.restClient.get(
 				new URL(
@@ -222,17 +224,17 @@ public class ServiceClientImpl implements ServiceClient
 	}
 
 	@Override
-	public String addDataDisk (
+	public String addDataDisk(
 			String serviceName, String deploymentName, String roleName, DataVirtualHardDisk disk ) throws Exception
 	{
 		Map<String, String> responseHeaders = new HashMap<>();
-        ServiceClientImpl.this.restClient.post(
+		ServiceClientImpl.this.restClient.post(
 				new URL(
 						ServiceClientImpl.this.servicesEndpoint, "hostedservices/" + serviceName + "/deployments/" + deploymentName + "/roles/" + roleName + "/DataDisks"
 				), disk, null, null, responseHeaders
 		);
 
-		if (! responseHeaders.containsKey(XMSID)) return null;
+		if ( !responseHeaders.containsKey(XMSID) ) return null;
 		return responseHeaders.get(XMSID);
 	}
 }

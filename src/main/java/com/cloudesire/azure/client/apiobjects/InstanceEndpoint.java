@@ -27,52 +27,52 @@ public class InstanceEndpoint
 	@XmlElement (name = "Protocol")
 	private String protocol;
 
-	public String getName ()
+	public String getName()
 	{
 		return name;
 	}
 
-	public void setName ( String name )
+	public void setName( String name )
 	{
 		this.name = name;
 	}
 
-	public String getVip ()
+	public String getVip()
 	{
 		return vip;
 	}
 
-	public void setVip ( String vip )
+	public void setVip( String vip )
 	{
 		this.vip = vip;
 	}
 
-	public int getPublicPort ()
+	public int getPublicPort()
 	{
 		return publicPort;
 	}
 
-	public void setPublicPort ( int publicPort )
+	public void setPublicPort( int publicPort )
 	{
 		this.publicPort = publicPort;
 	}
 
-	public int getLocalPort ()
+	public int getLocalPort()
 	{
 		return localPort;
 	}
 
-	public void setLocalPort ( int localPort )
+	public void setLocalPort( int localPort )
 	{
 		this.localPort = localPort;
 	}
 
-	public String getProtocol ()
+	public String getProtocol()
 	{
 		return protocol;
 	}
 
-	public void setProtocol ( String protocol )
+	public void setProtocol( String protocol )
 	{
 		this.protocol = protocol;
 	}

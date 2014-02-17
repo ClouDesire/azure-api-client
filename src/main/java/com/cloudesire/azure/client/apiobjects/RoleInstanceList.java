@@ -19,26 +19,26 @@ public class RoleInstanceList implements Iterable<RoleInstance>
 	private List<RoleInstance> roles = new ArrayList<>();
 
 	@Override
-	public Iterator<RoleInstance> iterator ()
+	public Iterator<RoleInstance> iterator()
 	{
 		return roles.iterator();
 	}
 
-	public List<RoleInstance> getRoles ()
+	public List<RoleInstance> getRoles()
 	{
 		return roles;
 	}
 
-	public void setRoles ( List<RoleInstance> roles )
+	public void setRoles( List<RoleInstance> roles )
 	{
 		this.roles = roles;
 	}
 
 	@Override
-	public String toString ()
+	public String toString()
 	{
 		String ret = " RoleInstanceList: ";
-		for (RoleInstance role : roles)
+		for ( RoleInstance role : roles )
 		{
 			ret += " RoleInstance: " + role;
 		}

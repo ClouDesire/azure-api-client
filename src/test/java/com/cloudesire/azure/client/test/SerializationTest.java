@@ -14,7 +14,7 @@ import java.util.List;
  */
 public class SerializationTest
 {
-	public static void main ( String[] args ) throws Exception
+	public static void main( String[] args ) throws Exception
 	{
 
 		Images images = new Images();

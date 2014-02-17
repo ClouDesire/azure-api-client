@@ -15,12 +15,12 @@ public class StateChangeOperation
 	@XmlElement (name = "OperationType")
 	private String operationType;
 
-	public String getOperationType ()
+	public String getOperationType()
 	{
 		return operationType;
 	}
 
-	public void setOperationType ( String operationType )
+	public void setOperationType( String operationType )
 	{
 		this.operationType = operationType;
 	}

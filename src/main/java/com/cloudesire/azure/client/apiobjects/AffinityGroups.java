@@ -16,11 +16,13 @@ public class AffinityGroups
 	@XmlElement (name = "AffinityGroup")
 	private List<AffinityGroup> affinityGroups;
 
-    public List<AffinityGroup> getAffinityGroups() {
-        return affinityGroups;
-    }
+	public List<AffinityGroup> getAffinityGroups()
+	{
+		return affinityGroups;
+	}
 
-    public void setAffinityGroups(List<AffinityGroup> affinityGroups) {
-        this.affinityGroups = affinityGroups;
-    }
+	public void setAffinityGroups( List<AffinityGroup> affinityGroups )
+	{
+		this.affinityGroups = affinityGroups;
+	}
 }

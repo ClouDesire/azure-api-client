@@ -21,32 +21,32 @@ public class CertificateFile
 	@XmlElement (name = "Password")
 	private String password;
 
-	public String getData ()
+	public String getData()
 	{
 		return data;
 	}
 
-	public void setData ( String data )
+	public void setData( String data )
 	{
 		this.data = data;
 	}
 
-	public String getCertificateFormat ()
+	public String getCertificateFormat()
 	{
 		return certificateFormat;
 	}
 
-	public void setCertificateFormat ( String certificateFormat )
+	public void setCertificateFormat( String certificateFormat )
 	{
 		this.certificateFormat = certificateFormat;
 	}
 
-	public String getPassword ()
+	public String getPassword()
 	{
 		return password;
 	}
 
-	public void setPassword ( String password )
+	public void setPassword( String password )
 	{
 		this.password = password;
 	}

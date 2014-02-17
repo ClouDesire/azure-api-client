@@ -9,7 +9,7 @@ public class ObjectCache<T>
 {
 	interface CacheLoader<T>
 	{
-		T loadObjects () throws Exception;
+		T loadObjects() throws Exception;
 	}
 
 	private final CacheLoader<T> loader;
@@ -20,16 +20,16 @@ public class ObjectCache<T>
 
 	private volatile T objects;
 
-	public ObjectCache ( CacheLoader<T> loader, long duration, TimeUnit unit )
+	public ObjectCache( CacheLoader<T> loader, long duration, TimeUnit unit )
 	{
 		this.loader = loader;
 		this.duration = duration;
 		this.unit = unit;
 	}
 
-	public synchronized T get () throws Exception
+	public synchronized T get() throws Exception
 	{
-		if (System.currentTimeMillis() > lastLoad + unit.toMillis(duration))
+		if ( System.currentTimeMillis() > lastLoad + unit.toMillis(duration) )
 		{
 			objects = loader.loadObjects();
 			lastLoad = System.currentTimeMillis();

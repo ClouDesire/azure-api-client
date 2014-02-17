@@ -16,12 +16,12 @@ public class InstanceEndpoints
 	@XmlElement (name = "InstanceEndpoint")
 	private List<InstanceEndpoint> endpoints;
 
-	public List<InstanceEndpoint> getEndpoints ()
+	public List<InstanceEndpoint> getEndpoints()
 	{
 		return endpoints;
 	}
 
-	public void setEndpoints ( List<InstanceEndpoint> endpoints )
+	public void setEndpoints( List<InstanceEndpoint> endpoints )
 	{
 		this.endpoints = endpoints;
 	}

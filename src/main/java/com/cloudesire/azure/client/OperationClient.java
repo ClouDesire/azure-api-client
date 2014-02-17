@@ -9,7 +9,7 @@ import java.util.concurrent.TimeUnit;
  */
 public interface OperationClient
 {
-	Status OperationStatus ( String requestId ) throws Exception;
+	Status OperationStatus( String requestId ) throws Exception;
 
-	void waitForState ( String requestId, Status status, Integer timeout, TimeUnit measuringUnit ) throws Exception;
+	void waitForState( String requestId, Status status, Integer timeout, TimeUnit measuringUnit ) throws Exception;
 }

@@ -44,62 +44,62 @@ public class Deployment
 	@XmlElement (name = "VirtualNetworkName")
 	private String virtualNetworkName;
 
-	public String getName ()
+	public String getName()
 	{
 		return name;
 	}
 
-	public void setName ( String name )
+	public void setName( String name )
 	{
 		this.name = name;
 	}
 
-	public String getDeploymentSlot ()
+	public String getDeploymentSlot()
 	{
 		return deploymentSlot;
 	}
 
-	public void setDeploymentSlot ( String deploymentSlot )
+	public void setDeploymentSlot( String deploymentSlot )
 	{
 		this.deploymentSlot = deploymentSlot;
 	}
 
-	public String getLabel ()
+	public String getLabel()
 	{
 		return label;
 	}
 
-	public void setLabel ( String label )
+	public void setLabel( String label )
 	{
 		this.label = label;
 	}
 
-	public RoleList getRoleList ()
+	public RoleList getRoleList()
 	{
 		return roleList;
 	}
 
-	public RoleInstanceList getRoleInstanceList ()
+	public RoleInstanceList getRoleInstanceList()
 	{
 		return roleInstanceList;
 	}
 
-	public void setRoleInstanceList ( RoleInstanceList roleInstanceList )
+	public void setRoleInstanceList( RoleInstanceList roleInstanceList )
 	{
 		this.roleInstanceList = roleInstanceList;
 	}
 
-	public void setRoleList ( RoleList roleList )
+	public void setRoleList( RoleList roleList )
 	{
 		this.roleList = roleList;
 	}
 
-	public String getVirtualNetworkName ()
+	public String getVirtualNetworkName()
 	{
 		return virtualNetworkName;
 	}
 
-	public void setVirtualNetworkName ( String virtualNetworkName )
+	public void setVirtualNetworkName( String virtualNetworkName )
 	{
 		this.virtualNetworkName = virtualNetworkName;
 	}
@@ -121,65 +121,65 @@ public class Deployment
 		private int minDisk;
 		private List<InputEndpoint> inputEndpoints;
 
-		public Builder ()
+		public Builder()
 		{
 		}
 
-		public Builder withName ( String name )
+		public Builder withName( String name )
 		{
 			this.name = name;
 			return this;
 		}
 
-		public Builder withLabel ( String label )
+		public Builder withLabel( String label )
 		{
 			this.label = label;
 			return this;
 		}
 
-		public Builder withHostname ( String hostname )
+		public Builder withHostname( String hostname )
 		{
 			this.hostname = hostname;
 			return this;
 		}
 
-		public Builder withUsername ( String username )
+		public Builder withUsername( String username )
 		{
 			this.username = username;
 			return this;
 		}
 
-		public Builder withPassword ( String password )
+		public Builder withPassword( String password )
 		{
 			this.password = password;
 			return this;
 		}
 
-		public Builder withSourceImage ( String sourceImage )
+		public Builder withSourceImage( String sourceImage )
 		{
 			this.sourceImage = sourceImage;
 			return this;
 		}
 
-		public Builder withSourceImageLink ( String sourceImageLink )
+		public Builder withSourceImageLink( String sourceImageLink )
 		{
 			this.sourceImageLink = sourceImageLink;
 			return this;
 		}
 
-		public Builder withDataImageLink ( String dataImageLink )
+		public Builder withDataImageLink( String dataImageLink )
 		{
 			this.dataImageLink = dataImageLink;
 			return this;
 		}
 
-		public Builder withFingerprint ( String fingerprint )
+		public Builder withFingerprint( String fingerprint )
 		{
 			this.fingerprint = fingerprint;
 			return this;
 		}
 
-		public Builder withMinCpu ( int minCpu )
+		public Builder withMinCpu( int minCpu )
 		{
 			this.minCpu = minCpu;
 			return this;
@@ -191,7 +191,7 @@ public class Deployment
 		 * @param minMemory
 		 * @return Builder
 		 */
-		public Builder withMinMemory ( int minMemory )
+		public Builder withMinMemory( int minMemory )
 		{
 			this.minMemory = minMemory;
 			return this;
@@ -203,29 +203,29 @@ public class Deployment
 		 * @param minDisk
 		 * @return Builder
 		 */
-		public Builder withMinDisk ( int minDisk )
+		public Builder withMinDisk( int minDisk )
 		{
 			this.minDisk = minDisk;
 			return this;
 		}
 
-		public Builder withInputEndpoints ( List<InputEndpoint> ie )
+		public Builder withInputEndpoints( List<InputEndpoint> ie )
 		{
 			this.inputEndpoints = ie;
 			return this;
 		}
 
-		public Deployment build ()
+		public Deployment build()
 		{
 			return new Deployment(this);
 		}
 	}
 
-	public Deployment ()
+	public Deployment()
 	{
 	}
 
-	public Deployment ( Builder builder )
+	public Deployment( Builder builder )
 	{
 		RoleList roleList = this.roleList;
 		List<Role> roles = new ArrayList<>();
@@ -247,7 +247,7 @@ public class Deployment
 		SshKeyContainer ssh = new SshKeyContainer();
 		PublicKey pk = new PublicKey();
 
-		if (builder.fingerprint != null)
+		if ( builder.fingerprint != null )
 		{
 			pk.setFingerPrint(builder.fingerprint);
 			pk.setPath(String.format("/home/%s/.ssh/authorized_keys", builder.username));
@@ -259,7 +259,7 @@ public class Deployment
 		set.setHostName(builder.hostname);
 		set.setUserName(builder.username);
 		set.setUserPassword(builder.password);
-		if (builder.password != null)
+		if ( builder.password != null )
 			set.setDisableSshPasswordAuthentication(false);
 
 		configurationList.add(set);
@@ -273,7 +273,7 @@ public class Deployment
 		role.setConfigurationSets(configurationSets);
 		role.setOsVirtualHardDisk(osvh);
 
-		if (builder.dataImageLink != null)
+		if ( builder.dataImageLink != null )
 		{
 			DataVirtualHardDisks disks = role.getDataVirtualHardDisks();
 			DataVirtualHardDisk disk = new DataVirtualHardDisk();
@@ -298,7 +298,7 @@ public class Deployment
 	}
 
 	@Override
-	public String toString ()
+	public String toString()
 	{
 		return "Name: " + name + " DeloymentSlot: "
 				+ deploymentSlot + " label: " + label + " RoleList: "

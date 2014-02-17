@@ -16,12 +16,12 @@ public class Locations
 	@XmlElement (name = "Location")
 	private List<Location> locations;
 
-	public List<Location> getLocations ()
+	public List<Location> getLocations()
 	{
 		return locations;
 	}
 
-	public void setLocations ( List<Location> locations )
+	public void setLocations( List<Location> locations )
 	{
 		this.locations = locations;
 	}

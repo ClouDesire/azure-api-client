@@ -24,12 +24,12 @@ public class AzureClient
 	private ConfigurationClientImpl configurationClient;
 	private OperationClientImpl operationClient;
 
-	public AzureClient ( String subscriptionId, KeyStore keyStore, String password, URL endpoint ) throws Exception
+	public AzureClient( String subscriptionId, KeyStore keyStore, String password, URL endpoint ) throws Exception
 	{
-		if (subscriptionId == null) throw new IllegalArgumentException("A subscription id is required");
-		if (keyStore == null) throw new IllegalArgumentException("KeyStore is required");
-		if (password == null) throw new IllegalArgumentException("KeyStore Password is required");
-		if (endpoint == null) endpoint = new URL("https://management.core.windows.net");
+		if ( subscriptionId == null ) throw new IllegalArgumentException("A subscription id is required");
+		if ( keyStore == null ) throw new IllegalArgumentException("KeyStore is required");
+		if ( password == null ) throw new IllegalArgumentException("KeyStore Password is required");
+		if ( endpoint == null ) endpoint = new URL("https://management.core.windows.net");
 
 		this.endpoint = new URL(endpoint, subscriptionId + "/");
 		Map<String, String> defaultHeaders = new HashMap<>();
@@ -39,7 +39,7 @@ public class AzureClient
 		restClient.setUseXml(Boolean.TRUE);
 	}
 
-	private SSLContext generateSSLSocketFactory ( KeyStore keyStore, String password )
+	private SSLContext generateSSLSocketFactory( KeyStore keyStore, String password )
 	throws NoSuchAlgorithmException, KeyStoreException, KeyManagementException, UnrecoverableKeyException
 	{
 		// http://stackoverflow.com/questions/859111/how-do-i-accept-a-self-signed-certificate-with-a-java-httpsurlconnection
@@ -57,26 +57,26 @@ public class AzureClient
 		return sslContext;
 	}
 
-	public synchronized ConfigurationClient getConfigurationClient ()
+	public synchronized ConfigurationClient getConfigurationClient()
 	{
-		if (configurationClient == null) configurationClient = new ConfigurationClientImpl(
+		if ( configurationClient == null ) configurationClient = new ConfigurationClientImpl(
 				endpoint, restClient
 		);
 		return configurationClient;
 
 	}
 
-	public synchronized ServiceClient getServiceClient () throws MalformedURLException
+	public synchronized ServiceClient getServiceClient() throws MalformedURLException
 	{
-		if (serviceClient == null) serviceClient = new ServiceClientImpl(
+		if ( serviceClient == null ) serviceClient = new ServiceClientImpl(
 				endpoint, restClient
 		);
 		return serviceClient;
 	}
 
-	public synchronized OperationClient getOperationClient () throws MalformedURLException
+	public synchronized OperationClient getOperationClient() throws MalformedURLException
 	{
-		if (operationClient == null) operationClient = new OperationClientImpl(
+		if ( operationClient == null ) operationClient = new OperationClientImpl(
 				endpoint, restClient
 		);
 		return operationClient;

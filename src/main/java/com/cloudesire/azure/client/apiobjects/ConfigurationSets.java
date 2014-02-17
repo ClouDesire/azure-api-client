@@ -16,21 +16,21 @@ public class ConfigurationSets
 	@XmlElement (name = "ConfigurationSet")
 	private List<ConfigurationSet> configurationSets;
 
-	public List<ConfigurationSet> getConfigurationSets ()
+	public List<ConfigurationSet> getConfigurationSets()
 	{
 		return configurationSets;
 	}
 
-	public void setConfigurationSets ( List<ConfigurationSet> configurationSets )
+	public void setConfigurationSets( List<ConfigurationSet> configurationSets )
 	{
 		this.configurationSets = configurationSets;
 	}
 
 	@Override
-	public String toString ()
+	public String toString()
 	{
 		String ret = " ConfigurationSets: ";
-		for (ConfigurationSet cf : configurationSets)
+		for ( ConfigurationSet cf : configurationSets )
 		{
 			ret += " ConfigurationSet: " + cf;
 		}

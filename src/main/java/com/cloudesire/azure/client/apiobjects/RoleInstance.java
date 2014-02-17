@@ -42,108 +42,108 @@ public class RoleInstance
 	@XmlElement (name = "HostName")
 	private String hostName;
 
-	public String getRoleName ()
+	public String getRoleName()
 	{
 		return roleName;
 	}
 
-	public void setRoleName ( String roleName )
+	public void setRoleName( String roleName )
 	{
 		this.roleName = roleName;
 	}
 
-	public String getInstanceName ()
+	public String getInstanceName()
 	{
 		return instanceName;
 	}
 
-	public void setInstanceName ( String instanceName )
+	public void setInstanceName( String instanceName )
 	{
 		this.instanceName = instanceName;
 	}
 
-	public String getInstanceStatus ()
+	public String getInstanceStatus()
 	{
 		return instanceStatus;
 	}
 
-	public void setInstanceStatus ( String instanceStatus )
+	public void setInstanceStatus( String instanceStatus )
 	{
 		this.instanceStatus = instanceStatus;
 	}
 
-	public String getInstanceSize ()
+	public String getInstanceSize()
 	{
 		return instanceSize;
 	}
 
-	public void setInstanceSize ( String instanceSize )
+	public void setInstanceSize( String instanceSize )
 	{
 		this.instanceSize = instanceSize;
 	}
 
-	public String getInstanceStateDetails ()
+	public String getInstanceStateDetails()
 	{
 		return instanceStateDetails;
 	}
 
-	public void setInstanceStateDetails ( String instanceStateDetails )
+	public void setInstanceStateDetails( String instanceStateDetails )
 	{
 		this.instanceStateDetails = instanceStateDetails;
 	}
 
-	public String getInstanceErrorCode ()
+	public String getInstanceErrorCode()
 	{
 		return instanceErrorCode;
 	}
 
-	public void setInstanceErrorCode ( String instanceErrorCode )
+	public void setInstanceErrorCode( String instanceErrorCode )
 	{
 		this.instanceErrorCode = instanceErrorCode;
 	}
 
-	public String getIpAddress ()
+	public String getIpAddress()
 	{
 		return ipAddress;
 	}
 
-	public void setIpAddress ( String ipAddress )
+	public void setIpAddress( String ipAddress )
 	{
 		this.ipAddress = ipAddress;
 	}
 
-	public InstanceEndpoints getInstanceEndpoints ()
+	public InstanceEndpoints getInstanceEndpoints()
 	{
 		return instanceEndpoints;
 	}
 
-	public void setInstanceEndpoints ( InstanceEndpoints instanceEndpoints )
+	public void setInstanceEndpoints( InstanceEndpoints instanceEndpoints )
 	{
 		this.instanceEndpoints = instanceEndpoints;
 	}
 
-	public String getPowerState ()
+	public String getPowerState()
 	{
 		return powerState;
 	}
 
-	public void setPowerState ( String powerState )
+	public void setPowerState( String powerState )
 	{
 		this.powerState = powerState;
 	}
 
-	public String getHostName ()
+	public String getHostName()
 	{
 		return hostName;
 	}
 
-	public void setHostName ( String hostName )
+	public void setHostName( String hostName )
 	{
 		this.hostName = hostName;
 	}
 
 	@Override
-	public String toString ()
+	public String toString()
 	{
 		return "InstanceName: " + instanceName + " InstanceStatus: " + instanceStatus + " InstanceSize: " + instanceSize + " IpAddress: " + ipAddress;
 	}

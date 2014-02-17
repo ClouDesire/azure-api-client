@@ -16,22 +16,22 @@ public class DataVirtualHardDisks
 	@XmlElement (name = "DataVirtualHardDisk")
 	private List<DataVirtualHardDisk> dataVirtualHardDisks;
 
-	public List<DataVirtualHardDisk> getDataVirtualHardDisks ()
+	public List<DataVirtualHardDisk> getDataVirtualHardDisks()
 	{
 		return dataVirtualHardDisks;
 	}
 
-	public void setDataVirtualHardDisks ( List<DataVirtualHardDisk> dataVirtualHardDisks )
+	public void setDataVirtualHardDisks( List<DataVirtualHardDisk> dataVirtualHardDisks )
 	{
 		this.dataVirtualHardDisks = dataVirtualHardDisks;
 	}
 
 	@Override
-	public String toString ()
+	public String toString()
 	{
 		String ret = " DataVirtualHardDisks: ";
-		if (dataVirtualHardDisks != null)
-			for (DataVirtualHardDisk dd : dataVirtualHardDisks)
+		if ( dataVirtualHardDisks != null )
+			for ( DataVirtualHardDisk dd : dataVirtualHardDisks )
 			{
 				ret += " DataVirtualHardDisk: " + dd;
 			}

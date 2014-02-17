@@ -23,22 +23,22 @@ public class SshKeyContainer
 	@XmlElement (name = "KeyPair", type = KeyPair.class, nillable = true)
 	private List<KeyPair> keyPairs;
 
-	public List<PublicKey> getPublicKeys ()
+	public List<PublicKey> getPublicKeys()
 	{
 		return publicKeys;
 	}
 
-	public void setPublicKeys ( List<PublicKey> publicKeys )
+	public void setPublicKeys( List<PublicKey> publicKeys )
 	{
 		this.publicKeys = publicKeys;
 	}
 
-	public List<KeyPair> getKeyPairs ()
+	public List<KeyPair> getKeyPairs()
 	{
 		return keyPairs;
 	}
 
-	public void setKeyPairs ( List<KeyPair> keyPairs )
+	public void setKeyPairs( List<KeyPair> keyPairs )
 	{
 		this.keyPairs = keyPairs;
 	}

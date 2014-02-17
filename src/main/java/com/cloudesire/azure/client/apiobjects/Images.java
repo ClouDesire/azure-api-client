@@ -16,21 +16,21 @@ public class Images
 	@XmlElement (name = "OSImage")
 	private List<OSImage> osImages;
 
-	public List<OSImage> getOsImages ()
+	public List<OSImage> getOsImages()
 	{
 		return osImages;
 	}
 
-	public void setOsImages ( List<OSImage> osImages )
+	public void setOsImages( List<OSImage> osImages )
 	{
 		this.osImages = osImages;
 	}
 
 	@Override
-	public String toString ()
+	public String toString()
 	{
 		String ret = " Images: ";
-		for (OSImage image : osImages)
+		for ( OSImage image : osImages )
 		{
 			ret += " OSImage: " + image;
 		}

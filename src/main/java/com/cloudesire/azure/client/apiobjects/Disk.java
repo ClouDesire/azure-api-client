@@ -27,58 +27,58 @@ public class Disk
 	@XmlElement (name = "SourceImageName")
 	protected String sourceImageName;
 
-	public String getDiskLabel ()
+	public String getDiskLabel()
 	{
 		return diskLabel;
 	}
 
-	public void setDiskLabel ( String diskLabel )
+	public void setDiskLabel( String diskLabel )
 	{
 		this.diskLabel = diskLabel;
 	}
 
-	public String getHostCaching ()
+	public String getHostCaching()
 	{
 		return hostCaching;
 	}
 
-	public void setHostCaching ( String hostCaching )
+	public void setHostCaching( String hostCaching )
 	{
 		this.hostCaching = hostCaching;
 	}
 
-	public String getDiskName ()
+	public String getDiskName()
 	{
 		return diskName;
 	}
 
-	public void setDiskName ( String diskName )
+	public void setDiskName( String diskName )
 	{
 		this.diskName = diskName;
 	}
 
-	public String getMediaLink ()
+	public String getMediaLink()
 	{
 		return mediaLink;
 	}
 
-	public void setMediaLink ( String mediaLink )
+	public void setMediaLink( String mediaLink )
 	{
 		this.mediaLink = mediaLink;
 	}
 
-	public String getSourceImageName ()
+	public String getSourceImageName()
 	{
 		return sourceImageName;
 	}
 
-	public void setSourceImageName ( String sourceImageName )
+	public void setSourceImageName( String sourceImageName )
 	{
 		this.sourceImageName = sourceImageName;
 	}
 
 	@Override
-	public String toString ()
+	public String toString()
 	{
 		return " HostCachine: " + hostCaching + " DiskLabel: " + diskLabel + " DiskName: " + diskLabel + " MediaLink: " + mediaLink + " SourceImageName: " + sourceImageName;
 	}

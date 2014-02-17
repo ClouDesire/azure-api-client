@@ -30,68 +30,68 @@ public class Role
 	@XmlElement (name = "RoleSize")
 	private String roleSize;
 
-	public String getRoleName ()
+	public String getRoleName()
 	{
 		return roleName;
 	}
 
-	public void setRoleName ( String roleName )
+	public void setRoleName( String roleName )
 	{
 		this.roleName = roleName;
 	}
 
-	public String getRoleType ()
+	public String getRoleType()
 	{
 		return roleType;
 	}
 
-	public void setRoleType ( String roleType )
+	public void setRoleType( String roleType )
 	{
 		this.roleType = roleType;
 	}
 
-	public ConfigurationSets getConfigurationSets ()
+	public ConfigurationSets getConfigurationSets()
 	{
 		return configurationSets;
 	}
 
-	public void setConfigurationSets ( ConfigurationSets configurationSets )
+	public void setConfigurationSets( ConfigurationSets configurationSets )
 	{
 		this.configurationSets = configurationSets;
 	}
 
-	public OSVirtualHardDisk getOsVirtualHardDisk ()
+	public OSVirtualHardDisk getOsVirtualHardDisk()
 	{
 		return osVirtualHardDisk;
 	}
 
-	public void setOsVirtualHardDisk ( OSVirtualHardDisk osVirtualHardDisk )
+	public void setOsVirtualHardDisk( OSVirtualHardDisk osVirtualHardDisk )
 	{
 		this.osVirtualHardDisk = osVirtualHardDisk;
 	}
 
-	public DataVirtualHardDisks getDataVirtualHardDisks ()
+	public DataVirtualHardDisks getDataVirtualHardDisks()
 	{
 		return dataVirtualHardDisks;
 	}
 
-	public void setDataVirtualHardDisks ( DataVirtualHardDisks dataVirtualHardDisks )
+	public void setDataVirtualHardDisks( DataVirtualHardDisks dataVirtualHardDisks )
 	{
 		this.dataVirtualHardDisks = dataVirtualHardDisks;
 	}
 
-	public String getRoleSize ()
+	public String getRoleSize()
 	{
 		return roleSize;
 	}
 
-	public void setRoleSize ( String roleSize )
+	public void setRoleSize( String roleSize )
 	{
 		this.roleSize = roleSize;
 	}
 
 	@Override
-	public String toString ()
+	public String toString()
 	{
 		return " RoleName: " + roleName + " RoleType: " + roleType + " ConfigurationSets: "
 				+ configurationSets + " OSVirtualDisk: " + osVirtualHardDisk

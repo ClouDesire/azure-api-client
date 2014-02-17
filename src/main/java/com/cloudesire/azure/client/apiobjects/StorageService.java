@@ -43,98 +43,98 @@ public class StorageService
 	@XmlElement (name = "Name")
 	private boolean name;
 
-	public String getServiceName ()
+	public String getServiceName()
 	{
 		return serviceName;
 	}
 
-	public void setServiceName ( String serviceName )
+	public void setServiceName( String serviceName )
 	{
 		this.serviceName = serviceName;
 	}
 
-	public String getLabel ()
+	public String getLabel()
 	{
 		return label;
 	}
 
-	public void setLabel ( String label )
+	public void setLabel( String label )
 	{
 		this.label = label;
 	}
 
-	public String getDescription ()
+	public String getDescription()
 	{
 		return description;
 	}
 
-	public void setDescription ( String description )
+	public void setDescription( String description )
 	{
 		this.description = description;
 	}
 
-	public String getLocation ()
+	public String getLocation()
 	{
 		return location;
 	}
 
-	public void setLocation ( String location )
+	public void setLocation( String location )
 	{
 		this.location = location;
 	}
 
-	public String getAffinityGroup ()
+	public String getAffinityGroup()
 	{
 		return affinityGroup;
 	}
 
-	public void setAffinityGroup ( String affinityGroup )
+	public void setAffinityGroup( String affinityGroup )
 	{
 		this.affinityGroup = affinityGroup;
 	}
 
-	public boolean isGeoReplicationEnabled ()
+	public boolean isGeoReplicationEnabled()
 	{
 		return geoReplicationEnabled;
 	}
 
-	public void setGeoReplicationEnabled ( boolean geoReplicationEnabled )
+	public void setGeoReplicationEnabled( boolean geoReplicationEnabled )
 	{
 		this.geoReplicationEnabled = geoReplicationEnabled;
 	}
 
-	public boolean isValue ()
+	public boolean isValue()
 	{
 		return value;
 	}
 
-	public void setValue ( boolean value )
+	public void setValue( boolean value )
 	{
 		this.value = value;
 	}
 
-	public boolean isSecondaryReadEnabled ()
+	public boolean isSecondaryReadEnabled()
 	{
 		return secondaryReadEnabled;
 	}
 
-	public void setSecondaryReadEnabled ( boolean secondaryReadEnabled )
+	public void setSecondaryReadEnabled( boolean secondaryReadEnabled )
 	{
 		this.secondaryReadEnabled = secondaryReadEnabled;
 	}
 
-	public boolean isName ()
+	public boolean isName()
 	{
 		return name;
 	}
 
-	public void setName ( boolean name )
+	public void setName( boolean name )
 	{
 		this.name = name;
 	}
 
 	@Override
-	public String toString ()
+	public String toString()
 	{
 		return "ServiceName: " + serviceName + " Description: " + description
 				+ " Label: " + label + " Location: " + location + " AffinityGroup: " + affinityGroup;

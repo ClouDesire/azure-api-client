@@ -26,7 +26,7 @@ public class ClientTest
 	private static String password = "cloudesire";
 	private static String id = "3517e125-019c-427d-bc47-f795fc04d6aa";
 
-	public static void main ( String[] args ) throws Exception
+	public static void main( String[] args ) throws Exception
 	{
 		KeyStore keyStore = getKeyStore(cert, password);
 		final AzureClient client = new AzureClient(id, keyStore, password, null);
@@ -45,7 +45,7 @@ public class ClientTest
 
 		// Test listLocation
 		final List<Location> locations = client.getConfigurationClient().listLocations();
-		for (Location location : locations)
+		for ( Location location : locations )
 		{
 			System.out.println(location);
 		}
@@ -142,7 +142,7 @@ public class ClientTest
 
 	// http://gauravmantri.com/2013/08/25/consuming-windows-azure-service-management-api-in-java/
 	// copy and paste
-	private static KeyStore getKeyStore ( String keyStoreName, String password ) throws IOException
+	private static KeyStore getKeyStore( String keyStoreName, String password ) throws IOException
 	{
 		KeyStore ks = null;
 		FileInputStream fis = null;
@@ -154,12 +154,12 @@ public class ClientTest
 			ks.load(fis, passwordArray);
 			fis.close();
 
-		} catch (Exception e)
+		} catch ( Exception e )
 		{
 			e.printStackTrace();
 		} finally
 		{
-			if (fis != null)
+			if ( fis != null )
 			{
 				fis.close();
 			}

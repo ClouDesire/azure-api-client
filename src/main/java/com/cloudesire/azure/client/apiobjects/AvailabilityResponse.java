@@ -18,22 +18,22 @@ public class AvailabilityResponse
 	@XmlElement (name = "Reason")
 	private String reason;
 
-	public String getResult ()
+	public String getResult()
 	{
 		return result;
 	}
 
-	public void setResult ( String result )
+	public void setResult( String result )
 	{
 		this.result = result;
 	}
 
-	public String getReason ()
+	public String getReason()
 	{
 		return reason;
 	}
 
-	public void setReason ( String reason )
+	public void setReason( String reason )
 	{
 		this.reason = reason;
 	}

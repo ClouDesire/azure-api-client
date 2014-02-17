@@ -18,22 +18,22 @@ public class FingerPath
 	@XmlElement (name = "Path")
 	protected String path;
 
-	public String getFingerPrint ()
+	public String getFingerPrint()
 	{
 		return fingerPrint;
 	}
 
-	public void setFingerPrint ( String fingerPrint )
+	public void setFingerPrint( String fingerPrint )
 	{
 		this.fingerPrint = fingerPrint;
 	}
 
-	public String getPath ()
+	public String getPath()
 	{
 		return path;
 	}
 
-	public void setPath ( String path )
+	public void setPath( String path )
 	{
 		this.path = path;
 	}

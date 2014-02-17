@@ -11,7 +11,7 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType (value = XmlAccessType.FIELD)
 @XmlType (name = "DataVirtualHardDisk",
-          propOrder = {"hostCaching", "diskLabel", "diskName", "lun", "logicalDiskSizeInGB", "mediaLink", "sourceImageName"})
+		propOrder = {"hostCaching", "diskLabel", "diskName", "lun", "logicalDiskSizeInGB", "mediaLink", "sourceImageName"})
 @XmlRootElement (name = "DataVirtualHardDisk")
 public class DataVirtualHardDisk extends Disk
 {
@@ -21,22 +21,22 @@ public class DataVirtualHardDisk extends Disk
 	@XmlElement (name = "LogicalDiskSizeInGB")
 	private int logicalDiskSizeInGB;
 
-	public Integer getLun ()
+	public Integer getLun()
 	{
 		return lun;
 	}
 
-	public void setLun ( Integer lun )
+	public void setLun( Integer lun )
 	{
 		this.lun = lun;
 	}
 
-	public int getLogicalDiskSizeInGB ()
+	public int getLogicalDiskSizeInGB()
 	{
 		return logicalDiskSizeInGB;
 	}
 
-	public void setLogicalDiskSizeInGB ( int logicalDiskSizeInGB )
+	public void setLogicalDiskSizeInGB( int logicalDiskSizeInGB )
 	{
 		this.logicalDiskSizeInGB = logicalDiskSizeInGB;
 	}

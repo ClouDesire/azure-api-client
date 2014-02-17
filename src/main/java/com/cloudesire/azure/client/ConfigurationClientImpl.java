@@ -17,14 +17,14 @@ class ConfigurationClientImpl implements ConfigurationClient
 	private final URL endpoint;
 	private final RestClient restClient;
 
-	public ConfigurationClientImpl ( URL endpoint, RestClient restClient )
+	public ConfigurationClientImpl( URL endpoint, RestClient restClient )
 	{
 		this.endpoint = endpoint;
 		this.restClient = restClient;
 	}
 
 	@Override
-	public List<Location> listLocations () throws Exception
+	public List<Location> listLocations() throws Exception
 	{
 		return ConfigurationClientImpl.this.restClient.get(
 				new URL(
@@ -34,7 +34,7 @@ class ConfigurationClientImpl implements ConfigurationClient
 	}
 
 	@Override
-	public String createAffinityGroup ( AffinityGroup group ) throws Exception
+	public String createAffinityGroup( AffinityGroup group ) throws Exception
 	{
 		Map<String, String> responseHeaders = new HashMap<>();
 		restClient.post(
@@ -43,26 +43,28 @@ class ConfigurationClientImpl implements ConfigurationClient
 				), group, null, null, responseHeaders
 		);
 
-		if (! responseHeaders.containsKey("x-ms-request-id")) return null;
+		if ( !responseHeaders.containsKey("x-ms-request-id") ) return null;
 		return responseHeaders.get("x-ms-request-id");
 	}
 
-    @Override
-    public void deleteAffinityGroup( String affinityGroupName ) throws Exception {
-        ConfigurationClientImpl.this.restClient.delete(
-                new URL(
-                        ConfigurationClientImpl.this.endpoint, "affinitygroups/" + affinityGroupName
-                )
-        );
-    }
+	@Override
+	public void deleteAffinityGroup( String affinityGroupName ) throws Exception
+	{
+		ConfigurationClientImpl.this.restClient.delete(
+				new URL(
+						ConfigurationClientImpl.this.endpoint, "affinitygroups/" + affinityGroupName
+				)
+		);
+	}
 
-    @Override
-    public List<AffinityGroup> listAffinityGroups() throws Exception {
-        return ConfigurationClientImpl.this.restClient.get(
-                new URL(
-                        ConfigurationClientImpl.this.endpoint, "affinitygroups"
-                ), AffinityGroups.class
-        ).getAffinityGroups();
-    }
+	@Override
+	public List<AffinityGroup> listAffinityGroups() throws Exception
+	{
+		return ConfigurationClientImpl.this.restClient.get(
+				new URL(
+						ConfigurationClientImpl.this.endpoint, "affinitygroups"
+				), AffinityGroups.class
+		).getAffinityGroups();
+	}
 
 }

@@ -40,98 +40,98 @@ public class ConfigurationSet
 	@XmlElement (name = "StaticVirtualNetworkIPAddress")
 	private String staticVirtualNetworkIPAddress;
 
-	public void setConfigurationSetTypeAttribute ( String configurationSetTypeAttribute )
+	public void setConfigurationSetTypeAttribute( String configurationSetTypeAttribute )
 	{
 		this.configurationSetTypeAttribute = configurationSetTypeAttribute;
 	}
 
-	public void setConfigurationSetType ( String configurationSetType )
+	public void setConfigurationSetType( String configurationSetType )
 	{
 		this.configurationSetType = configurationSetType;
 	}
 
-	public String getConfigurationSetTypeAttribute ()
+	public String getConfigurationSetTypeAttribute()
 	{
 		return configurationSetTypeAttribute;
 	}
 
-	public String getConfigurationSetType ()
+	public String getConfigurationSetType()
 	{
 		return configurationSetType;
 	}
 
-	public String getHostName ()
+	public String getHostName()
 	{
 		return hostName;
 	}
 
-	public void setHostName ( String hostName )
+	public void setHostName( String hostName )
 	{
 		this.hostName = hostName;
 	}
 
-	public String getUserName ()
+	public String getUserName()
 	{
 		return userName;
 	}
 
-	public void setUserName ( String userName )
+	public void setUserName( String userName )
 	{
 		this.userName = userName;
 	}
 
-	public String getUserPassword ()
+	public String getUserPassword()
 	{
 		return userPassword;
 	}
 
-	public void setUserPassword ( String userPassword )
+	public void setUserPassword( String userPassword )
 	{
 		this.userPassword = userPassword;
 	}
 
-	public Boolean getDisableSshPasswordAuthentication ()
+	public Boolean getDisableSshPasswordAuthentication()
 	{
 		return disableSshPasswordAuthentication;
 	}
 
-	public void setDisableSshPasswordAuthentication ( Boolean disableSshPasswordAuthentication )
+	public void setDisableSshPasswordAuthentication( Boolean disableSshPasswordAuthentication )
 	{
 		this.disableSshPasswordAuthentication = disableSshPasswordAuthentication;
 	}
 
-	public SshKeyContainer getSsh ()
+	public SshKeyContainer getSsh()
 	{
 		return ssh;
 	}
 
-	public void setSsh ( SshKeyContainer ssh )
+	public void setSsh( SshKeyContainer ssh )
 	{
 		this.ssh = ssh;
 	}
 
-	public InputEndpoints getInputEndpoints ()
+	public InputEndpoints getInputEndpoints()
 	{
 		return inputEndpoints;
 	}
 
-	public void setInputEndpoints ( InputEndpoints inputEndpoints )
+	public void setInputEndpoints( InputEndpoints inputEndpoints )
 	{
 		this.inputEndpoints = inputEndpoints;
 	}
 
-	public String getStaticVirtualNetworkIPAddress ()
+	public String getStaticVirtualNetworkIPAddress()
 	{
 		return staticVirtualNetworkIPAddress;
 	}
 
-	public void setStaticVirtualNetworkIPAddress ( String staticVirtualNetworkIPAddress )
+	public void setStaticVirtualNetworkIPAddress( String staticVirtualNetworkIPAddress )
 	{
 		this.staticVirtualNetworkIPAddress = staticVirtualNetworkIPAddress;
 	}
 
 	@Override
-	public String toString ()
+	public String toString()
 	{
 		return " ConfigurationSetType: " + configurationSetType + " HostName: " + hostName
 				+ " UserName: " + userName + " UserPassword: " + userPassword

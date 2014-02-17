@@ -23,23 +23,23 @@ public class Location
 	@XmlElement (name = "AvailableServices")
 	private List<String> avaiableServices;
 
-	public String getName ()
+	public String getName()
 	{
 		return name;
 	}
 
-	public String getDisplayName ()
+	public String getDisplayName()
 	{
 		return displayName;
 	}
 
-	public List<String> getAvaiableServices ()
+	public List<String> getAvaiableServices()
 	{
 		return avaiableServices;
 	}
 
 	@Override
-	public String toString ()
+	public String toString()
 	{
 		return "Name: " + name + " DisplayName: " + displayName + " AvailableServices: " + Arrays.toString(avaiableServices.toArray(new String[0]));
 	}
