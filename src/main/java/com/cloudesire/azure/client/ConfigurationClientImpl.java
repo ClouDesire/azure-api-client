@@ -1,6 +1,7 @@
 package com.cloudesire.azure.client;
 
 import com.cloudesire.azure.client.apiobjects.AffinityGroup;
+import com.cloudesire.azure.client.apiobjects.AffinityGroups;
 import com.cloudesire.azure.client.apiobjects.Location;
 import com.cloudesire.azure.client.apiobjects.Locations;
 import com.cloudesire.tisana4j.RestClient;
@@ -45,5 +46,23 @@ class ConfigurationClientImpl implements ConfigurationClient
 		if (! responseHeaders.containsKey("x-ms-request-id")) return null;
 		return responseHeaders.get("x-ms-request-id");
 	}
+
+    @Override
+    public void deleteAffinityGroup( String affinityGroupName ) throws Exception {
+        ConfigurationClientImpl.this.restClient.delete(
+                new URL(
+                        ConfigurationClientImpl.this.endpoint, "affinitygroups/" + affinityGroupName
+                )
+        );
+    }
+
+    @Override
+    public List<AffinityGroup> listAffinityGroups() throws Exception {
+        return ConfigurationClientImpl.this.restClient.get(
+                new URL(
+                        ConfigurationClientImpl.this.endpoint, "affinitygroups"
+                ), AffinityGroups.class
+        ).getAffinityGroups();
+    }
 
 }

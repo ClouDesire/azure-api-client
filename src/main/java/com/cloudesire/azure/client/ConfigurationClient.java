@@ -10,4 +10,8 @@ public interface ConfigurationClient
 	List<Location> listLocations () throws Exception;
 
 	String createAffinityGroup ( AffinityGroup group ) throws Exception;
+
+    void deleteAffinityGroup ( String affinityGroupName ) throws Exception;
+
+    List<AffinityGroup> listAffinityGroups () throws Exception;
 }
