@@ -10,6 +10,7 @@ import com.cloudesire.azure.client.apiobjects.OSImage;
 import com.cloudesire.azure.client.apiobjects.ShutdownRoleOperation;
 import com.cloudesire.azure.client.apiobjects.StartRoleOperation;
 import com.cloudesire.azure.client.apiobjects.StorageService;
+import com.cloudesire.azure.client.apiobjects.StorageServices;
 import com.cloudesire.tisana4j.RestClient;
 
 import java.net.MalformedURLException;
@@ -72,7 +73,7 @@ public class ServiceClientImpl implements ServiceClient
 
 	public Deployment getDeployment ( String serviceName, String deploymentName ) throws Exception
 	{
-		Deployment deployment = restClient.get(
+		Deployment deployment = ServiceClientImpl.this.restClient.get(
 				new URL(
 						ServiceClientImpl.this.servicesEndpoint, "hostedservices/" + serviceName + "/deployments/" + deploymentName
 				), Deployment.class
@@ -85,7 +86,7 @@ public class ServiceClientImpl implements ServiceClient
 	public String createCloudService ( CloudService cloudService ) throws Exception
 	{
 		Map<String, String> responseHeaders = new HashMap<>();
-		restClient.post(
+        ServiceClientImpl.this.restClient.post(
 				new URL(
 						ServiceClientImpl.this.servicesEndpoint, "hostedservices"
 				), cloudService, null, null, responseHeaders
@@ -99,7 +100,7 @@ public class ServiceClientImpl implements ServiceClient
 	public String createStorageService ( StorageService storageService ) throws Exception
 	{
 		Map<String, String> responseHeaders = new HashMap<>();
-		restClient.post(
+        ServiceClientImpl.this.restClient.post(
 				new URL(
 						ServiceClientImpl.this.servicesEndpoint, "storageservices"
 				), storageService, null, null, responseHeaders
@@ -109,7 +110,25 @@ public class ServiceClientImpl implements ServiceClient
 		return responseHeaders.get(XMSID);
 	}
 
-	@Override
+    @Override
+    public void deleteStorageService( String storageServiceName ) throws Exception {
+        ServiceClientImpl.this.restClient.delete(
+                new URL(
+                        ServiceClientImpl.this.servicesEndpoint, "storageservices/" + storageServiceName
+                )
+        );
+    }
+
+    @Override
+    public List<StorageService> listStorageServices() throws Exception {
+        return ServiceClientImpl.this.restClient.get(
+                new URL(
+                        ServiceClientImpl.this.servicesEndpoint, "storageservices"
+                ), StorageServices.class
+        ).getStorageServices();
+    }
+
+    @Override
 	public String addServiceCertificate (
 			String data, String format, String password, String serviceName ) throws Exception
 	{
@@ -119,11 +138,11 @@ public class ServiceClientImpl implements ServiceClient
 		certificate.setPassword(password);
 
 		Map<String, String> responseHeaders = new HashMap<>();
-		restClient.post(
-				new URL(
-						ServiceClientImpl.this.servicesEndpoint, "hostedservices/" + serviceName + "/certificates"
-				), certificate, null, null, responseHeaders
-		);
+        ServiceClientImpl.this.restClient.post(
+                new URL(
+                        ServiceClientImpl.this.servicesEndpoint, "hostedservices/" + serviceName + "/certificates"
+                ), certificate, null, null, responseHeaders
+        );
 
 		if (! responseHeaders.containsKey(XMSID)) return null;
 		return responseHeaders.get(XMSID);
@@ -133,7 +152,7 @@ public class ServiceClientImpl implements ServiceClient
 	public String createDeployment ( Deployment deployment, String serviceName ) throws Exception
 	{
 		Map<String, String> responseHeaders = new HashMap<>();
-		restClient.post(
+        ServiceClientImpl.this.restClient.post(
 				new URL(
 						ServiceClientImpl.this.servicesEndpoint, "hostedservices/" + serviceName + "/deployments"
 				), deployment, null, null, responseHeaders
@@ -150,7 +169,7 @@ public class ServiceClientImpl implements ServiceClient
 			serviceName = serviceName.concat("?comp=media");
 		URL url = new URL(ServiceClientImpl.this.servicesEndpoint, "hostedservices/" + serviceName);
 		Map<String, String> responseHeaders = new HashMap<>();
-		restClient.delete(url, null, responseHeaders);
+        ServiceClientImpl.this.restClient.delete(url, null, responseHeaders);
 
 		if (! responseHeaders.containsKey(XMSID)) return null;
 		return responseHeaders.get(XMSID);
@@ -163,7 +182,7 @@ public class ServiceClientImpl implements ServiceClient
 		startRoleOperation.setOperationType("StartRoleOperation");
 
 		Map<String, String> responseHeaders = new HashMap<>();
-		restClient.post(
+        ServiceClientImpl.this.restClient.post(
 				new URL(
 						ServiceClientImpl.this.servicesEndpoint, "hostedservices/" + serviceName + "/deployments/" + deploymentName + "/roleinstances/" + roleName + "/Operations"
 				), startRoleOperation, null, null, responseHeaders
@@ -180,7 +199,7 @@ public class ServiceClientImpl implements ServiceClient
 		shutdownRoleOperation.setOperationType("ShutdownRoleOperation");
 
 		Map<String, String> responseHeaders = new HashMap<>();
-		restClient.post(
+        ServiceClientImpl.this.restClient.post(
 				new URL(
 						ServiceClientImpl.this.servicesEndpoint, "hostedservices/" + serviceName + "/deployments/" + deploymentName + "/roleinstances/" + roleName + "/Operations"
 				), shutdownRoleOperation, null, null, responseHeaders
@@ -193,7 +212,7 @@ public class ServiceClientImpl implements ServiceClient
 	@Override
 	public Boolean isCloudServiceAvailable ( String serviceName ) throws Exception
 	{
-		AvailabilityResponse availabilityResponse = restClient.get(
+		AvailabilityResponse availabilityResponse = ServiceClientImpl.this.restClient.get(
 				new URL(
 						ServiceClientImpl.this.servicesEndpoint, "hostedservices/operations/isavailable/" + serviceName
 				), AvailabilityResponse.class
@@ -207,7 +226,7 @@ public class ServiceClientImpl implements ServiceClient
 			String serviceName, String deploymentName, String roleName, DataVirtualHardDisk disk ) throws Exception
 	{
 		Map<String, String> responseHeaders = new HashMap<>();
-		restClient.post(
+        ServiceClientImpl.this.restClient.post(
 				new URL(
 						ServiceClientImpl.this.servicesEndpoint, "hostedservices/" + serviceName + "/deployments/" + deploymentName + "/roles/" + roleName + "/DataDisks"
 				), disk, null, null, responseHeaders

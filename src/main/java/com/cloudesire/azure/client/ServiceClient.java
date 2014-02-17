@@ -23,7 +23,11 @@ public interface ServiceClient
 
 	String createStorageService ( StorageService cloudService ) throws Exception;
 
-	String addServiceCertificate ( String data, String format, String password, String serviceName ) throws Exception;
+    void deleteStorageService ( String storageServiceName ) throws Exception;
+
+    List<StorageService> listStorageServices () throws Exception;
+
+    String addServiceCertificate ( String data, String format, String password, String serviceName ) throws Exception;
 
 	String createDeployment ( Deployment deployment, String serviceName ) throws Exception;
 
