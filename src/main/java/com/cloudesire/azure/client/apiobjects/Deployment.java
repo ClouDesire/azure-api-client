@@ -120,6 +120,7 @@ public class Deployment
 		private int minCpu;
 		private int minDisk;
 		private List<InputEndpoint> inputEndpoints;
+		private String roleName;
 
 		public Builder()
 		{
@@ -215,6 +216,12 @@ public class Deployment
 			return this;
 		}
 
+		public Builder withRoleName( String roleName )
+		{
+			this.roleName = roleName;
+			return this;
+		}
+
 		public Deployment build()
 		{
 			return new Deployment(this);
@@ -269,7 +276,10 @@ public class Deployment
 		osvh.setSourceImageName(builder.sourceImage);
 		osvh.setMediaLink(builder.sourceImageLink);
 
-		role.setRoleName(builder.name + "-" + UUID.randomUUID().toString());
+		if(builder.roleName != null)
+			role.setRoleName(builder.roleName);
+		else
+			role.setRoleName(builder.name + "-" + UUID.randomUUID().toString());
 		role.setConfigurationSets(configurationSets);
 		role.setOsVirtualHardDisk(osvh);
 
