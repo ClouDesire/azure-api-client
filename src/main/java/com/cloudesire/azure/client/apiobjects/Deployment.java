@@ -278,6 +278,8 @@ public class Deployment
 
 		if(builder.roleName != null)
 			role.setRoleName(builder.roleName);
+		else if(builder.hostname != null)
+			role.setRoleName(builder.hostname);
 		else
 			role.setRoleName(builder.name + "-" + UUID.randomUUID().toString());
 		role.setConfigurationSets(configurationSets);
