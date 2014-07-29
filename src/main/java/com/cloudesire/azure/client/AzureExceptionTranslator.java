@@ -1,32 +1,26 @@
 package com.cloudesire.azure.client;
 
-import com.cloudesire.azure.client.apiobjects.ErrorResponse;
 import com.cloudesire.tisana4j.ExceptionTranslator;
-import org.apache.http.HttpStatus;
-
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Unmarshaller;
-import java.io.InputStream;
+import com.cloudesire.tisana4j.exceptions.RestException;
 
 public class AzureExceptionTranslator implements ExceptionTranslator
 {
 	@Override
-	public Exception translateError( int responseCode, String responseMessage, InputStream errorStream )
+	public <T extends RestException> T translateException ( int responseCode, String responseMessage,
+			String bodyMessage, ResponseMessage returnMessageRef )
 	{
-		//System.out.println(convertStreamToString(errorStream));
-		// Handle 410 Gone for deleted VMs.
-		if ( responseCode == HttpStatus.SC_GONE ) return null;
-		try
-		{
-			JAXBContext contextB = JAXBContext.newInstance(ErrorResponse.class);
-			Unmarshaller unmarshallerB = contextB.createUnmarshaller();
-			ErrorResponse errorResponse = (ErrorResponse) unmarshallerB.unmarshal(errorStream);
-			return new AzureResponseException(errorResponse.getCode(), errorResponse.getMessage());
-		} catch ( JAXBException e )
-		{
-			return new AzureResponseException(Integer.toString(responseCode), responseMessage);
-		}
+//		if ( responseCode == HttpStatus.SC_GONE ) return null;
+//		try
+//		{
+//			JAXBContext contextB = JAXBContext.newInstance(ErrorResponse.class);
+//			Unmarshaller unmarshallerB = contextB.createUnmarshaller();
+//			ErrorResponse errorResponse = (ErrorResponse) unmarshallerB.unma(responseMessage);
+//			return new AzureResponseException(Integer.parseInt(errorResponse.getCode()), errorResponse.getMessage());
+//		} catch ( JAXBException e )
+//		{
+//			return new AzureResponseException(Integer.toString(responseCode), responseMessage);
+//		}
+		return null; // XXX proper error handling #2732
 	}
 
 }

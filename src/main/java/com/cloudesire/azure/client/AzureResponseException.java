@@ -1,10 +1,14 @@
 package com.cloudesire.azure.client;
 
-public class AzureResponseException extends Exception
+import com.cloudesire.tisana4j.exceptions.RestException;
+
+public class AzureResponseException extends RestException
 {
-	public AzureResponseException( String code, String message )
+	private static final long serialVersionUID = -4908471987997531987L;
+
+	public AzureResponseException( int code, String message )
 	{
-		super(code + ": " + message);
+		super(code, message);
 	}
 
 }
