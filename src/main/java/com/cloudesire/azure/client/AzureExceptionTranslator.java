@@ -27,8 +27,8 @@ public class AzureExceptionTranslator implements ExceptionTranslator
 			JAXBContext contextB = JAXBContext.newInstance(ErrorResponse.class);
 			Unmarshaller unmarshallerB = contextB.createUnmarshaller();
 			ErrorResponse errorResponse = (ErrorResponse) unmarshallerB.unmarshal(stream);
-			
-			return new AzureResponseException(Integer.parseInt(errorResponse.getCode()), errorResponse.getMessage());
+
+			return new AzureResponseException(responseCode, errorResponse.getMessage());
 		} catch (JAXBException | IOException e)
 		{
 			return new AzureResponseException(responseCode, responseMessage);
