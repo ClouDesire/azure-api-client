@@ -13,11 +13,21 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType (name = "ConfigurationSet")
 public class ConfigurationSet
 {
+
 	@XmlAttribute (name = "type", namespace = "i")
 	private String configurationSetTypeAttribute = "LinuxProvisioningConfiguration";
 
 	@XmlElement (name = "ConfigurationSetType")
 	private String configurationSetType = "LinuxProvisioningConfiguration";
+
+	@XmlElement ( name = "ComputerName" )
+	private String computerName;
+
+	@XmlElement ( name = "AdminPassword" )
+	private String adminPassword;
+
+	@XmlElement ( name = "AdminUsername" )
+	private String adminUsername;
 
 	@XmlElement (name = "HostName")
 	private String hostName;
@@ -58,6 +68,36 @@ public class ConfigurationSet
 	public String getConfigurationSetType()
 	{
 		return configurationSetType;
+	}
+
+	public void setComputerName ( String computerName )
+	{
+		this.computerName = computerName;
+	}
+
+	public String getComputerName ()
+	{
+		return computerName;
+	}
+
+	public void setAdminPassword ( String adminPassword )
+	{
+		this.adminPassword = adminPassword;
+	}
+
+	public String getAdminPassword ()
+	{
+		return adminPassword;
+	}
+
+	public String getAdminUsername ()
+	{
+		return adminUsername;
+	}
+
+	public void setAdminUsername ( String adminUsername )
+	{
+		this.adminUsername = adminUsername;
 	}
 
 	public String getHostName()
@@ -131,10 +171,14 @@ public class ConfigurationSet
 	}
 
 	@Override
-	public String toString()
+	public String toString ()
 	{
-		return " ConfigurationSetType: " + configurationSetType + " HostName: " + hostName
-				+ " UserName: " + userName + " UserPassword: " + userPassword
-				+ " DisableSshPasswordAuthentication: " + disableSshPasswordAuthentication;
+		return "ConfigurationSet [configurationSetTypeAttribute=" + configurationSetTypeAttribute
+				+ ", configurationSetType=" + configurationSetType + ", computerName=" + computerName
+				+ ", adminPassword=" + adminPassword + ", adminUsername=" + adminUsername + ", hostName=" + hostName
+				+ ", userName=" + userName + ", userPassword=" + userPassword + ", disableSshPasswordAuthentication="
+				+ disableSshPasswordAuthentication + ", ssh=" + ssh + ", inputEndpoints=" + inputEndpoints
+				+ ", staticVirtualNetworkIPAddress=" + staticVirtualNetworkIPAddress + "]";
 	}
+
 }

@@ -1,12 +1,14 @@
 package com.cloudesire.azure.client;
 
+import java.util.List;
+
 import com.cloudesire.azure.client.apiobjects.CloudService;
 import com.cloudesire.azure.client.apiobjects.DataVirtualHardDisk;
 import com.cloudesire.azure.client.apiobjects.Deployment;
+import com.cloudesire.azure.client.apiobjects.ExtensionImage;
 import com.cloudesire.azure.client.apiobjects.OSImage;
+import com.cloudesire.azure.client.apiobjects.ResourceExtension;
 import com.cloudesire.azure.client.apiobjects.StorageService;
-
-import java.util.List;
 
 /**
  * @author Manuel Mazzuola <manuel.mazzuola@liberologico.com>
@@ -26,6 +28,10 @@ public interface ServiceClient
 	void deleteStorageService( String storageServiceName ) throws Exception;
 
 	List<StorageService> listStorageServices() throws Exception;
+
+	List<ExtensionImage> listExtensionImages () throws Exception;
+
+	List<ResourceExtension> listResourceExtensions () throws Exception;
 
 	String addServiceCertificate( String data, String format, String password, String serviceName ) throws Exception;
 

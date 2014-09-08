@@ -21,6 +21,9 @@ public class Role
 	@XmlElement (name = "ConfigurationSets")
 	private ConfigurationSets configurationSets = new ConfigurationSets();
 
+	@XmlElement ( name = "ResourceExtensionReferences" )
+	private ResourceExtensionReferences resourceExtensionReferences = new ResourceExtensionReferences();
+
 	@XmlElement (name = "DataVirtualHardDisks")
 	private DataVirtualHardDisks dataVirtualHardDisks = new DataVirtualHardDisks();
 
@@ -29,6 +32,9 @@ public class Role
 
 	@XmlElement (name = "RoleSize")
 	private String roleSize;
+
+	@XmlElement ( name = "ProvisionGuestAgent" )
+	private Boolean provisionGuestAgent;
 
 	public String getRoleName()
 	{
@@ -58,6 +64,16 @@ public class Role
 	public void setConfigurationSets( ConfigurationSets configurationSets )
 	{
 		this.configurationSets = configurationSets;
+	}
+
+	public ResourceExtensionReferences getResourceExtensionReferences ()
+	{
+		return resourceExtensionReferences;
+	}
+
+	public void setResourceExtensionReferences ( ResourceExtensionReferences resourceExtensionReferences )
+	{
+		this.resourceExtensionReferences = resourceExtensionReferences;
 	}
 
 	public OSVirtualHardDisk getOsVirtualHardDisk()
@@ -90,11 +106,16 @@ public class Role
 		this.roleSize = roleSize;
 	}
 
-	@Override
-	public String toString()
+	public Boolean getProvisionGuestAgent ()
 	{
-		return " RoleName: " + roleName + " RoleType: " + roleType + " ConfigurationSets: "
-				+ configurationSets + " OSVirtualDisk: " + osVirtualHardDisk
-				+ " DataVirtualDisk: " + dataVirtualHardDisks + " RoleSize: " + roleSize;
+		return provisionGuestAgent;
 	}
+
+	public void setProvisionGuestAgent ( Boolean provisionGuestAgent )
+	{
+		this.provisionGuestAgent = provisionGuestAgent;
+	}
+
+
+
 }

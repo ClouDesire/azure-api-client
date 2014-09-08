@@ -1,24 +1,28 @@
 package com.cloudesire.azure.client;
 
-import com.cloudesire.azure.client.apiobjects.AvailabilityResponse;
-import com.cloudesire.azure.client.apiobjects.CertificateFile;
-import com.cloudesire.azure.client.apiobjects.CloudService;
-import com.cloudesire.azure.client.apiobjects.DataVirtualHardDisk;
-import com.cloudesire.azure.client.apiobjects.Deployment;
-import com.cloudesire.azure.client.apiobjects.Images;
-import com.cloudesire.azure.client.apiobjects.OSImage;
-import com.cloudesire.azure.client.apiobjects.ShutdownRoleOperation;
-import com.cloudesire.azure.client.apiobjects.StartRoleOperation;
-import com.cloudesire.azure.client.apiobjects.StorageService;
-import com.cloudesire.azure.client.apiobjects.StorageServices;
-import com.cloudesire.tisana4j.RestClient;
-
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
+
+import com.cloudesire.azure.client.apiobjects.AvailabilityResponse;
+import com.cloudesire.azure.client.apiobjects.CertificateFile;
+import com.cloudesire.azure.client.apiobjects.CloudService;
+import com.cloudesire.azure.client.apiobjects.DataVirtualHardDisk;
+import com.cloudesire.azure.client.apiobjects.Deployment;
+import com.cloudesire.azure.client.apiobjects.ExtensionImage;
+import com.cloudesire.azure.client.apiobjects.ExtensionImages;
+import com.cloudesire.azure.client.apiobjects.Images;
+import com.cloudesire.azure.client.apiobjects.OSImage;
+import com.cloudesire.azure.client.apiobjects.ResourceExtension;
+import com.cloudesire.azure.client.apiobjects.ResourceExtensions;
+import com.cloudesire.azure.client.apiobjects.ShutdownRoleOperation;
+import com.cloudesire.azure.client.apiobjects.StartRoleOperation;
+import com.cloudesire.azure.client.apiobjects.StorageService;
+import com.cloudesire.azure.client.apiobjects.StorageServices;
+import com.cloudesire.tisana4j.RestClient;
 
 /**
  * @author Manuel Mazzuola <manuel.mazzuola@liberologico.com>
@@ -236,5 +240,20 @@ public class ServiceClientImpl implements ServiceClient
 
 		if ( !responseHeaders.containsKey(XMSID) ) return null;
 		return responseHeaders.get(XMSID);
+	}
+
+	@Override
+	public List<ExtensionImage> listExtensionImages () throws Exception
+	{
+		return ServiceClientImpl.this.restClient.get(new URL(ServiceClientImpl.this.servicesEndpoint, "extensions"),
+				ExtensionImages.class).getExtensionImages();
+	}
+
+	@Override
+	public List<ResourceExtension> listResourceExtensions () throws Exception
+	{
+		return ServiceClientImpl.this.restClient.get(
+				new URL(ServiceClientImpl.this.servicesEndpoint, "resourceextensions"),
+				ResourceExtensions.class).getResourceExtensions();
 	}
 }

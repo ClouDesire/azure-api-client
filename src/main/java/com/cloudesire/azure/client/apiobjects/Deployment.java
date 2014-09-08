@@ -1,14 +1,18 @@
 package com.cloudesire.azure.client.apiobjects;
 
-import com.cloudesire.azure.client.apiobjects.enums.VirtualMachineSize;
+import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+
+import com.cloudesire.azure.client.apiobjects.Deployment.Builder.OSFamily;
+import com.cloudesire.azure.client.apiobjects.enums.VirtualMachineSize;
+import com.sun.org.apache.xml.internal.security.utils.Base64;
 
 /**
  * @author Manuel Mazzuola <manuel.mazzuola@liberologico.com>
@@ -107,6 +111,11 @@ public class Deployment
 	// Overwrite properties if used
 	public static class Builder
 	{
+		public static enum OSFamily
+		{
+			Linux, Windows
+		}
+
 		private String name;
 		private String label;
 		private String hostname;
@@ -116,14 +125,34 @@ public class Deployment
 		private String sourceImageLink;
 		private String dataImageLink;
 		private String fingerprint;
+		private OSFamily osFamily = OSFamily.Linux;
 		private int minMemory;
 		private int minCpu;
 		private int minDisk;
 		private List<InputEndpoint> inputEndpoints;
 		private String roleName;
+		private String accountJson;
+		private String scriptJson;
 
 		public Builder()
 		{
+		}
+
+		public Builder withAccountJson ( String accountJson )
+		{
+			this.accountJson = accountJson;
+			return this;
+		}
+
+		public Builder withScriptJson ( String scriptJson )
+		{
+			this.scriptJson = scriptJson;
+			return this;
+		}
+		public Builder withOSFamily ( OSFamily osFamily )
+		{
+			this.osFamily = osFamily;
+			return this;
 		}
 
 		public Builder withName( String name )
@@ -237,19 +266,23 @@ public class Deployment
 		RoleList roleList = this.roleList;
 		List<Role> roles = new ArrayList<>();
 		Role role = new Role();
+		// TODO rifattorizzare la classe ConfigurationSet e splittarla in più
+		// classi diverse a seconda se WindowsConfig, LinuxConfig o
+		// NetworkConfig
 		ConfigurationSets configurationSets = role.getConfigurationSets();
 		List<ConfigurationSet> configurationList = new ArrayList<>();
 		ConfigurationSet set = new ConfigurationSet();
-		ConfigurationSet newtworkSet = new ConfigurationSet();
+		ConfigurationSet networkSet = new ConfigurationSet();
 		OSVirtualHardDisk osvh = role.getOsVirtualHardDisk();
 		List<DataVirtualHardDisk> disksList = new ArrayList<>();
 
 		InputEndpoints endpoints = new InputEndpoints();
 		endpoints.setEndpoints(builder.inputEndpoints);
 
-		newtworkSet.setConfigurationSetType("NetworkConfiguration");
-		newtworkSet.setConfigurationSetTypeAttribute("NetworkConfiguration");
-		newtworkSet.setInputEndpoints(endpoints);
+		networkSet.setConfigurationSetType("NetworkConfiguration");
+		networkSet.setConfigurationSetTypeAttribute("NetworkConfiguration");
+
+		networkSet.setInputEndpoints(endpoints);
 
 		SshKeyContainer ssh = new SshKeyContainer();
 		PublicKey pk = new PublicKey();
@@ -269,9 +302,6 @@ public class Deployment
 		if ( builder.password != null )
 			set.setDisableSshPasswordAuthentication(false);
 
-		configurationList.add(set);
-		configurationList.add(newtworkSet);
-		configurationSets.setConfigurationSets(configurationList);
 
 		osvh.setSourceImageName(builder.sourceImage);
 		osvh.setMediaLink(builder.sourceImageLink);
@@ -282,6 +312,25 @@ public class Deployment
 			role.setRoleName(builder.hostname);
 		else
 			role.setRoleName(builder.name + "-" + UUID.randomUUID().toString());
+		if (builder.osFamily.equals(OSFamily.Windows))
+		{
+			if (builder.accountJson != null || builder.scriptJson != null)
+			{
+				role.getResourceExtensionReferences().setResourceExtensionReferences(
+					setupCustomScriptExtension(builder.accountJson, builder.scriptJson));
+				role.setProvisionGuestAgent(true);
+			}
+			set.setConfigurationSetType("WindowsProvisioningConfiguration");
+			set.setConfigurationSetTypeAttribute("WindowsProvisioningConfiguration");
+			set.setComputerName("ciccio");
+			set.setAdminPassword("Ciccio123");
+			set.setAdminUsername("utonto");
+
+		}
+
+		configurationList.add(set);
+		configurationList.add(networkSet);
+		configurationSets.setConfigurationSets(configurationList);
 		role.setConfigurationSets(configurationSets);
 		role.setOsVirtualHardDisk(osvh);
 
@@ -307,6 +356,49 @@ public class Deployment
 
 		this.setName(builder.name);
 		this.setLabel(builder.label);
+	}
+
+	private List<ResourceExtensionReference> setupCustomScriptExtension ( String accountJson, String scriptJson )
+	{
+		List<ResourceExtensionReference> extensions = new ArrayList<>();
+		ResourceExtensionReference reference = new ResourceExtensionReference();
+		reference.setName("CustomScriptExtension");
+		reference.setPublisher("Microsoft.Compute");
+		reference.setVersion("1.1");
+		reference.setReferenceName("MyCustomScriptExtension");
+		reference.getResourceExtensionParameterValues().setResourceExtensionParameterValues(
+				setupParameterValuesForCustomScript(accountJson, scriptJson));
+		extensions.add(reference);
+		return extensions;
+	}
+
+	private List<ResourceExtensionParameterValue> setupParameterValuesForCustomScript ( String accountJson,
+			String scriptJson )
+	{
+
+		try
+		{
+			List<ResourceExtensionParameterValue> pvalues = new ArrayList<>();
+			if (scriptJson != null)
+			pvalues.add(setupParameterValue("CustomScriptExtensionPublicConfigParameter",
+					Base64.encode(scriptJson.getBytes("UTF-8")), "Public"));
+			if (accountJson != null)
+			pvalues.add(setupParameterValue("CustomScriptExtensionPrivateConfigParameter",
+					Base64.encode(accountJson.getBytes("UTF-8")), "Private"));
+			return pvalues;
+		} catch (UnsupportedEncodingException e)
+		{
+			throw new IllegalArgumentException(e);
+		}
+	}
+
+	private ResourceExtensionParameterValue setupParameterValue ( String key, String value, String type )
+	{
+		ResourceExtensionParameterValue pvalue = new ResourceExtensionParameterValue();
+		pvalue.setKey(key);
+		pvalue.setValue(value);
+		pvalue.setType(type);
+		return pvalue;
 	}
 
 	@Override
