@@ -315,8 +315,8 @@ public class Deployment
 			set.setConfigurationSetTypeAttribute("WindowsProvisioningConfiguration");
 			set.setEnableAutomaticUpdates(builder.enableWindowsAutomaticUpdates);
 			set.setComputerName(builder.hostname);
-			set.setAdminPassword(builder.username);
-			set.setAdminUsername(builder.password);
+			set.setAdminPassword(builder.password);
+			set.setAdminUsername(builder.username);
 
 		}
 		// LINUX OS

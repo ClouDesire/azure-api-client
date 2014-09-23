@@ -103,9 +103,9 @@ public class ClientTest
 
 		attachDataDisk(client, serviceName, deployment);
 
-		stopAndStartTest(client, serviceName, deployment);
+		// stopAndStartTest(client, serviceName, deployment);
 
-		undeploy(client, serviceName);
+		// undeploy(client, serviceName);
 
 	}
 
@@ -133,12 +133,13 @@ public class ClientTest
 		Deployment.Builder deploymentBuilder = new Deployment.Builder();
 		Deployment deployment = deploymentBuilder
 				.withName(name)
-				.withHostname("testzzzz")
+				.withHostname("testzzzzz")
 				.withLabel(UUID.randomUUID().toString())
 				.withMinCpu(2)
 				.withMinDisk(50)
 				.withMinMemory(2048)
-				.withPassword("askd123ASDASD1213")
+				.withPassword("cicCio123")
+				// askd123ASDASD1213
 				.withSourceImage(testOsImage.getName())
 				.withSourceImageLink(
 						"http://" + storageName + ".blob.core.windows.net/communityimages/" + name
