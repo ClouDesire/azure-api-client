@@ -133,9 +133,16 @@ public class Deployment
 		private String roleName;
 		private String accountJson;
 		private String scriptJson;
+		private boolean enableWindowsAutomaticUpdates = true;
 
 		public Builder()
 		{
+		}
+
+		public Builder setEnableWindowsAutomaticUpdates ( boolean enableWindowsAutomaticUpdates )
+		{
+			this.enableWindowsAutomaticUpdates = enableWindowsAutomaticUpdates;
+			return this;
 		}
 
 		public Builder withAccountJson ( String accountJson )
@@ -284,24 +291,6 @@ public class Deployment
 
 		networkSet.setInputEndpoints(endpoints);
 
-		SshKeyContainer ssh = new SshKeyContainer();
-		PublicKey pk = new PublicKey();
-
-		if ( builder.fingerprint != null )
-		{
-			pk.setFingerPrint(builder.fingerprint);
-			pk.setPath(String.format("/home/%s/.ssh/authorized_keys", builder.username));
-			ssh.getPublicKeys().add(pk);
-			set.setSsh(ssh);
-		}
-
-
-		set.setHostName(builder.hostname);
-		set.setUserName(builder.username);
-		set.setUserPassword(builder.password);
-		if ( builder.password != null )
-			set.setDisableSshPasswordAuthentication(false);
-
 
 		osvh.setSourceImageName(builder.sourceImage);
 		osvh.setMediaLink(builder.sourceImageLink);
@@ -312,6 +301,8 @@ public class Deployment
 			role.setRoleName(builder.hostname);
 		else
 			role.setRoleName(builder.name + "-" + UUID.randomUUID().toString());
+
+		// WINDOWS OS
 		if (builder.osFamily.equals(OSFamily.Windows))
 		{
 			if (builder.accountJson != null || builder.scriptJson != null)
@@ -322,10 +313,31 @@ public class Deployment
 			}
 			set.setConfigurationSetType("WindowsProvisioningConfiguration");
 			set.setConfigurationSetTypeAttribute("WindowsProvisioningConfiguration");
-			set.setComputerName("ciccio");
-			set.setAdminPassword("Ciccio123");
-			set.setAdminUsername("utonto");
+			set.setEnableAutomaticUpdates(builder.enableWindowsAutomaticUpdates);
+			set.setComputerName(builder.hostname);
+			set.setAdminPassword(builder.username);
+			set.setAdminUsername(builder.password);
 
+		}
+		// LINUX OS
+		else
+		{
+			SshKeyContainer ssh = new SshKeyContainer();
+			PublicKey pk = new PublicKey();
+
+			if (builder.fingerprint != null)
+			{
+				pk.setFingerPrint(builder.fingerprint);
+				pk.setPath(String.format("/home/%s/.ssh/authorized_keys", builder.username));
+				ssh.getPublicKeys().add(pk);
+				set.setSsh(ssh);
+			}
+			set.setConfigurationSetType("LinuxProvisioningConfiguration");
+			set.setConfigurationSetTypeAttribute("LinuxProvisioningConfiguration");
+			set.setHostName(builder.hostname);
+			set.setUserName(builder.username);
+			set.setUserPassword(builder.password);
+			if (builder.password != null) set.setDisableSshPasswordAuthentication(false);
 		}
 
 		configurationList.add(set);

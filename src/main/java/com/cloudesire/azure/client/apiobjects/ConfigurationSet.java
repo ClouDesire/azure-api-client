@@ -23,6 +23,9 @@ public class ConfigurationSet
 	@XmlElement ( name = "ComputerName" )
 	private String computerName;
 
+	@XmlElement ( name = "EnableAutomaticUpdates" )
+	private Boolean enableAutomaticUpdates;
+
 	@XmlElement ( name = "AdminPassword" )
 	private String adminPassword;
 
@@ -49,6 +52,17 @@ public class ConfigurationSet
 
 	@XmlElement (name = "StaticVirtualNetworkIPAddress")
 	private String staticVirtualNetworkIPAddress;
+
+	
+	public Boolean getEnableAutomaticUpdates ()
+	{
+		return enableAutomaticUpdates;
+	}
+
+	public void setEnableAutomaticUpdates ( Boolean enableAutomaticUpdates )
+	{
+		this.enableAutomaticUpdates = enableAutomaticUpdates;
+	}
 
 	public void setConfigurationSetTypeAttribute( String configurationSetTypeAttribute )
 	{
