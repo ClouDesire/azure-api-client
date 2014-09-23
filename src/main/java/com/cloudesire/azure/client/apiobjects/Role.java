@@ -22,7 +22,7 @@ public class Role
 	private ConfigurationSets configurationSets = new ConfigurationSets();
 
 	@XmlElement ( name = "ResourceExtensionReferences" )
-	private ResourceExtensionReferences resourceExtensionReferences = new ResourceExtensionReferences();
+	private ResourceExtensionReferences resourceExtensionReferences;
 
 	@XmlElement (name = "DataVirtualHardDisks")
 	private DataVirtualHardDisks dataVirtualHardDisks = new DataVirtualHardDisks();

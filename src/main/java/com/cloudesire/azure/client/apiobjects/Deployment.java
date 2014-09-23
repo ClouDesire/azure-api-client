@@ -307,6 +307,7 @@ public class Deployment
 		{
 			if (builder.accountJson != null || builder.scriptJson != null)
 			{
+				role.setResourceExtensionReferences(new ResourceExtensionReferences());
 				role.getResourceExtensionReferences().setResourceExtensionReferences(
 					setupCustomScriptExtension(builder.accountJson, builder.scriptJson));
 				role.setProvisionGuestAgent(true);
