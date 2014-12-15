@@ -164,7 +164,7 @@ public class Deployment
 
 		public Builder withName( String name )
 		{
-			this.name = name;
+			this.name = sanitize(name);
 			return this;
 		}
 
@@ -412,6 +412,15 @@ public class Deployment
 		pvalue.setValue(value);
 		pvalue.setType(type);
 		return pvalue;
+	}
+
+	private static String sanitize( String uncleanStr )
+	{
+		if (uncleanStr == null) return "";
+		String cleanStr;
+		cleanStr = uncleanStr.replaceAll("[^a-zA-Z0-9]", "-");
+		cleanStr = cleanStr.replaceAll("_", "-").replaceAll(" ", "");
+		return cleanStr;
 	}
 
 	@Override
