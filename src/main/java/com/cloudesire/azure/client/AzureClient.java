@@ -35,7 +35,7 @@ public class AzureClient
 		this.endpoint = new URL(endpoint, subscriptionId + "/");
 		Map<String, String> defaultHeaders = new HashMap<>();
 		defaultHeaders.put("x-ms-version", "2013-11-01");
-		restClient = new RestClient(null, null, true, defaultHeaders, generateSSLSocketFactory(keyStore, password));
+		restClient = new RestClient(null, null, false, defaultHeaders, generateSSLSocketFactory(keyStore, password));
 		restClient.setExceptionTranslator(new AzureExceptionTranslator());
 		restClient.setUseXml(Boolean.TRUE);
 	}
