@@ -52,7 +52,7 @@ public class Deployment
 	{
 		return name;
 	}
-
+	
 	public void setName( String name )
 	{
 		this.name = name;
@@ -72,10 +72,20 @@ public class Deployment
 	{
 		return label;
 	}
-
+	
+	public String getUrl()
+	{
+		return url;
+	}
+	
 	public void setLabel( String label )
 	{
 		this.label = label;
+	}
+	
+	public void setUrl( String url )
+	{
+		this.url = url;
 	}
 
 	public RoleList getRoleList()
@@ -118,6 +128,7 @@ public class Deployment
 
 		private String name;
 		private String label;
+		private String url;
 		private String hostname;
 		private String username;
 		private String password;
@@ -171,6 +182,12 @@ public class Deployment
 		public Builder withLabel( String label )
 		{
 			this.label = label;
+			return this;
+		}
+		
+		public Builder withUrl( String url )
+		{
+			this.url = url;
 			return this;
 		}
 
@@ -369,6 +386,7 @@ public class Deployment
 
 		this.setName(builder.name);
 		this.setLabel(builder.label);
+		this.setUrl(builder.url);
 	}
 
 	private List<ResourceExtensionReference> setupCustomScriptExtension ( String accountJson, String scriptJson )
@@ -418,7 +436,7 @@ public class Deployment
 	public String toString()
 	{
 		return "Name: " + name + " DeloymentSlot: "
-				+ deploymentSlot + " label: " + label + " RoleList: "
+				+ deploymentSlot + " label: " + label + " Url: " + url + " RoleList: "
 				+ roleList + " RoleInstanceList: " + roleInstanceList + " VirtualNetworkName: " + virtualNetworkName;
 	}
 }
