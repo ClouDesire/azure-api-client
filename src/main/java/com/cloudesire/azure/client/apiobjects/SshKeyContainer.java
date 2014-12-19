@@ -16,12 +16,12 @@ import java.util.List;
 public class SshKeyContainer
 {
 	@XmlElementWrapper (name = "PublicKeys")
-	@XmlElement (name = "PublickKey", type = PublicKey.class)
+	@XmlElement (name = "PublicKey", type = PublicKey.class)
 	private List<PublicKey> publicKeys = new ArrayList<>();
 
 	@XmlElementWrapper (name = "KeyPairs")
 	@XmlElement (name = "KeyPair", type = KeyPair.class, nillable = true)
-	private List<KeyPair> keyPairs;
+	private List<KeyPair> keyPairs = new ArrayList<>();
 
 	public List<PublicKey> getPublicKeys()
 	{

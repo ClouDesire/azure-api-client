@@ -1,18 +1,19 @@
 package com.cloudesire.azure.client.apiobjects;
 
-import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import com.cloudesire.azure.client.apiobjects.Deployment.Builder.OSFamily;
+import com.cloudesire.azure.client.apiobjects.enums.VirtualMachineSize;
+import com.sun.org.apache.xml.internal.security.utils.Base64;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
-
-import com.cloudesire.azure.client.apiobjects.Deployment.Builder.OSFamily;
-import com.cloudesire.azure.client.apiobjects.enums.VirtualMachineSize;
-import com.sun.org.apache.xml.internal.security.utils.Base64;
+import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
 
 /**
  * @author Manuel Mazzuola <manuel.mazzuola@liberologico.com>
@@ -144,30 +145,32 @@ public class Deployment
 		private String roleName;
 		private String accountJson;
 		private String scriptJson;
-		private boolean enableWindowsAutomaticUpdates = true;
+		private boolean enableWindowsAutomaticUpdates = false;
+		private boolean disableSSHPasswordAuthentication = false;
 
 		public Builder()
 		{
 		}
 
-		public Builder setEnableWindowsAutomaticUpdates ( boolean enableWindowsAutomaticUpdates )
+		public Builder setEnableWindowsAutomaticUpdates( boolean enableWindowsAutomaticUpdates )
 		{
 			this.enableWindowsAutomaticUpdates = enableWindowsAutomaticUpdates;
 			return this;
 		}
 
-		public Builder withAccountJson ( String accountJson )
+		public Builder withAccountJson( String accountJson )
 		{
 			this.accountJson = accountJson;
 			return this;
 		}
 
-		public Builder withScriptJson ( String scriptJson )
+		public Builder withScriptJson( String scriptJson )
 		{
 			this.scriptJson = scriptJson;
 			return this;
 		}
-		public Builder withOSFamily ( OSFamily osFamily )
+
+		public Builder withOSFamily( OSFamily osFamily )
 		{
 			this.osFamily = osFamily;
 			return this;
@@ -275,6 +278,12 @@ public class Deployment
 			return this;
 		}
 
+		public Builder disableSSHPasswordAuthentication()
+		{
+			this.disableSSHPasswordAuthentication = true;
+			return this;
+		}
+
 		public Deployment build()
 		{
 			return new Deployment(this);
@@ -287,6 +296,8 @@ public class Deployment
 
 	public Deployment( Builder builder )
 	{
+		final Logger log = LoggerFactory.getLogger(this.getClass());
+
 		RoleList roleList = this.roleList;
 		List<Role> roles = new ArrayList<>();
 		Role role = new Role();
@@ -312,21 +323,21 @@ public class Deployment
 		osvh.setSourceImageName(builder.sourceImage);
 		osvh.setMediaLink(builder.sourceImageLink);
 
-		if(builder.roleName != null)
+		if ( builder.roleName != null )
 			role.setRoleName(builder.roleName);
-		else if(builder.hostname != null)
+		else if ( builder.hostname != null )
 			role.setRoleName(builder.hostname);
 		else
 			role.setRoleName(builder.name + "-" + UUID.randomUUID().toString());
 
 		// WINDOWS OS
-		if (builder.osFamily.equals(OSFamily.Windows))
+		if ( builder.osFamily.equals(OSFamily.Windows) )
 		{
-			if (builder.accountJson != null || builder.scriptJson != null)
+			if ( builder.accountJson != null || builder.scriptJson != null )
 			{
 				role.setResourceExtensionReferences(new ResourceExtensionReferences());
 				role.getResourceExtensionReferences().setResourceExtensionReferences(
-					setupCustomScriptExtension(builder.accountJson, builder.scriptJson));
+						setupCustomScriptExtension(builder.accountJson, builder.scriptJson));
 				role.setProvisionGuestAgent(true);
 			}
 			set.setConfigurationSetType("WindowsProvisioningConfiguration");
@@ -342,12 +353,22 @@ public class Deployment
 		{
 			SshKeyContainer ssh = new SshKeyContainer();
 			PublicKey pk = new PublicKey();
+			KeyPair kp = new KeyPair();
 
-			if (builder.fingerprint != null)
+			if ( builder.fingerprint != null )
 			{
 				pk.setFingerPrint(builder.fingerprint);
-				pk.setPath(String.format("/home/%s/.ssh/authorized_keys", builder.username));
+				String authorizedKeysFile = String.format("/home/%s/.ssh/authorized_keys", builder.username);
+				pk.setPath(authorizedKeysFile);
+				log.debug(String.format("Added fingerprint to %s", authorizedKeysFile));
+
+				kp.setFingerPrint(builder.fingerprint);
+				String idRSAFile = String.format("/home/%s/.ssh/id_rsa", builder.username);
+				log.debug(String.format("Added fingerprint to %s", idRSAFile));
+				kp.setPath(idRSAFile);
+
 				ssh.getPublicKeys().add(pk);
+				ssh.getKeyPairs().add(kp);
 				set.setSsh(ssh);
 			}
 			set.setConfigurationSetType("LinuxProvisioningConfiguration");
@@ -355,7 +376,7 @@ public class Deployment
 			set.setHostName(builder.hostname);
 			set.setUserName(builder.username);
 			set.setUserPassword(builder.password);
-			if (builder.password != null) set.setDisableSshPasswordAuthentication(false);
+			set.setDisableSshPasswordAuthentication(builder.disableSSHPasswordAuthentication);
 		}
 
 		configurationList.add(set);
@@ -389,7 +410,7 @@ public class Deployment
 		this.setUrl(builder.url);
 	}
 
-	private List<ResourceExtensionReference> setupCustomScriptExtension ( String accountJson, String scriptJson )
+	private List<ResourceExtensionReference> setupCustomScriptExtension( String accountJson, String scriptJson )
 	{
 		List<ResourceExtensionReference> extensions = new ArrayList<>();
 		ResourceExtensionReference reference = new ResourceExtensionReference();
@@ -403,27 +424,27 @@ public class Deployment
 		return extensions;
 	}
 
-	private List<ResourceExtensionParameterValue> setupParameterValuesForCustomScript ( String accountJson,
-			String scriptJson )
+	private List<ResourceExtensionParameterValue> setupParameterValuesForCustomScript( String accountJson,
+	                                                                                   String scriptJson )
 	{
 
 		try
 		{
 			List<ResourceExtensionParameterValue> pvalues = new ArrayList<>();
-			if (scriptJson != null)
-			pvalues.add(setupParameterValue("CustomScriptExtensionPublicConfigParameter",
-					Base64.encode(scriptJson.getBytes("UTF-8")), "Public"));
-			if (accountJson != null)
-			pvalues.add(setupParameterValue("CustomScriptExtensionPrivateConfigParameter",
-					Base64.encode(accountJson.getBytes("UTF-8")), "Private"));
+			if ( scriptJson != null )
+				pvalues.add(setupParameterValue("CustomScriptExtensionPublicConfigParameter",
+						Base64.encode(scriptJson.getBytes("UTF-8")), "Public"));
+			if ( accountJson != null )
+				pvalues.add(setupParameterValue("CustomScriptExtensionPrivateConfigParameter",
+						Base64.encode(accountJson.getBytes("UTF-8")), "Private"));
 			return pvalues;
-		} catch (UnsupportedEncodingException e)
+		} catch ( UnsupportedEncodingException e )
 		{
 			throw new IllegalArgumentException(e);
 		}
 	}
 
-	private ResourceExtensionParameterValue setupParameterValue ( String key, String value, String type )
+	private ResourceExtensionParameterValue setupParameterValue( String key, String value, String type )
 	{
 		ResourceExtensionParameterValue pvalue = new ResourceExtensionParameterValue();
 		pvalue.setKey(key);
@@ -434,7 +455,7 @@ public class Deployment
 
 	private static String sanitize( String uncleanStr )
 	{
-		if (uncleanStr == null) return "";
+		if ( uncleanStr == null ) return "";
 		String cleanStr;
 		cleanStr = uncleanStr.replaceAll("[^a-zA-Z0-9]", "-");
 		cleanStr = cleanStr.replaceAll("_", "-").replaceAll(" ", "");
