@@ -1,5 +1,10 @@
 package com.cloudesire.azure.client;
 
+import com.cloudesire.tisana4j.RestClient;
+
+import javax.net.ssl.KeyManagerFactory;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.TrustManagerFactory;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.security.KeyManagementException;
@@ -10,12 +15,6 @@ import java.security.SecureRandom;
 import java.security.UnrecoverableKeyException;
 import java.util.HashMap;
 import java.util.Map;
-
-import javax.net.ssl.KeyManagerFactory;
-import javax.net.ssl.SSLContext;
-import javax.net.ssl.TrustManagerFactory;
-
-import com.cloudesire.tisana4j.RestClient;
 
 public class AzureClient
 {
@@ -34,7 +33,7 @@ public class AzureClient
 
 		this.endpoint = new URL(endpoint, subscriptionId + "/");
 		Map<String, String> defaultHeaders = new HashMap<>();
-		defaultHeaders.put("x-ms-version", "2013-11-01");
+		defaultHeaders.put("x-ms-version", "2014-10-01");
 		restClient = new RestClient(null, null, false, defaultHeaders, generateSSLSocketFactory(keyStore, password));
 		restClient.setExceptionTranslator(new AzureExceptionTranslator());
 		restClient.setUseXml(Boolean.TRUE);
