@@ -93,7 +93,7 @@ public class ServiceClientImpl implements ServiceClient
 		ServiceClientImpl.this.restClient.post(
 				new URL(
 						ServiceClientImpl.this.servicesEndpoint, "hostedservices"
-				), cloudService, null, null, responseHeaders
+				), cloudService, responseHeaders
 		);
 
 		if ( !responseHeaders.containsKey(XMSID) ) return null;
@@ -107,7 +107,7 @@ public class ServiceClientImpl implements ServiceClient
 		ServiceClientImpl.this.restClient.post(
 				new URL(
 						ServiceClientImpl.this.servicesEndpoint, "storageservices"
-				), storageService, null, null, responseHeaders
+				), storageService, responseHeaders
 		);
 
 		if ( !responseHeaders.containsKey(XMSID) ) return null;
@@ -147,7 +147,7 @@ public class ServiceClientImpl implements ServiceClient
 		ServiceClientImpl.this.restClient.post(
 				new URL(
 						ServiceClientImpl.this.servicesEndpoint, "hostedservices/" + serviceName + "/certificates"
-				), certificate, null, null, responseHeaders
+				), certificate, responseHeaders
 		);
 
 		if ( !responseHeaders.containsKey(XMSID) ) return null;
@@ -161,7 +161,7 @@ public class ServiceClientImpl implements ServiceClient
 		ServiceClientImpl.this.restClient.post(
 				new URL(
 						ServiceClientImpl.this.servicesEndpoint, "hostedservices/" + serviceName + "/deployments"
-				), deployment, null, null, responseHeaders
+				), deployment, responseHeaders
 		);
 
 		if ( !responseHeaders.containsKey(XMSID) ) return null;
@@ -175,7 +175,7 @@ public class ServiceClientImpl implements ServiceClient
 			serviceName = serviceName.concat("?comp=media");
 		URL url = new URL(ServiceClientImpl.this.servicesEndpoint, "hostedservices/" + serviceName);
 		Map<String, String> responseHeaders = new HashMap<>();
-		ServiceClientImpl.this.restClient.delete(url, null, responseHeaders);
+		ServiceClientImpl.this.restClient.delete(url, responseHeaders);
 
 		if ( !responseHeaders.containsKey(XMSID) ) return null;
 		return responseHeaders.get(XMSID);
@@ -191,7 +191,7 @@ public class ServiceClientImpl implements ServiceClient
 		ServiceClientImpl.this.restClient.post(
 				new URL(
 						ServiceClientImpl.this.servicesEndpoint, "hostedservices/" + serviceName + "/deployments/" + deploymentName + "/roleinstances/" + roleName + "/Operations"
-				), startRoleOperation, null, null, responseHeaders
+				), startRoleOperation, responseHeaders
 		);
 
 		if ( !responseHeaders.containsKey(XMSID) ) return null;
@@ -208,7 +208,7 @@ public class ServiceClientImpl implements ServiceClient
 		ServiceClientImpl.this.restClient.post(
 				new URL(
 						ServiceClientImpl.this.servicesEndpoint, "hostedservices/" + serviceName + "/deployments/" + deploymentName + "/roleinstances/" + roleName + "/Operations"
-				), shutdownRoleOperation, null, null, responseHeaders
+				), shutdownRoleOperation, responseHeaders
 		);
 
 		if ( !responseHeaders.containsKey(XMSID) ) return null;
@@ -235,7 +235,7 @@ public class ServiceClientImpl implements ServiceClient
 		ServiceClientImpl.this.restClient.post(
 				new URL(
 						ServiceClientImpl.this.servicesEndpoint, "hostedservices/" + serviceName + "/deployments/" + deploymentName + "/roles/" + roleName + "/DataDisks"
-				), disk, null, null, responseHeaders
+				), disk, responseHeaders
 		);
 
 		if ( !responseHeaders.containsKey(XMSID) ) return null;
