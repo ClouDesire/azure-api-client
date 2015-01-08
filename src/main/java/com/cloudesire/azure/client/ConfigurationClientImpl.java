@@ -40,7 +40,7 @@ class ConfigurationClientImpl implements ConfigurationClient
 		restClient.post(
 				new URL(
 						ConfigurationClientImpl.this.endpoint, "affinitygroups"
-				), group, responseHeaders
+				), group, responseHeaders, null
 		);
 
 		if ( !responseHeaders.containsKey("x-ms-request-id") ) return null;
