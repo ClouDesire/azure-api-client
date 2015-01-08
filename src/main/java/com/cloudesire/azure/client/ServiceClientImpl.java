@@ -5,7 +5,6 @@ import com.cloudesire.tisana4j.RestClient;
 
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
@@ -75,29 +74,31 @@ public class ServiceClientImpl implements ServiceClient
 	@Override
 	public String createCloudService( CloudService cloudService ) throws Exception
 	{
-		Map<String, String> responseHeaders = new HashMap<>();
 		ServiceClientImpl.this.restClient.post(
 				new URL(
 						ServiceClientImpl.this.servicesEndpoint, "hostedservices"
-				), cloudService, responseHeaders, null
+				), cloudService, null, null
 		);
 
+		Map<String, List<String>> responseHeaders = restClient.getLastResponseHeaders();
+
 		if ( !responseHeaders.containsKey(XMSID) ) return null;
-		return responseHeaders.get(XMSID);
+		return responseHeaders.get(XMSID).get(0);
 	}
 
 	@Override
 	public String createStorageService( StorageService storageService ) throws Exception
 	{
-		Map<String, String> responseHeaders = new HashMap<>();
 		ServiceClientImpl.this.restClient.post(
 				new URL(
 						ServiceClientImpl.this.servicesEndpoint, "storageservices"
-				), storageService, responseHeaders, null
+				), storageService, null, null
 		);
 
+		Map<String, List<String>> responseHeaders = restClient.getLastResponseHeaders();
+
 		if ( !responseHeaders.containsKey(XMSID) ) return null;
-		return responseHeaders.get(XMSID);
+		return responseHeaders.get(XMSID).get(0);
 	}
 
 	@Override
@@ -129,29 +130,31 @@ public class ServiceClientImpl implements ServiceClient
 		certificate.setCertificateFormat(format);
 		certificate.setPassword(password);
 
-		Map<String, String> responseHeaders = new HashMap<>();
 		ServiceClientImpl.this.restClient.post(
 				new URL(
 						ServiceClientImpl.this.servicesEndpoint, "hostedservices/" + serviceName + "/certificates"
-				), certificate, responseHeaders, null
+				), certificate, null, null
 		);
 
+		Map<String, List<String>> responseHeaders = restClient.getLastResponseHeaders();
+
 		if ( !responseHeaders.containsKey(XMSID) ) return null;
-		return responseHeaders.get(XMSID);
+		return responseHeaders.get(XMSID).get(0);
 	}
 
 	@Override
 	public String createDeployment( Deployment deployment, String serviceName ) throws Exception
 	{
-		Map<String, String> responseHeaders = new HashMap<>();
 		ServiceClientImpl.this.restClient.post(
 				new URL(
 						ServiceClientImpl.this.servicesEndpoint, "hostedservices/" + serviceName + "/deployments"
-				), deployment, responseHeaders, null
+				), deployment, null, null
 		);
 
+		Map<String, List<String>> responseHeaders = restClient.getLastResponseHeaders();
+
 		if ( !responseHeaders.containsKey(XMSID) ) return null;
-		return responseHeaders.get(XMSID);
+		return responseHeaders.get(XMSID).get(0);
 	}
 
 	@Override
@@ -160,11 +163,12 @@ public class ServiceClientImpl implements ServiceClient
 		if ( cascadeDelete )
 			serviceName = serviceName.concat("?comp=media");
 		URL url = new URL(ServiceClientImpl.this.servicesEndpoint, "hostedservices/" + serviceName);
-		Map<String, String> responseHeaders = new HashMap<>();
-		ServiceClientImpl.this.restClient.delete(url, responseHeaders);
+		ServiceClientImpl.this.restClient.delete(url);
+
+		Map<String, List<String>> responseHeaders = restClient.getLastResponseHeaders();
 
 		if ( !responseHeaders.containsKey(XMSID) ) return null;
-		return responseHeaders.get(XMSID);
+		return responseHeaders.get(XMSID).get(0);
 	}
 
 	@Override
@@ -173,15 +177,16 @@ public class ServiceClientImpl implements ServiceClient
 		StartRoleOperation startRoleOperation = new StartRoleOperation();
 		startRoleOperation.setOperationType("StartRoleOperation");
 
-		Map<String, String> responseHeaders = new HashMap<>();
 		ServiceClientImpl.this.restClient.post(
 				new URL(
 						ServiceClientImpl.this.servicesEndpoint, "hostedservices/" + serviceName + "/deployments/" + deploymentName + "/roleinstances/" + roleName + "/Operations"
-				), startRoleOperation, responseHeaders, null
+				), startRoleOperation, null, null
 		);
 
+		Map<String, List<String>> responseHeaders = restClient.getLastResponseHeaders();
+
 		if ( !responseHeaders.containsKey(XMSID) ) return null;
-		return responseHeaders.get(XMSID);
+		return responseHeaders.get(XMSID).get(0);
 	}
 
 	@Override
@@ -190,15 +195,16 @@ public class ServiceClientImpl implements ServiceClient
 		ShutdownRoleOperation shutdownRoleOperation = new ShutdownRoleOperation();
 		shutdownRoleOperation.setOperationType("ShutdownRoleOperation");
 
-		Map<String, String> responseHeaders = new HashMap<>();
 		ServiceClientImpl.this.restClient.post(
 				new URL(
 						ServiceClientImpl.this.servicesEndpoint, "hostedservices/" + serviceName + "/deployments/" + deploymentName + "/roleinstances/" + roleName + "/Operations"
-				), shutdownRoleOperation, responseHeaders, null
+				), shutdownRoleOperation, null, null
 		);
 
+		Map<String, List<String>> responseHeaders = restClient.getLastResponseHeaders();
+
 		if ( !responseHeaders.containsKey(XMSID) ) return null;
-		return responseHeaders.get(XMSID);
+		return responseHeaders.get(XMSID).get(0);
 	}
 
 	@Override
@@ -217,15 +223,16 @@ public class ServiceClientImpl implements ServiceClient
 	public String addDataDisk(
 			String serviceName, String deploymentName, String roleName, DataVirtualHardDisk disk ) throws Exception
 	{
-		Map<String, String> responseHeaders = new HashMap<>();
 		ServiceClientImpl.this.restClient.post(
 				new URL(
 						ServiceClientImpl.this.servicesEndpoint, "hostedservices/" + serviceName + "/deployments/" + deploymentName + "/roles/" + roleName + "/DataDisks"
-				), disk, responseHeaders, null
+				), disk, null, null
 		);
 
+		Map<String, List<String>> responseHeaders = restClient.getLastResponseHeaders();
+
 		if ( !responseHeaders.containsKey(XMSID) ) return null;
-		return responseHeaders.get(XMSID);
+		return responseHeaders.get(XMSID).get(0);
 	}
 
 	@Override
