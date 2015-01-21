@@ -7,9 +7,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import java.util.Arrays;
 import java.util.List;
 
-/**
- * @author Manuel Mazzuola <manuel.mazzuola@liberologico.com>
- */
+
 @XmlRootElement (name = "Location")
 @XmlAccessorType (value = XmlAccessType.FIELD)
 public class Location

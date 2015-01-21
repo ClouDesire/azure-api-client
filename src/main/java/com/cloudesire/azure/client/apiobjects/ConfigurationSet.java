@@ -6,9 +6,7 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
-/**
- * @author Manuel Mazzuola <manuel.mazzuola@liberologico.com>
- */
+
 @XmlAccessorType (XmlAccessType.FIELD)
 @XmlType (name = "ConfigurationSet")
 public class ConfigurationSet
@@ -28,6 +26,9 @@ public class ConfigurationSet
 
 	@XmlElement ( name = "EnableAutomaticUpdates" )
 	private Boolean enableAutomaticUpdates;
+	
+	@XmlElement ( name = "WinRM" )
+	private WinRM winRm;
 
 	@XmlElement ( name = "AdminUsername" )
 	private String adminUsername;
@@ -101,6 +102,16 @@ public class ConfigurationSet
 	public Boolean getEnableAutomaticUpdates ()
 	{
 		return enableAutomaticUpdates;
+	}
+
+	public WinRM getWinRm ()
+	{
+		return winRm;
+	}
+
+	public void setWinRm ( WinRM winRm )
+	{
+		this.winRm = winRm;
 	}
 
 	public String getAdminUsername ()

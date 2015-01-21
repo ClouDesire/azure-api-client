@@ -1,23 +1,22 @@
 package com.cloudesire.azure.client.apiobjects;
 
-import com.cloudesire.azure.client.apiobjects.Deployment.Builder.OSFamily;
-import com.cloudesire.azure.client.apiobjects.enums.VirtualMachineSize;
-import com.sun.org.apache.xml.internal.security.utils.Base64;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-/**
- * @author Manuel Mazzuola <manuel.mazzuola@liberologico.com>
- */
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.cloudesire.azure.client.apiobjects.Deployment.Builder.OSFamily;
+import com.cloudesire.azure.client.apiobjects.enums.VirtualMachineSize;
+import com.sun.org.apache.xml.internal.security.utils.Base64;
+
 @XmlRootElement (name = "Deployment")
 @XmlAccessorType (value = XmlAccessType.FIELD)
 public class Deployment
@@ -126,6 +125,10 @@ public class Deployment
 		{
 			Linux, Windows
 		}
+		public static enum WinRMProtocol
+		{
+			Http , Https 
+		}
 
 		private String name;
 		private String label;
@@ -138,6 +141,7 @@ public class Deployment
 		private String dataImageLink;
 		private String fingerprint;
 		private OSFamily osFamily = OSFamily.Linux;
+		private WinRM winRM = new WinRM(new Listener(WinRMProtocol.Http));
 		private int minMemory;
 		private int minCpu;
 		private int minDisk;
@@ -151,7 +155,13 @@ public class Deployment
 		public Builder()
 		{
 		}
-
+		
+		public Builder setWinRMP( WinRM winRM )
+		{
+			this.winRM = winRM;
+			return this;
+		}
+		
 		public Builder setEnableWindowsAutomaticUpdates( boolean enableWindowsAutomaticUpdates )
 		{
 			this.enableWindowsAutomaticUpdates = enableWindowsAutomaticUpdates;
@@ -339,6 +349,7 @@ public class Deployment
 				role.getResourceExtensionReferences().setResourceExtensionReferences(
 						setupCustomScriptExtension(builder.accountJson, builder.scriptJson));
 				role.setProvisionGuestAgent(true);
+				
 			}
 			set.setConfigurationSetType("WindowsProvisioningConfiguration");
 			set.setConfigurationSetTypeAttribute("WindowsProvisioningConfiguration");
@@ -346,7 +357,8 @@ public class Deployment
 			set.setComputerName(builder.hostname);
 			set.setAdminPassword(builder.password);
 			set.setAdminUsername(builder.username);
-
+			set.setWinRm(builder.winRM);
+			
 		}
 		// LINUX OS
 		else
