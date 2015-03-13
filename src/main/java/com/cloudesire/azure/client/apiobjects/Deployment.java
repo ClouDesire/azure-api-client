@@ -465,7 +465,7 @@ public class Deployment
 		return pvalue;
 	}
 
-	private static String sanitize( String uncleanStr )
+	public static String sanitize( String uncleanStr )
 	{
 		if ( uncleanStr == null ) return "";
 		String cleanStr;
