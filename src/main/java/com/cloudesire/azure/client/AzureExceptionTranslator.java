@@ -1,24 +1,23 @@
 package com.cloudesire.azure.client;
 
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import com.cloudesire.azure.client.apiobjects.ErrorResponse;
+import com.cloudesire.tisana4j.ExceptionTranslator;
+import org.apache.http.Header;
+import org.apache.http.HttpStatus;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
-
-import org.apache.http.HttpStatus;
-
-import com.cloudesire.azure.client.apiobjects.ErrorResponse;
-import com.cloudesire.tisana4j.ExceptionTranslator;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 
 public class AzureExceptionTranslator implements ExceptionTranslator
 {
 	@SuppressWarnings ( "unchecked" )
 	@Override
 	public AzureResponseException translateException ( int responseCode, String responseMessage, String bodyMessage,
-			ResponseMessage returnMessageRef )
+			ResponseMessage returnMessageRef, Header[] headers )
 	{
 		if (responseCode == HttpStatus.SC_GONE) return null;
 
@@ -34,5 +33,4 @@ public class AzureExceptionTranslator implements ExceptionTranslator
 			return new AzureResponseException(responseCode, responseMessage);
 		}
 	}
-
 }
