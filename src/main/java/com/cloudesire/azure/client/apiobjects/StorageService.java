@@ -31,14 +31,11 @@ public class StorageService
 	@XmlElement (name = "AffinityGroup")
 	private String affinityGroup;
 
-	@XmlElement (name = "GeoReplicationEnabled")
-	private boolean geoReplicationEnabled;
-
 	@XmlElement (name = "Value")
 	private boolean value;
 
-	@XmlElement (name = "SecondaryReadEnabled")
-	private boolean secondaryReadEnabled;
+	@XmlElement (name = "AccountType")
+	private String accountType = "Standard_LRS";
 
 	@XmlElement (name = "Name")
 	private boolean name;
@@ -93,16 +90,6 @@ public class StorageService
 		this.affinityGroup = affinityGroup;
 	}
 
-	public boolean isGeoReplicationEnabled()
-	{
-		return geoReplicationEnabled;
-	}
-
-	public void setGeoReplicationEnabled( boolean geoReplicationEnabled )
-	{
-		this.geoReplicationEnabled = geoReplicationEnabled;
-	}
-
 	public boolean isValue()
 	{
 		return value;
@@ -113,16 +100,6 @@ public class StorageService
 		this.value = value;
 	}
 
-	public boolean isSecondaryReadEnabled()
-	{
-		return secondaryReadEnabled;
-	}
-
-	public void setSecondaryReadEnabled( boolean secondaryReadEnabled )
-	{
-		this.secondaryReadEnabled = secondaryReadEnabled;
-	}
-
 	public boolean isName()
 	{
 		return name;
@@ -131,6 +108,14 @@ public class StorageService
 	public void setName( boolean name )
 	{
 		this.name = name;
+	}
+
+	public String getAccountType() {
+		return accountType;
+	}
+
+	public void setAccountType(String accountType) {
+		this.accountType = accountType;
 	}
 
 	@Override
