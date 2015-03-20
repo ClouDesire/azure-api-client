@@ -1,17 +1,12 @@
 package com.cloudesire.azure.client.apiobjects;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.*;
 
 
 @XmlAccessorType (XmlAccessType.FIELD)
 @XmlType (name = "ConfigurationSet")
 public class ConfigurationSet
 {
-
 	@XmlAttribute (name = "type", namespace = "i")
 	private String configurationSetTypeAttribute = "LinuxProvisioningConfiguration";
 
@@ -53,6 +48,9 @@ public class ConfigurationSet
 
 	@XmlElement (name = "StaticVirtualNetworkIPAddress")
 	private String staticVirtualNetworkIPAddress;
+
+	@XmlElement (name = "PublicIPs")
+	private PublicIPs publicIPs;
 
 	public void setConfigurationSetTypeAttribute( String configurationSetTypeAttribute )
 	{
@@ -192,6 +190,14 @@ public class ConfigurationSet
 	public void setStaticVirtualNetworkIPAddress( String staticVirtualNetworkIPAddress )
 	{
 		this.staticVirtualNetworkIPAddress = staticVirtualNetworkIPAddress;
+	}
+
+	public PublicIPs getPublicIPs() {
+		return publicIPs;
+	}
+
+	public void setPublicIPs(PublicIPs publicIPs) {
+		this.publicIPs = publicIPs;
 	}
 
 	@Override

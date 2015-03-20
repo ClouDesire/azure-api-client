@@ -1,21 +1,19 @@
 package com.cloudesire.azure.client.apiobjects;
 
-import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import com.cloudesire.azure.client.apiobjects.Deployment.Builder.OSFamily;
+import com.cloudesire.azure.client.apiobjects.enums.VirtualMachineSize;
+import com.sun.org.apache.xml.internal.security.utils.Base64;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import com.cloudesire.azure.client.apiobjects.Deployment.Builder.OSFamily;
-import com.cloudesire.azure.client.apiobjects.enums.VirtualMachineSize;
-import com.sun.org.apache.xml.internal.security.utils.Base64;
+import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
 
 @XmlRootElement (name = "Deployment")
 @XmlAccessorType (value = XmlAccessType.FIELD)
@@ -151,6 +149,7 @@ public class Deployment
 		private String scriptJson;
 		private boolean enableWindowsAutomaticUpdates = false;
 		private boolean disableSSHPasswordAuthentication = false;
+		private String reservedIP;
 
 		public Builder()
 		{
@@ -294,6 +293,12 @@ public class Deployment
 			return this;
 		}
 
+		public Builder withReservedIP( String reservedIPName )
+		{
+			this.reservedIP = reservedIPName;
+			return this;
+		}
+
 		public Deployment build()
 		{
 			return new Deployment(this);
@@ -389,6 +394,18 @@ public class Deployment
 			set.setUserName(builder.username);
 			set.setUserPassword(builder.password);
 			set.setDisableSshPasswordAuthentication(builder.disableSSHPasswordAuthentication);
+		}
+
+		if(builder.reservedIP != null)
+		{
+			PublicIP publicIP = new PublicIP();
+			publicIP.setName(builder.reservedIP);
+			publicIP.setIdleTimeoutInMinutes("30");
+			List<PublicIP> publicIPList = new ArrayList<>();
+			publicIPList.add(publicIP);
+			PublicIPs publicIPs = new PublicIPs();
+			publicIPs.setPublicIPs(publicIPList);
+			set.setPublicIPs(publicIPs);
 		}
 
 		configurationList.add(set);

@@ -236,6 +236,49 @@ public class ServiceClientImpl implements ServiceClient
 	}
 
 	@Override
+	public String createReservedIP(ReservedIP reservedIP) throws Exception {
+		ServiceClientImpl.this.restClient.post(
+				new URL(
+						ServiceClientImpl.this.servicesEndpoint, "networking/reservedips"
+				), reservedIP, null, null
+		);
+
+		Map<String, List<String>> responseHeaders = restClient.getLastResponseHeaders();
+
+		if ( !responseHeaders.containsKey(XMSID) ) return null;
+		return responseHeaders.get(XMSID).get(0);
+	}
+
+	@Override
+	public ReservedIP getReservedIP(String name) throws Exception {
+		return ServiceClientImpl.this.restClient.get(
+				new URL(
+						ServiceClientImpl.this.servicesEndpoint, "networking/reservedips/" + name
+				), ReservedIP.class
+		);
+	}
+
+	@Override
+	public void deleteReservedIP(String name) throws Exception {
+		ServiceClientImpl.this.restClient.delete(
+				new URL(
+						ServiceClientImpl.this.servicesEndpoint, "networking/reservedips/" + name
+				)
+		);
+	}
+
+	@Override
+	public Boolean reservedIPExists(String name) throws Exception {
+		try {
+			this.getReservedIP(name);
+			return true;
+		}catch(AzureResponseException e) {
+			if(e.getResponseCode() == 404) return false;
+			throw e;
+		}
+	}
+
+	@Override
 	public List<ExtensionImage> listExtensionImages () throws Exception
 	{
 		return ServiceClientImpl.this.restClient.get(new URL(ServiceClientImpl.this.servicesEndpoint, "extensions"),

@@ -1,14 +1,8 @@
 package com.cloudesire.azure.client;
 
-import java.util.List;
+import com.cloudesire.azure.client.apiobjects.*;
 
-import com.cloudesire.azure.client.apiobjects.CloudService;
-import com.cloudesire.azure.client.apiobjects.DataVirtualHardDisk;
-import com.cloudesire.azure.client.apiobjects.Deployment;
-import com.cloudesire.azure.client.apiobjects.ExtensionImage;
-import com.cloudesire.azure.client.apiobjects.OSImage;
-import com.cloudesire.azure.client.apiobjects.ResourceExtension;
-import com.cloudesire.azure.client.apiobjects.StorageService;
+import java.util.List;
 
 /**
  * @author Manuel Mazzuola <manuel.mazzuola@liberologico.com>
@@ -47,4 +41,12 @@ public interface ServiceClient
 
 	String addDataDisk(
 			String serviceName, String deploymentName, String roleName, DataVirtualHardDisk disk ) throws Exception;
+
+	String createReservedIP( ReservedIP reservedIP ) throws Exception;
+
+	ReservedIP getReservedIP(String name) throws Exception;
+
+	void deleteReservedIP( String name ) throws Exception;
+
+	Boolean reservedIPExists ( String name ) throws Exception;
 }
