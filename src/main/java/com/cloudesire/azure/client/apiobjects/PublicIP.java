@@ -10,6 +10,9 @@ public class PublicIP
 	@XmlElement (name = "Name")
 	private String name;
 
+    @XmlElement (name = "Address")
+    private String address;
+
 	@XmlElement (name = "IdleTimeoutInMinutes")
 	private String idleTimeoutInMinutes;
 
@@ -21,7 +24,15 @@ public class PublicIP
 		this.name = name;
 	}
 
-	public String getIdleTimeoutInMinutes() {
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getIdleTimeoutInMinutes() {
 		return idleTimeoutInMinutes;
 	}
 

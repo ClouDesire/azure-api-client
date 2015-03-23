@@ -149,7 +149,7 @@ public class Deployment
 		private String scriptJson;
 		private boolean enableWindowsAutomaticUpdates = false;
 		private boolean disableSSHPasswordAuthentication = false;
-		private String reservedIP;
+		private String publicIPName;
 
 		public Builder()
 		{
@@ -293,9 +293,9 @@ public class Deployment
 			return this;
 		}
 
-		public Builder withReservedIP( String reservedIPName )
+		public Builder withPublicIP( String publicIPName )
 		{
-			this.reservedIP = reservedIPName;
+			this.publicIPName = publicIPName;
 			return this;
 		}
 
@@ -396,10 +396,10 @@ public class Deployment
 			set.setDisableSshPasswordAuthentication(builder.disableSSHPasswordAuthentication);
 		}
 
-		if(builder.reservedIP != null)
+		if(builder.publicIPName != null)
 		{
 			PublicIP publicIP = new PublicIP();
-			publicIP.setName(builder.reservedIP);
+			publicIP.setName(builder.publicIPName);
 			publicIP.setIdleTimeoutInMinutes("30");
 			List<PublicIP> publicIPList = new ArrayList<>();
 			publicIPList.add(publicIP);

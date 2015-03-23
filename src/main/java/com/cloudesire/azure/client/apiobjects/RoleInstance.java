@@ -42,6 +42,9 @@ public class RoleInstance
 	@XmlElement (name = "HostName")
 	private String hostName;
 
+    @XmlElement (name = "PublicIPs")
+    private PublicIPs publicIPs;
+
 	public String getRoleName()
 	{
 		return roleName;
@@ -142,7 +145,15 @@ public class RoleInstance
 		this.hostName = hostName;
 	}
 
-	@Override
+    public PublicIPs getPublicIPs() {
+        return publicIPs;
+    }
+
+    public void setPublicIPs(PublicIPs publicIPs) {
+        this.publicIPs = publicIPs;
+    }
+
+    @Override
 	public String toString()
 	{
 		return "InstanceName: " + instanceName + " InstanceStatus: " + instanceStatus + " InstanceSize: " + instanceSize + " IpAddress: " + ipAddress;
