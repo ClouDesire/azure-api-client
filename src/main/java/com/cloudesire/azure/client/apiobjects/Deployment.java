@@ -405,7 +405,7 @@ public class Deployment
 			publicIPList.add(publicIP);
 			PublicIPs publicIPs = new PublicIPs();
 			publicIPs.setPublicIPs(publicIPList);
-			set.setPublicIPs(publicIPs);
+			networkSet.setPublicIPs(publicIPs);
 		}
 
 		configurationList.add(set);
