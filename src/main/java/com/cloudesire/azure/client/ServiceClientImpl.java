@@ -259,6 +259,15 @@ public class ServiceClientImpl implements ServiceClient
 	}
 
 	@Override
+	public List<ReservedIP> getReservedIPs() throws Exception {
+		return ServiceClientImpl.this.restClient.get(
+				new URL(
+						ServiceClientImpl.this.servicesEndpoint, "networking/reservedips"
+				), ReservedIPs.class
+		).getReservedIPs();
+	}
+
+	@Override
 	public void deleteReservedIP(String name) throws Exception {
 		ServiceClientImpl.this.restClient.delete(
 				new URL(

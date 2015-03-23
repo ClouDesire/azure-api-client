@@ -46,6 +46,8 @@ public interface ServiceClient
 
 	ReservedIP getReservedIP(String name) throws Exception;
 
+	List<ReservedIP> getReservedIPs() throws Exception;
+
 	void deleteReservedIP( String name ) throws Exception;
 
 	Boolean reservedIPExists ( String name ) throws Exception;
