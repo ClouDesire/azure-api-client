@@ -23,7 +23,7 @@ public class AzureClient
     private final Logger log = LoggerFactory.getLogger( AzureClient.class );
 
     private final RestClient restClient;
-	private final boolean isEnable;
+	private final boolean isEnabled;
     private URL endpoint;
 	private ServiceClientImpl serviceClient;
 	private ConfigurationClientImpl configurationClient;
@@ -33,13 +33,13 @@ public class AzureClient
 	{
         if ( subscriptionId == null ||  keyStore == null || password == null )
         {
-		    this.isEnable = false;
+		    this.isEnabled = false;
             this.restClient = null;
             log.warn( "Subscription id, KeyStore and Keystore Password are required. The client will be DISABLED." );
         }
         else
         {
-            this.isEnable = true;
+            this.isEnabled = true;
             Map<String, String> defaultHeaders = new HashMap<>();
             defaultHeaders.put("x-ms-version", "2014-10-01");
             restClient = new RestClient(null, null, false, defaultHeaders, generateSSLSocketFactory(keyStore, password));
@@ -71,12 +71,12 @@ public class AzureClient
 
 	private void checkClientStatus ()
     {
-        if ( !isEnable ) throw new IllegalStateException ( "Missing credentials, client not enabled." );
+        if ( !isEnabled ) throw new IllegalStateException ( "Missing credentials, client not enabled." );
     }
 
-    public boolean isEnable()
+    public boolean isEnabled()
     {
-        return isEnable;
+        return isEnabled;
     }
 
     public synchronized ConfigurationClient getConfigurationClient()
