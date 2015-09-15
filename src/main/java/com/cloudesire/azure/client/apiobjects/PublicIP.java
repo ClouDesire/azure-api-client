@@ -2,7 +2,6 @@ package com.cloudesire.azure.client.apiobjects;
 
 import javax.xml.bind.annotation.*;
 
-
 @XmlAccessorType (XmlAccessType.FIELD)
 @XmlType (name = "PublicIP")
 public class PublicIP

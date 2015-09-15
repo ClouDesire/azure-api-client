@@ -9,9 +9,6 @@ import java.io.ByteArrayOutputStream;
 import java.util.LinkedList;
 import java.util.List;
 
-/**
- * @author Manuel Mazzuola <manuel.mazzuola@liberologico.com>
- */
 public class SerializationTest
 {
 	public static void main( String[] args ) throws Exception

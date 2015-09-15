@@ -3,8 +3,6 @@ package com.cloudesire.azure.client.apiobjects;
 import javax.xml.bind.annotation.*;
 import java.util.List;
 
-
-
 @XmlRootElement( name = "ReservedIPs" )
 @XmlAccessorType ( value = XmlAccessType.FIELD )
 public class ReservedIPs

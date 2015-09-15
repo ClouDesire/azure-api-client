@@ -5,9 +5,6 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
-/**
- * @author Manuel Mazzuola <manuel.mazzuola@liberologico.com>
- */
 @XmlAccessorType (value = XmlAccessType.FIELD)
 @XmlRootElement (name = "AvailabilityResponse")
 public class AvailabilityResponse

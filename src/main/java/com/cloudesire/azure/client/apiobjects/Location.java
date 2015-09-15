@@ -7,7 +7,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 import java.util.Arrays;
 import java.util.List;
 
-
 @XmlRootElement (name = "Location")
 @XmlAccessorType (value = XmlAccessType.FIELD)
 public class Location

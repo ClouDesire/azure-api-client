@@ -9,9 +9,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
-/**
- * @author Manuel Mazzuola <manuel.mazzuola@liberologico.com>
- */
 public class OperationClientImpl implements OperationClient
 {
 	private final URL operationsEndpoint;

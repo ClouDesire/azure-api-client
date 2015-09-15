@@ -8,9 +8,6 @@ import javax.xml.bind.annotation.XmlType;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @author Manuel Mazzuola <manuel.mazzuola@liberologico.com>
- */
 @XmlType (name = "SSH")
 @XmlAccessorType (value = XmlAccessType.FIELD)
 public class SshKeyContainer

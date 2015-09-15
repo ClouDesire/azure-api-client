@@ -5,9 +5,6 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
-/**
- * @author Manuel Mazzuola <manuel.mazzuola@liberologico.com>
- */
 @XmlRootElement (name = "Operation")
 @XmlAccessorType (value = XmlAccessType.FIELD)
 public class Operation

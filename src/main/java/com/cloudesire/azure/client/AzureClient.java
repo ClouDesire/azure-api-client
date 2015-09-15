@@ -1,6 +1,8 @@
 package com.cloudesire.azure.client;
 
 import com.cloudesire.tisana4j.RestClient;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.net.ssl.KeyManagerFactory;
 import javax.net.ssl.SSLContext;
@@ -18,25 +20,35 @@ import java.util.Map;
 
 public class AzureClient
 {
-	private final RestClient restClient;
-	private URL endpoint;
+    private final Logger log = LoggerFactory.getLogger( AzureClient.class );
+
+    private final RestClient restClient;
+	private final boolean isEnable;
+    private URL endpoint;
 	private ServiceClientImpl serviceClient;
 	private ConfigurationClientImpl configurationClient;
 	private OperationClientImpl operationClient;
 
 	public AzureClient( String subscriptionId, KeyStore keyStore, String password, URL endpoint ) throws Exception
 	{
-		if ( subscriptionId == null ) throw new IllegalArgumentException("A subscription id is required");
-		if ( keyStore == null ) throw new IllegalArgumentException("KeyStore is required");
-		if ( password == null ) throw new IllegalArgumentException("KeyStore Password is required");
-		if ( endpoint == null ) endpoint = new URL("https://management.core.windows.net");
+        if ( subscriptionId == null ||  keyStore == null || password == null )
+        {
+		    this.isEnable = false;
+            this.restClient = null;
+            log.warn( "Subscription id, KeyStore and Keystore Password are required. The client will be DISABLED." );
+        }
+        else
+        {
+            this.isEnable = true;
+            Map<String, String> defaultHeaders = new HashMap<>();
+            defaultHeaders.put("x-ms-version", "2014-10-01");
+            restClient = new RestClient(null, null, false, defaultHeaders, generateSSLSocketFactory(keyStore, password));
+            restClient.setExceptionTranslator(new AzureExceptionTranslator());
+            restClient.setUseXml(Boolean.TRUE);
 
-		this.endpoint = new URL(endpoint, subscriptionId + "/");
-		Map<String, String> defaultHeaders = new HashMap<>();
-		defaultHeaders.put("x-ms-version", "2014-10-01");
-		restClient = new RestClient(null, null, false, defaultHeaders, generateSSLSocketFactory(keyStore, password));
-		restClient.setExceptionTranslator(new AzureExceptionTranslator());
-		restClient.setUseXml(Boolean.TRUE);
+        }
+        if ( endpoint == null ) endpoint = new URL("https://management.core.windows.net");
+        this.endpoint = new URL( endpoint, subscriptionId + "/" );
 	}
 
 	private SSLContext generateSSLSocketFactory( KeyStore keyStore, String password )
@@ -50,16 +62,27 @@ public class AzureClient
 
 		TrustManagerFactory tmf =
 				TrustManagerFactory.getInstance(TrustManagerFactory.getDefaultAlgorithm());
-		tmf.init(keyStore);
+		tmf.init( keyStore );
 
 		SSLContext sslContext = SSLContext.getInstance("TLS");
-		sslContext.init(keyManagerFactory.getKeyManagers(), null, new SecureRandom());
+		sslContext.init( keyManagerFactory.getKeyManagers(), null, new SecureRandom() );
 		return sslContext;
 	}
 
-	public synchronized ConfigurationClient getConfigurationClient()
+	private void checkClientStatus ()
+    {
+        if ( !isEnable ) throw new IllegalStateException ( "Missing credentials, client not enabled." );
+    }
+
+    public boolean isEnable()
+    {
+        return isEnable;
+    }
+
+    public synchronized ConfigurationClient getConfigurationClient()
 	{
-		if ( configurationClient == null ) configurationClient = new ConfigurationClientImpl(
+		checkClientStatus();
+        if ( configurationClient == null ) configurationClient = new ConfigurationClientImpl(
 				endpoint, restClient
 		);
 		return configurationClient;
@@ -68,7 +91,8 @@ public class AzureClient
 
 	public synchronized ServiceClient getServiceClient() throws MalformedURLException
 	{
-		if ( serviceClient == null ) serviceClient = new ServiceClientImpl(
+        checkClientStatus();
+        if ( serviceClient == null ) serviceClient = new ServiceClientImpl(
 				endpoint, restClient
 		);
 		return serviceClient;
@@ -76,7 +100,8 @@ public class AzureClient
 
 	public synchronized OperationClient getOperationClient() throws MalformedURLException
 	{
-		if ( operationClient == null ) operationClient = new OperationClientImpl(
+        checkClientStatus();
+        if ( operationClient == null ) operationClient = new OperationClientImpl(
 				endpoint, restClient
 		);
 		return operationClient;

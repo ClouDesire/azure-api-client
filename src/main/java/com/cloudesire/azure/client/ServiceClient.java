@@ -4,9 +4,6 @@ import com.cloudesire.azure.client.apiobjects.*;
 
 import java.util.List;
 
-/**
- * @author Manuel Mazzuola <manuel.mazzuola@liberologico.com>
- */
 public interface ServiceClient
 {
 	OSImage findImage( String name ) throws Exception;

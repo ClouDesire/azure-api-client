@@ -6,9 +6,6 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 import java.util.List;
 
-/**
- * @author Manuel Mazzuola <manuel.mazzuola@liberologico.com>
- */
 @XmlAccessorType (XmlAccessType.FIELD)
 @XmlType (name = "ConfigurationSets")
 public class ConfigurationSets

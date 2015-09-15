@@ -9,9 +9,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
-/**
- * @author Manuel Mazzuola <manuel.mazzuola@liberologico.com>
- */
 public class ServiceClientImpl implements ServiceClient
 {
 	private final URL servicesEndpoint;

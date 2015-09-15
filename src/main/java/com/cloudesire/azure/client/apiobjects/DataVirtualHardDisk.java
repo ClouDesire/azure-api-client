@@ -6,9 +6,6 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
-/**
- * @author Manuel Mazzuola <manuel.mazzuola@liberologico.com>
- */
 @XmlAccessorType (value = XmlAccessType.FIELD)
 @XmlType (name = "DataVirtualHardDisk",
 		propOrder = {"hostCaching", "diskLabel", "diskName", "lun", "logicalDiskSizeInGB", "mediaLink", "sourceImageName"})

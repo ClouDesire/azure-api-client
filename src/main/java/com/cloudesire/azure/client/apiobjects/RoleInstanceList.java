@@ -8,9 +8,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-/**
- * @author Manuel Mazzuola <manuel.mazzuola@liberologico.com>
- */
 @XmlType (name = "RoleInstanceList")
 @XmlAccessorType (value = XmlAccessType.FIELD)
 public class RoleInstanceList implements Iterable<RoleInstance>

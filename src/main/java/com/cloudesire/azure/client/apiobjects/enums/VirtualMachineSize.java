@@ -1,8 +1,5 @@
 package com.cloudesire.azure.client.apiobjects.enums;
 
-/**
- * @author Manuel Mazzuola <manuel.mazzuola@liberologico.com>
- */
 public enum VirtualMachineSize
 {
 	ExtraSmall(0, 768), Small(1, 1792), Medium(2, 3584), Large(4, 7168), ExtraLarge(8, 14336);
