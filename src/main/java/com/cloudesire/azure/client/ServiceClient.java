@@ -1,6 +1,7 @@
 package com.cloudesire.azure.client;
 
 import com.cloudesire.azure.client.apiobjects.*;
+import com.cloudesire.azure.client.apiobjects.enums.DeploymentSlot;
 
 import java.util.List;
 
@@ -12,7 +13,9 @@ public interface ServiceClient
 
 	Deployment getDeployment( String serviceName, String deploymentName ) throws Exception;
 
-	String createCloudService( CloudService cloudService ) throws Exception;
+    Deployment getDeploymentBySlot( String serviceName, DeploymentSlot deploymentSlot ) throws Exception;
+
+    String createCloudService( CloudService cloudService ) throws Exception;
 
 	String createStorageService( StorageService cloudService ) throws Exception;
 
@@ -23,6 +26,10 @@ public interface ServiceClient
 	List<ExtensionImage> listExtensionImages () throws Exception;
 
 	List<ResourceExtension> listResourceExtensions () throws Exception;
+
+	List<HostedService> listCloudServices () throws Exception;
+
+	HostedService getCloudService ( String serviceName ) throws Exception;
 
 	String addServiceCertificate( String data, String format, String password, String serviceName ) throws Exception;
 

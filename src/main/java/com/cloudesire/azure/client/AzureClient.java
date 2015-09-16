@@ -1,6 +1,7 @@
 package com.cloudesire.azure.client;
 
 import com.cloudesire.tisana4j.RestClient;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -31,7 +32,7 @@ public class AzureClient
 
 	public AzureClient( String subscriptionId, KeyStore keyStore, String password, URL endpoint ) throws Exception
 	{
-        if ( subscriptionId == null ||  keyStore == null || password == null )
+        if ( StringUtils.isBlank( subscriptionId ) ||  keyStore == null || StringUtils.isBlank( password ) )
         {
 		    this.isEnabled = false;
             this.restClient = null;
@@ -71,7 +72,7 @@ public class AzureClient
 
 	private void checkClientStatus ()
     {
-        if ( !isEnabled ) throw new IllegalStateException ( "Missing credentials, client not enabled." );
+        if ( ! isEnabled ) throw new IllegalStateException ( "Missing credentials, client not enabled." );
     }
 
     public boolean isEnabled()

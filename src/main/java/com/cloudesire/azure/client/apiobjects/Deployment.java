@@ -494,8 +494,8 @@ public class Deployment
 	@Override
 	public String toString()
 	{
-		return "Name: " + name + " DeloymentSlot: "
-				+ deploymentSlot + " label: " + label + " Url: " + url + " RoleList: "
-				+ roleList + " RoleInstanceList: " + roleInstanceList + " VirtualNetworkName: " + virtualNetworkName;
+		return "Name: " + name + " DeploymentSlot: "
+				+ deploymentSlot + " label: " + label + " Url: " + url + " "
+				+ roleList + " " + roleInstanceList + " VirtualNetworkName: " + virtualNetworkName;
 	}
 }

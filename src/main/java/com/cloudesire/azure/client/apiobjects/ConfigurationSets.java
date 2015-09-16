@@ -29,7 +29,7 @@ public class ConfigurationSets
 		String ret = " ConfigurationSets: ";
 		for ( ConfigurationSet cf : configurationSets )
 		{
-			ret += " ConfigurationSet: " + cf;
+			ret += " " + cf;
 		}
 		return ret;
 	}

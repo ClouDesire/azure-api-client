@@ -113,6 +113,18 @@ public class Role
 		this.provisionGuestAgent = provisionGuestAgent;
 	}
 
-
-
+	@Override
+	public String toString()
+	{
+		return "Role{" +
+				"roleName='" + roleName + '\'' +
+				", roleType='" + roleType + '\'' +
+				", " + configurationSets +
+				", resourceExtensionReferences=" + resourceExtensionReferences +
+				", dataVirtualHardDisks=" + dataVirtualHardDisks +
+				", osVirtualHardDisk=" + osVirtualHardDisk +
+				", roleSize='" + roleSize + '\'' +
+				", provisionGuestAgent=" + provisionGuestAgent +
+				'}';
+	}
 }

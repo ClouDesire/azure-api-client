@@ -1,6 +1,7 @@
 package com.cloudesire.azure.client;
 
 import com.cloudesire.azure.client.apiobjects.*;
+import com.cloudesire.azure.client.apiobjects.enums.DeploymentSlot;
 import com.cloudesire.tisana4j.RestClient;
 
 import java.net.MalformedURLException;
@@ -57,11 +58,24 @@ public class ServiceClientImpl implements ServiceClient
 		return imageCache.get().getOsImages();
 	}
 
+	@Override
 	public Deployment getDeployment( String serviceName, String deploymentName ) throws Exception
 	{
 		Deployment deployment = ServiceClientImpl.this.restClient.get(
 				new URL(
 						ServiceClientImpl.this.servicesEndpoint, "hostedservices/" + serviceName + "/deployments/" + deploymentName
+				), Deployment.class
+		);
+
+		return deployment;
+	}
+
+	@Override
+	public Deployment getDeploymentBySlot( String serviceName, DeploymentSlot deploymentSlot ) throws Exception
+	{
+		Deployment deployment = ServiceClientImpl.this.restClient.get(
+				new URL(
+						ServiceClientImpl.this.servicesEndpoint, "hostedservices/" + serviceName + "/deploymentslots/" + deploymentSlot.toString()
 				), Deployment.class
 		);
 
@@ -297,5 +311,21 @@ public class ServiceClientImpl implements ServiceClient
 		return ServiceClientImpl.this.restClient.get(
 				new URL(ServiceClientImpl.this.servicesEndpoint, "resourceextensions"),
 				ResourceExtensions.class).getResourceExtensions();
+	}
+
+	@Override
+	public List<HostedService> listCloudServices() throws Exception
+	{
+		return ServiceClientImpl.this.restClient.get(
+				new URL(ServiceClientImpl.this.servicesEndpoint, "hostedservices"),
+				HostedServices.class).getHostedServices();
+	}
+
+	@Override
+	public HostedService getCloudService( String serviceName ) throws Exception
+	{
+		return ServiceClientImpl.this.restClient.get(
+				new URL(ServiceClientImpl.this.servicesEndpoint, "hostedservices/" + serviceName),
+				HostedService.class);
 	}
 }
