@@ -28,7 +28,15 @@ public class InputEndpoints
 	public String toString()
 	{
 		StringBuilder sb = new StringBuilder( "InputEndpoints{ " );
-		for (InputEndpoint ie : endpoints) sb.append( ie + " " );
+		if (endpoints == null)
+		{
+			sb.append( "null" );
+		}
+		else
+		{
+			for ( InputEndpoint ie : endpoints )
+				sb.append( ie + " " );
+		}
 		return "InputEndpoints{" +
 				 sb.toString() +
 				" }";
