@@ -2,6 +2,7 @@ package com.cloudesire.azure.client;
 
 import com.cloudesire.azure.client.apiobjects.Operation;
 import com.cloudesire.azure.client.apiobjects.enums.Status;
+import com.cloudesire.azure.client.exceptions.AzureClientException;
 import com.cloudesire.azure.client.exceptions.TimeoutException;
 import com.cloudesire.tisana4j.RestClient;
 
@@ -24,12 +25,38 @@ public class OperationClientImpl implements OperationClient
 	public Status OperationStatus( String requestId ) throws Exception
 	{
 		return Status.valueOf(
-				OperationClientImpl.this.restClient.get(
-						new URL(
-								OperationClientImpl.this.operationsEndpoint, requestId
-						), Operation.class
-				).getStatus().toUpperCase()
+				getStatus( requestId ).getStatus().toUpperCase()
 		);
+	}
+
+	@Override
+	public Operation getStatus( String requestId ) throws Exception
+	{
+		return
+			OperationClientImpl.this.restClient.get(
+					new URL(
+							OperationClientImpl.this.operationsEndpoint, requestId
+					), Operation.class
+			);
+	}
+
+	@Override
+	public void waitForCompletionOrFail( String requestId, Integer timeout, TimeUnit measuringUnit ) throws Exception
+	{
+		long start = System.currentTimeMillis();
+		Operation operationStatus;
+		do
+		{
+			if ( start + measuringUnit.toMillis( timeout ) < System.currentTimeMillis() ) throw new TimeoutException(
+					String.format( "Timeout while waiting for request id %s to exit in progress status", requestId ) );
+			Thread.sleep( 5000L );
+			operationStatus = getStatus( requestId );
+			if ( operationStatus.getStatus().toUpperCase().equals( Status.FAILED.toString() ) )
+				throw new AzureClientException(
+						operationStatus.getErrorResponse().getCode() + " " + operationStatus.getErrorResponse()
+								.getMessage() );
+		} while ( operationStatus.getStatus().toUpperCase().equals( Status.INPROGRESS.toString() ) );
+		return;
 	}
 
 	@Override
@@ -47,6 +74,6 @@ public class OperationClientImpl implements OperationClient
 			);
 			Thread.sleep(5000L);
 			realStatus = OperationClientImpl.this.OperationStatus(requestId);
-		} while ( !realStatus.equals(status) );
+		} while ( ! realStatus.equals(status) );
 	}
 }
