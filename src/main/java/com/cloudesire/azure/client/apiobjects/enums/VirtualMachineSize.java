@@ -36,14 +36,14 @@ public enum VirtualMachineSize
 
 		if ( memory > 0 && size.getCore() < VirtualMachineSize.Small.getCore() )
 			size = VirtualMachineSize.Small;
-		if ( memory > 1792 && size.getCore() < VirtualMachineSize.Medium.getCore() )
+		if ( memory > 2048 && size.getCore() < VirtualMachineSize.Medium.getCore() )
 			size = VirtualMachineSize.Medium;
-		if ( memory > 3584 && size.getCore() < VirtualMachineSize.Large.getCore() )
+		if ( memory > 4096 && size.getCore() < VirtualMachineSize.Large.getCore() )
 			size = VirtualMachineSize.Large;
-		if ( memory > 7168 && size.getCore() < VirtualMachineSize.ExtraLarge.getCore() )
+		if ( memory > 8192 && size.getCore() < VirtualMachineSize.ExtraLarge.getCore() )
 			size = VirtualMachineSize.ExtraLarge;
 
-		if ( core < 1 && memory < 1792 ) size = VirtualMachineSize.ExtraSmall;
+		if ( core <= 1 && memory <= 1024 ) size = VirtualMachineSize.ExtraSmall;
 
 		return size;
 	}

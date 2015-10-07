@@ -1,16 +1,5 @@
 package com.cloudesire.azure.client.test;
 
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.security.KeyStore;
-import java.util.List;
-import java.util.UUID;
-import java.util.concurrent.TimeUnit;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.cloudesire.azure.client.AzureClient;
 import com.cloudesire.azure.client.apiobjects.CloudService;
 import com.cloudesire.azure.client.apiobjects.DataVirtualHardDisk;
@@ -19,6 +8,16 @@ import com.cloudesire.azure.client.apiobjects.Deployment.Builder.OSFamily;
 import com.cloudesire.azure.client.apiobjects.OSImage;
 import com.cloudesire.azure.client.apiobjects.enums.Status;
 import com.sun.org.apache.xml.internal.security.utils.Base64;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.security.KeyStore;
+import java.util.List;
+import java.util.UUID;
+import java.util.concurrent.TimeUnit;
 
 public class ClientTest
 {
@@ -135,9 +134,9 @@ public class ClientTest
 				.withName(name)
 				.withHostname("testzzzzz")
 				.withLabel(UUID.randomUUID().toString())
-				.withMinCpu(2)
-				.withMinDisk(50)
-				.withMinMemory(2048)
+				.withCpu( 2 )
+				.withDiskSize( 50 )
+				.withMemory( 2048 )
 				.withPassword("cicCio123")
 				// askd123ASDASD1213
 				.withSourceImage(testOsImage.getName())

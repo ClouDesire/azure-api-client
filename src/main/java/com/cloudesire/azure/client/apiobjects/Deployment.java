@@ -140,9 +140,9 @@ public class Deployment
 		private String fingerprint;
 		private OSFamily osFamily = OSFamily.Linux;
 		private WinRM winRM = new WinRM(new Listener(WinRMProtocol.Http));
-		private int minMemory;
-		private int minCpu;
-		private int minDisk;
+		private int memory;
+		private int cpuCores;
+		private int diskSize;
 		private List<InputEndpoint> inputEndpoints;
 		private String roleName;
 		private String accountJson;
@@ -245,33 +245,21 @@ public class Deployment
 			return this;
 		}
 
-		public Builder withMinCpu( int minCpu )
+		public Builder withCpu( int cpu )
 		{
-			this.minCpu = minCpu;
+			this.cpuCores = cpu;
 			return this;
 		}
 
-		/**
-		 * Specify the minimum amount of memory in MB
-		 *
-		 * @param minMemory
-		 * @return Builder
-		 */
-		public Builder withMinMemory( int minMemory )
+		public Builder withMemory( int memory )
 		{
-			this.minMemory = minMemory;
+			this.memory = memory;
 			return this;
 		}
 
-		/**
-		 * Specify the minimum amount of disk in GB
-		 *
-		 * @param minDisk
-		 * @return Builder
-		 */
-		public Builder withMinDisk( int minDisk )
+		public Builder withDiskSize( int diskSize )
 		{
-			this.minDisk = minDisk;
+			this.diskSize = diskSize;
 			return this;
 		}
 
@@ -418,7 +406,7 @@ public class Deployment
 		{
 			DataVirtualHardDisks disks = role.getDataVirtualHardDisks();
 			DataVirtualHardDisk disk = new DataVirtualHardDisk();
-			disk.setLogicalDiskSizeInGB(builder.minDisk);
+			disk.setLogicalDiskSizeInGB(builder.diskSize );
 			disk.setMediaLink(builder.dataImageLink);
 			disk.setDiskLabel(builder.label);
 			disksList.add(disk);
@@ -427,7 +415,7 @@ public class Deployment
 			role.setDataVirtualHardDisks(disks);
 		}
 
-		VirtualMachineSize size = VirtualMachineSize.getSize(builder.minCpu, builder.minMemory);
+		VirtualMachineSize size = VirtualMachineSize.getSize(builder.cpuCores, builder.memory );
 
 		role.setRoleSize(size.toString());
 
