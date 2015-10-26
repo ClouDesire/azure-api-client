@@ -2,7 +2,20 @@ package com.cloudesire.azure.client.apiobjects.enums;
 
 public enum VirtualMachineSize
 {
-	ExtraSmall(0, 768), Small(1, 1792), Medium(2, 3584), Large(4, 7168), ExtraLarge(8, 14336), Standard_D3( 4, 14336 );
+	ExtraSmall( 0, 768 ),
+	Small( 1, 1792 ),
+	Medium( 2, 3584 ),
+	Large( 4, 7168 ),
+	ExtraLarge( 8, 14336 ),
+	Standard_D1( 1, 3584 ),
+	Standard_D2( 2, 7168 ),
+	Standard_D3( 4, 14336 ),
+	Standard_D4( 8, 28672 ),
+	Basic_A0( 1, 768 ),
+	Basic_A1( 1, 1792 ),
+	Basic_A2( 2, 3584 ),
+	Basic_A3( 4, 7168 ),
+	Basic_A4( 8, 14336 );
 
 	private int core;
 
