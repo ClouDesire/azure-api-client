@@ -20,7 +20,11 @@ public enum VirtualMachineSize
 	Basic_A1( 1, 1792 ),
 	Basic_A2( 2, 3584 ),
 	Basic_A3( 4, 7168 ),
-	Basic_A4( 8, 14336 );
+	Basic_A4( 8, 14336 ),
+	Standard_D1_v2( 1, 3584 ),
+	Standard_D2_v2( 2, 7168 ),
+	Standard_D3_v2( 4, 14336 ),
+	Standard_D4_v2( 8, 28672 );
 
 	private int core;
 
