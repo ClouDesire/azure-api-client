@@ -16,6 +16,10 @@ public enum VirtualMachineSize
 	Standard_D2( 2, 7168 ),
 	Standard_D3( 4, 14336 ),
 	Standard_D4( 8, 28672 ),
+	Standard_D11( 2, 14336 ),
+	Standard_D12( 4, 28672 ),
+	Standard_D13( 8, 57344 ),
+	Standard_D14( 16, 114688 ),
 	Basic_A0( 1, 768 ),
 	Basic_A1( 1, 1792 ),
 	Basic_A2( 2, 3584 ),
@@ -24,7 +28,16 @@ public enum VirtualMachineSize
 	Standard_D1_v2( 1, 3584 ),
 	Standard_D2_v2( 2, 7168 ),
 	Standard_D3_v2( 4, 14336 ),
-	Standard_D4_v2( 8, 28672 );
+	Standard_D4_v2( 8, 28672 ),
+	Standard_D5_v2( 16, 57344 ),
+	Standard_D11_v2( 2, 14336 ),
+	Standard_D12_v2( 4, 28672 ),
+	Standard_D13_v2( 8, 57344 ),
+	Standard_D14_v2( 16, 114688 );
+
+
+
+
 
 	private int core;
 
