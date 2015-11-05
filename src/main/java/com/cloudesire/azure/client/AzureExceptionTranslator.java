@@ -14,23 +14,24 @@ import java.io.InputStream;
 
 public class AzureExceptionTranslator implements ExceptionTranslator
 {
-	@SuppressWarnings ( "unchecked" )
-	@Override
-	public AzureResponseException translateException ( int responseCode, String responseMessage, String bodyMessage,
-			ResponseMessage returnMessageRef, Header[] headers )
-	{
-		if (responseCode == HttpStatus.SC_GONE) return null;
+    @SuppressWarnings ( "unchecked" )
+    @Override
+    public AzureResponseException translateException( int responseCode, String responseMessage, String bodyMessage,
+            ResponseMessage returnMessageRef, Header[] headers )
+    {
+        if ( responseCode == HttpStatus.SC_GONE ) return null;
 
-		try (InputStream stream = new ByteArrayInputStream(bodyMessage.getBytes()))
-		{
-			JAXBContext contextB = JAXBContext.newInstance(ErrorResponse.class);
-			Unmarshaller unmarshallerB = contextB.createUnmarshaller();
-			ErrorResponse errorResponse = (ErrorResponse) unmarshallerB.unmarshal(stream);
+        try ( InputStream stream = new ByteArrayInputStream( bodyMessage.getBytes() ) )
+        {
+            JAXBContext contextB = JAXBContext.newInstance( ErrorResponse.class );
+            Unmarshaller unmarshallerB = contextB.createUnmarshaller();
+            ErrorResponse errorResponse = (ErrorResponse) unmarshallerB.unmarshal( stream );
 
-			return new AzureResponseException(responseCode, errorResponse.getMessage());
-		} catch (JAXBException | IOException e)
-		{
-			return new AzureResponseException(responseCode, responseMessage);
-		}
-	}
+            return new AzureResponseException( responseCode, errorResponse.getMessage() );
+        }
+        catch ( JAXBException | IOException e )
+        {
+            return new AzureResponseException( responseCode, responseMessage );
+        }
+    }
 }
