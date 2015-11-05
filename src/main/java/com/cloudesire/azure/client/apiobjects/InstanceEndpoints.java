@@ -6,20 +6,20 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 import java.util.List;
 
-@XmlType (name = "InstanceEndpoints")
-@XmlAccessorType (value = XmlAccessType.FIELD)
+@XmlType ( name = "InstanceEndpoints" )
+@XmlAccessorType ( value = XmlAccessType.FIELD )
 public class InstanceEndpoints
 {
-	@XmlElement (name = "InstanceEndpoint")
-	private List<InstanceEndpoint> endpoints;
+    @XmlElement ( name = "InstanceEndpoint" )
+    private List<InstanceEndpoint> endpoints;
 
-	public List<InstanceEndpoint> getEndpoints()
-	{
-		return endpoints;
-	}
+    public List<InstanceEndpoint> getEndpoints()
+    {
+        return endpoints;
+    }
 
-	public void setEndpoints( List<InstanceEndpoint> endpoints )
-	{
-		this.endpoints = endpoints;
-	}
+    public void setEndpoints( List<InstanceEndpoint> endpoints )
+    {
+        this.endpoints = endpoints;
+    }
 }

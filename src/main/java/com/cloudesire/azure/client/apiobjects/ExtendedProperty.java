@@ -5,14 +5,14 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement(name = "ExtendedProperty")
-@XmlAccessorType(value = XmlAccessType.FIELD)
+@XmlRootElement ( name = "ExtendedProperty" )
+@XmlAccessorType ( value = XmlAccessType.FIELD )
 public class ExtendedProperty
 {
-    @XmlElement(name = "Name")
+    @XmlElement ( name = "Name" )
     private String name;
 
-    @XmlElement (name = "Value")
+    @XmlElement ( name = "Value" )
     private String value;
 
     public String getName()

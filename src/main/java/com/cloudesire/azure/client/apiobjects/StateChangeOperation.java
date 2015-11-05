@@ -5,20 +5,20 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlTransient;
 
-@XmlAccessorType (XmlAccessType.FIELD)
+@XmlAccessorType ( XmlAccessType.FIELD )
 @XmlTransient
 public class StateChangeOperation
 {
-	@XmlElement (name = "OperationType")
-	private String operationType;
+    @XmlElement ( name = "OperationType" )
+    private String operationType;
 
-	public String getOperationType()
-	{
-		return operationType;
-	}
+    public String getOperationType()
+    {
+        return operationType;
+    }
 
-	public void setOperationType( String operationType )
-	{
-		this.operationType = operationType;
-	}
+    public void setOperationType( String operationType )
+    {
+        this.operationType = operationType;
+    }
 }

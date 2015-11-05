@@ -6,32 +6,31 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 import java.util.List;
 
-@XmlAccessorType (XmlAccessType.FIELD)
-@XmlType (name = "DataVirtualHardDisks")
+@XmlAccessorType ( XmlAccessType.FIELD )
+@XmlType ( name = "DataVirtualHardDisks" )
 public class DataVirtualHardDisks
 {
-	@XmlElement (name = "DataVirtualHardDisk")
-	private List<DataVirtualHardDisk> dataVirtualHardDisks;
+    @XmlElement ( name = "DataVirtualHardDisk" )
+    private List<DataVirtualHardDisk> dataVirtualHardDisks;
 
-	public List<DataVirtualHardDisk> getDataVirtualHardDisks()
-	{
-		return dataVirtualHardDisks;
-	}
+    public List<DataVirtualHardDisk> getDataVirtualHardDisks()
+    {
+        return dataVirtualHardDisks;
+    }
 
-	public void setDataVirtualHardDisks( List<DataVirtualHardDisk> dataVirtualHardDisks )
-	{
-		this.dataVirtualHardDisks = dataVirtualHardDisks;
-	}
+    public void setDataVirtualHardDisks( List<DataVirtualHardDisk> dataVirtualHardDisks )
+    {
+        this.dataVirtualHardDisks = dataVirtualHardDisks;
+    }
 
-	@Override
-	public String toString()
-	{
-		String ret = " DataVirtualHardDisks: ";
-		if ( dataVirtualHardDisks != null )
-			for ( DataVirtualHardDisk dd : dataVirtualHardDisks )
-			{
-				ret += " DataVirtualHardDisk: " + dd;
-			}
-		return ret;
-	}
+    @Override
+    public String toString()
+    {
+        String ret = " DataVirtualHardDisks: ";
+        if ( dataVirtualHardDisks != null ) for ( DataVirtualHardDisk dd : dataVirtualHardDisks )
+        {
+            ret += " DataVirtualHardDisk: " + dd;
+        }
+        return ret;
+    }
 }

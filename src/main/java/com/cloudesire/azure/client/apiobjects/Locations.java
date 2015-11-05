@@ -6,20 +6,20 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.util.List;
 
-@XmlRootElement (name = "Locations")
-@XmlAccessorType (value = XmlAccessType.FIELD)
+@XmlRootElement ( name = "Locations" )
+@XmlAccessorType ( value = XmlAccessType.FIELD )
 public class Locations
 {
-	@XmlElement (name = "Location")
-	private List<Location> locations;
+    @XmlElement ( name = "Location" )
+    private List<Location> locations;
 
-	public List<Location> getLocations()
-	{
-		return locations;
-	}
+    public List<Location> getLocations()
+    {
+        return locations;
+    }
 
-	public void setLocations( List<Location> locations )
-	{
-		this.locations = locations;
-	}
+    public void setLocations( List<Location> locations )
+    {
+        this.locations = locations;
+    }
 }

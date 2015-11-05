@@ -6,262 +6,262 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
-@XmlAccessorType (value = XmlAccessType.FIELD)
+@XmlAccessorType ( value = XmlAccessType.FIELD )
 @XmlType ( name = "ExtensionImage",
- propOrder = { "providerNameSpace", "type", "version", "label", "description",
-		"hostingResources", "thumbprintAlgorithm", "publicConfigurationSchema", "privateConfigurationSchema",
-		"sampleConfig", "replicationCompleted", "eula", "privacyUri", "homepageUri", "isJsonExtension", "companyName",
-		"supportedOS", "publishedDate" } )
+        propOrder = { "providerNameSpace", "type", "version", "label", "description", "hostingResources",
+                "thumbprintAlgorithm", "publicConfigurationSchema", "privateConfigurationSchema", "sampleConfig",
+                "replicationCompleted", "eula", "privacyUri", "homepageUri", "isJsonExtension", "companyName",
+                "supportedOS", "publishedDate" } )
 @XmlRootElement ( name = "ExtensionImage" )
 public class ExtensionImage
 {
 
-	@XmlElement (name = "ProviderNameSpace")
-	private String providerNameSpace;
-	
-	@XmlElement (name = "Type")
-	private String type;
+    @XmlElement ( name = "ProviderNameSpace" )
+    private String providerNameSpace;
 
-	@XmlElement (name = "Version")
-	private String version;
-	
-	@XmlElement (name = "Label")
-	private String label;
-	
-	@XmlElement (name = "Description")
-	private String description;
-	
-	@XmlElement (name = "HostingResources")
-	private String hostingResources;
-	
-	@XmlElement (name = "ThumbprintAlgorithm")
-	private String thumbprintAlgorithm;
-	
-	@XmlElement (name = "PublicConfigurationSchema")
-	private String publicConfigurationSchema;
-	
-	@XmlElement (name = "PrivateConfigurationSchema")
-	private String privateConfigurationSchema;
-	
-	@XmlElement (name = "SampleConfig")
-	private String sampleConfig;
-	
-	@XmlElement (name = "ReplicationCompleted")
-	private String replicationCompleted;
-	
-	@XmlElement (name = "Eula")
-	private String eula;
-	
-	@XmlElement (name = "PrivacyUri")
-	private String privacyUri;
-	
-	@XmlElement (name = "HomepageUri")
-	private String homepageUri;
-	
-	@XmlElement (name = "IsJsonExtension")
-	private Boolean isJsonExtension;
-	
-	@XmlElement (name = "CompanyName")
-	private String companyName;
-	
-	@XmlElement (name = "SupportedOS")
-	private String supportedOS;
-	
-	@XmlElement (name = "PublishedDate")
-	private String publishedDate;
+    @XmlElement ( name = "Type" )
+    private String type;
 
-	public String getProviderNameSpace ()
-	{
-		return providerNameSpace;
-	}
+    @XmlElement ( name = "Version" )
+    private String version;
 
-	public void setProviderNameSpace ( String providerNameSpace )
-	{
-		this.providerNameSpace = providerNameSpace;
-	}
+    @XmlElement ( name = "Label" )
+    private String label;
 
-	public String getType ()
-	{
-		return type;
-	}
+    @XmlElement ( name = "Description" )
+    private String description;
 
-	public void setType ( String type )
-	{
-		this.type = type;
-	}
+    @XmlElement ( name = "HostingResources" )
+    private String hostingResources;
 
-	public String getVersion ()
-	{
-		return version;
-	}
+    @XmlElement ( name = "ThumbprintAlgorithm" )
+    private String thumbprintAlgorithm;
 
-	public void setVersion ( String version )
-	{
-		this.version = version;
-	}
+    @XmlElement ( name = "PublicConfigurationSchema" )
+    private String publicConfigurationSchema;
 
-	public String getLabel ()
-	{
-		return label;
-	}
+    @XmlElement ( name = "PrivateConfigurationSchema" )
+    private String privateConfigurationSchema;
 
-	public void setLabel ( String label )
-	{
-		this.label = label;
-	}
+    @XmlElement ( name = "SampleConfig" )
+    private String sampleConfig;
 
-	public String getDescription ()
-	{
-		return description;
-	}
+    @XmlElement ( name = "ReplicationCompleted" )
+    private String replicationCompleted;
 
-	public void setDescription ( String description )
-	{
-		this.description = description;
-	}
+    @XmlElement ( name = "Eula" )
+    private String eula;
 
-	public String getHostingResources ()
-	{
-		return hostingResources;
-	}
+    @XmlElement ( name = "PrivacyUri" )
+    private String privacyUri;
 
-	public void setHostingResources ( String hostingResources )
-	{
-		this.hostingResources = hostingResources;
-	}
+    @XmlElement ( name = "HomepageUri" )
+    private String homepageUri;
 
-	public String getThumbprintAlgorithm ()
-	{
-		return thumbprintAlgorithm;
-	}
+    @XmlElement ( name = "IsJsonExtension" )
+    private Boolean isJsonExtension;
 
-	public void setThumbprintAlgorithm ( String thumbprintAlgorithm )
-	{
-		this.thumbprintAlgorithm = thumbprintAlgorithm;
-	}
+    @XmlElement ( name = "CompanyName" )
+    private String companyName;
 
-	public String getPublicConfigurationSchema ()
-	{
-		return publicConfigurationSchema;
-	}
+    @XmlElement ( name = "SupportedOS" )
+    private String supportedOS;
 
-	public void setPublicConfigurationSchema ( String publicConfigurationSchema )
-	{
-		this.publicConfigurationSchema = publicConfigurationSchema;
-	}
+    @XmlElement ( name = "PublishedDate" )
+    private String publishedDate;
 
-	public String getPrivateConfigurationSchema ()
-	{
-		return privateConfigurationSchema;
-	}
+    public String getProviderNameSpace()
+    {
+        return providerNameSpace;
+    }
 
-	public void setPrivateConfigurationSchema ( String privateConfigurationSchema )
-	{
-		this.privateConfigurationSchema = privateConfigurationSchema;
-	}
+    public void setProviderNameSpace( String providerNameSpace )
+    {
+        this.providerNameSpace = providerNameSpace;
+    }
 
-	public String getSampleConfig ()
-	{
-		return sampleConfig;
-	}
+    public String getType()
+    {
+        return type;
+    }
 
-	public void setSampleConfig ( String sampleConfig )
-	{
-		this.sampleConfig = sampleConfig;
-	}
+    public void setType( String type )
+    {
+        this.type = type;
+    }
 
-	public String getReplicationCompleted ()
-	{
-		return replicationCompleted;
-	}
+    public String getVersion()
+    {
+        return version;
+    }
 
-	public void setReplicationCompleted ( String replicationCompleted )
-	{
-		this.replicationCompleted = replicationCompleted;
-	}
+    public void setVersion( String version )
+    {
+        this.version = version;
+    }
 
-	public String getEula ()
-	{
-		return eula;
-	}
+    public String getLabel()
+    {
+        return label;
+    }
 
-	public void setEula ( String eula )
-	{
-		this.eula = eula;
-	}
+    public void setLabel( String label )
+    {
+        this.label = label;
+    }
 
-	public String getPrivacyUri ()
-	{
-		return privacyUri;
-	}
+    public String getDescription()
+    {
+        return description;
+    }
 
-	public void setPrivacyUri ( String privacyUri )
-	{
-		this.privacyUri = privacyUri;
-	}
+    public void setDescription( String description )
+    {
+        this.description = description;
+    }
 
-	public String getHomepageUri ()
-	{
-		return homepageUri;
-	}
+    public String getHostingResources()
+    {
+        return hostingResources;
+    }
 
-	public void setHomepageUri ( String homepageUri )
-	{
-		this.homepageUri = homepageUri;
-	}
+    public void setHostingResources( String hostingResources )
+    {
+        this.hostingResources = hostingResources;
+    }
 
-	public Boolean getIsJsonExtension ()
-	{
-		return isJsonExtension;
-	}
+    public String getThumbprintAlgorithm()
+    {
+        return thumbprintAlgorithm;
+    }
 
-	public void setIsJsonExtension ( Boolean isJsonExtension )
-	{
-		this.isJsonExtension = isJsonExtension;
-	}
+    public void setThumbprintAlgorithm( String thumbprintAlgorithm )
+    {
+        this.thumbprintAlgorithm = thumbprintAlgorithm;
+    }
 
-	public String getCompanyName ()
-	{
-		return companyName;
-	}
+    public String getPublicConfigurationSchema()
+    {
+        return publicConfigurationSchema;
+    }
 
-	public void setCompanyName ( String companyName )
-	{
-		this.companyName = companyName;
-	}
+    public void setPublicConfigurationSchema( String publicConfigurationSchema )
+    {
+        this.publicConfigurationSchema = publicConfigurationSchema;
+    }
 
-	public String getSupportedOS ()
-	{
-		return supportedOS;
-	}
+    public String getPrivateConfigurationSchema()
+    {
+        return privateConfigurationSchema;
+    }
 
-	public void setSupportedOS ( String supportedOS )
-	{
-		this.supportedOS = supportedOS;
-	}
+    public void setPrivateConfigurationSchema( String privateConfigurationSchema )
+    {
+        this.privateConfigurationSchema = privateConfigurationSchema;
+    }
 
-	public String getPublishedDate ()
-	{
-		return publishedDate;
-	}
+    public String getSampleConfig()
+    {
+        return sampleConfig;
+    }
 
-	public void setPublishedDate ( String publishedDate )
-	{
-		this.publishedDate = publishedDate;
-	}
+    public void setSampleConfig( String sampleConfig )
+    {
+        this.sampleConfig = sampleConfig;
+    }
 
-	@Override
-	public String toString ()
-	{
-		return "ExtensionImage [providerNameSpace=" + providerNameSpace + ", type=" + type + ", version=" + version
-				+ ", label=" + label + ", description=" + description + ", hostingResources=" + hostingResources
-				+ ", thumbprintAlgorithm=" + thumbprintAlgorithm + ", publicConfigurationSchema="
-				+ publicConfigurationSchema + ", privateConfigurationSchema=" + privateConfigurationSchema
-				+ ", sampleConfig=" + sampleConfig + ", replicationCompleted=" + replicationCompleted + ", eula="
-				+ eula + ", privacyUri=" + privacyUri + ", homepageUri=" + homepageUri + ", isJsonExtension="
-				+ isJsonExtension + ", companyName=" + companyName + ", supportedOS=" + supportedOS
-				+ ", publishedDate=" + publishedDate + "]";
-	}
+    public String getReplicationCompleted()
+    {
+        return replicationCompleted;
+    }
+
+    public void setReplicationCompleted( String replicationCompleted )
+    {
+        this.replicationCompleted = replicationCompleted;
+    }
+
+    public String getEula()
+    {
+        return eula;
+    }
+
+    public void setEula( String eula )
+    {
+        this.eula = eula;
+    }
+
+    public String getPrivacyUri()
+    {
+        return privacyUri;
+    }
+
+    public void setPrivacyUri( String privacyUri )
+    {
+        this.privacyUri = privacyUri;
+    }
+
+    public String getHomepageUri()
+    {
+        return homepageUri;
+    }
+
+    public void setHomepageUri( String homepageUri )
+    {
+        this.homepageUri = homepageUri;
+    }
+
+    public Boolean getIsJsonExtension()
+    {
+        return isJsonExtension;
+    }
+
+    public void setIsJsonExtension( Boolean isJsonExtension )
+    {
+        this.isJsonExtension = isJsonExtension;
+    }
+
+    public String getCompanyName()
+    {
+        return companyName;
+    }
+
+    public void setCompanyName( String companyName )
+    {
+        this.companyName = companyName;
+    }
+
+    public String getSupportedOS()
+    {
+        return supportedOS;
+    }
+
+    public void setSupportedOS( String supportedOS )
+    {
+        this.supportedOS = supportedOS;
+    }
+
+    public String getPublishedDate()
+    {
+        return publishedDate;
+    }
+
+    public void setPublishedDate( String publishedDate )
+    {
+        this.publishedDate = publishedDate;
+    }
+
+    @Override
+    public String toString()
+    {
+        return "ExtensionImage [providerNameSpace=" + providerNameSpace + ", type=" + type + ", version=" + version
+                + ", label=" + label + ", description=" + description + ", hostingResources=" + hostingResources
+                + ", thumbprintAlgorithm=" + thumbprintAlgorithm + ", publicConfigurationSchema="
+                + publicConfigurationSchema + ", privateConfigurationSchema=" + privateConfigurationSchema
+                + ", sampleConfig=" + sampleConfig + ", replicationCompleted=" + replicationCompleted + ", eula=" + eula
+                + ", privacyUri=" + privacyUri + ", homepageUri=" + homepageUri + ", isJsonExtension=" + isJsonExtension
+                + ", companyName=" + companyName + ", supportedOS=" + supportedOS + ", publishedDate=" + publishedDate
+                + "]";
+    }
 
 }
 

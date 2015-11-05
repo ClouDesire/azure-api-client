@@ -5,20 +5,20 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement(name = "HostedService")
-@XmlAccessorType(value = XmlAccessType.FIELD)
+@XmlRootElement ( name = "HostedService" )
+@XmlAccessorType ( value = XmlAccessType.FIELD )
 public class HostedService
 {
-    @XmlElement(name = "Url")
+    @XmlElement ( name = "Url" )
     private String url;
 
-    @XmlElement (name = "ServiceName")
+    @XmlElement ( name = "ServiceName" )
     private String serviceName;
 
-    @XmlElement (name = "HostedServiceProperties")
+    @XmlElement ( name = "HostedServiceProperties" )
     private HostedServiceProperties hostedServiceProperties;
 
-    @XmlElement (name = "DefaultWinRMCertificateThumbprint")
+    @XmlElement ( name = "DefaultWinRMCertificateThumbprint" )
     private String defaultWinRMCertificateThumbprint;
 
     public String getUrl()

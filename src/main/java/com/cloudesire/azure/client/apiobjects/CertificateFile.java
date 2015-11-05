@@ -5,46 +5,46 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement (name = "CertificateFile")
-@XmlAccessorType (value = XmlAccessType.FIELD)
+@XmlRootElement ( name = "CertificateFile" )
+@XmlAccessorType ( value = XmlAccessType.FIELD )
 public class CertificateFile
 {
-	@XmlElement (name = "Data")
-	private String data;
+    @XmlElement ( name = "Data" )
+    private String data;
 
-	@XmlElement (name = "CertificateFormat")
-	private String certificateFormat;
+    @XmlElement ( name = "CertificateFormat" )
+    private String certificateFormat;
 
-	@XmlElement (name = "Password")
-	private String password;
+    @XmlElement ( name = "Password" )
+    private String password;
 
-	public String getData()
-	{
-		return data;
-	}
+    public String getData()
+    {
+        return data;
+    }
 
-	public void setData( String data )
-	{
-		this.data = data;
-	}
+    public void setData( String data )
+    {
+        this.data = data;
+    }
 
-	public String getCertificateFormat()
-	{
-		return certificateFormat;
-	}
+    public String getCertificateFormat()
+    {
+        return certificateFormat;
+    }
 
-	public void setCertificateFormat( String certificateFormat )
-	{
-		this.certificateFormat = certificateFormat;
-	}
+    public void setCertificateFormat( String certificateFormat )
+    {
+        this.certificateFormat = certificateFormat;
+    }
 
-	public String getPassword()
-	{
-		return password;
-	}
+    public String getPassword()
+    {
+        return password;
+    }
 
-	public void setPassword( String password )
-	{
-		this.password = password;
-	}
+    public void setPassword( String password )
+    {
+        this.password = password;
+    }
 }

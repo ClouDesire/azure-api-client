@@ -6,31 +6,31 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.util.List;
 
-@XmlRootElement (name = "Images")
-@XmlAccessorType (value = XmlAccessType.FIELD)
+@XmlRootElement ( name = "Images" )
+@XmlAccessorType ( value = XmlAccessType.FIELD )
 public class Images
 {
-	@XmlElement (name = "OSImage")
-	private List<OSImage> osImages;
+    @XmlElement ( name = "OSImage" )
+    private List<OSImage> osImages;
 
-	public List<OSImage> getOsImages()
-	{
-		return osImages;
-	}
+    public List<OSImage> getOsImages()
+    {
+        return osImages;
+    }
 
-	public void setOsImages( List<OSImage> osImages )
-	{
-		this.osImages = osImages;
-	}
+    public void setOsImages( List<OSImage> osImages )
+    {
+        this.osImages = osImages;
+    }
 
-	@Override
-	public String toString()
-	{
-		String ret = " Images: ";
-		for ( OSImage image : osImages )
-		{
-			ret += " OSImage: " + image;
-		}
-		return ret;
-	}
+    @Override
+    public String toString()
+    {
+        String ret = " Images: ";
+        for ( OSImage image : osImages )
+        {
+            ret += " OSImage: " + image;
+        }
+        return ret;
+    }
 }

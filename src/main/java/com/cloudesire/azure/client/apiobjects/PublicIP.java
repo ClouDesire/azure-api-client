@@ -1,41 +1,50 @@
 package com.cloudesire.azure.client.apiobjects;
 
-import javax.xml.bind.annotation.*;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlType;
 
-@XmlAccessorType (XmlAccessType.FIELD)
-@XmlType (name = "PublicIP")
+@XmlAccessorType ( XmlAccessType.FIELD )
+@XmlType ( name = "PublicIP" )
 public class PublicIP
 {
-	@XmlElement (name = "Name")
-	private String name;
+    @XmlElement ( name = "Name" )
+    private String name;
 
-    @XmlElement (name = "Address")
+    @XmlElement ( name = "Address" )
     private String address;
 
-	@XmlElement (name = "IdleTimeoutInMinutes")
-	private String idleTimeoutInMinutes;
+    @XmlElement ( name = "IdleTimeoutInMinutes" )
+    private String idleTimeoutInMinutes;
 
-	public String getName() {
-		return name;
-	}
+    public String getName()
+    {
+        return name;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public void setName( String name )
+    {
+        this.name = name;
+    }
 
-    public String getAddress() {
+    public String getAddress()
+    {
         return address;
     }
 
-    public void setAddress(String address) {
+    public void setAddress( String address )
+    {
         this.address = address;
     }
 
-    public String getIdleTimeoutInMinutes() {
-		return idleTimeoutInMinutes;
-	}
+    public String getIdleTimeoutInMinutes()
+    {
+        return idleTimeoutInMinutes;
+    }
 
-	public void setIdleTimeoutInMinutes(String idleTimeoutInMinutes) {
-		this.idleTimeoutInMinutes = idleTimeoutInMinutes;
-	}
+    public void setIdleTimeoutInMinutes( String idleTimeoutInMinutes )
+    {
+        this.idleTimeoutInMinutes = idleTimeoutInMinutes;
+    }
 }

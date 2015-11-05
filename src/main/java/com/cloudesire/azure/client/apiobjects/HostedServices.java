@@ -7,11 +7,11 @@ import javax.xml.bind.annotation.XmlRootElement;
 import java.util.LinkedList;
 import java.util.List;
 
-@XmlRootElement(name = "HostedServices")
-@XmlAccessorType(value = XmlAccessType.FIELD)
+@XmlRootElement ( name = "HostedServices" )
+@XmlAccessorType ( value = XmlAccessType.FIELD )
 public class HostedServices
 {
-    @XmlElement (name = "HostedService")
+    @XmlElement ( name = "HostedService" )
     private List<HostedService> hostedServices = new LinkedList<>();
 
     public List<HostedService> getHostedServices()

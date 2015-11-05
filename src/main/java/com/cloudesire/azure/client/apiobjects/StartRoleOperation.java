@@ -4,8 +4,8 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlAccessorType (value = XmlAccessType.FIELD)
-@XmlRootElement (name = "StartRoleOperation")
+@XmlAccessorType ( value = XmlAccessType.FIELD )
+@XmlRootElement ( name = "StartRoleOperation" )
 public class StartRoleOperation extends StateChangeOperation
 {
 }

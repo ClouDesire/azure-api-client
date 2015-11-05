@@ -1,214 +1,219 @@
 package com.cloudesire.azure.client.apiobjects;
 
-import javax.xml.bind.annotation.*;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlType;
 
-
-@XmlAccessorType (XmlAccessType.FIELD)
-@XmlType (name = "ConfigurationSet")
+@XmlAccessorType ( XmlAccessType.FIELD )
+@XmlType ( name = "ConfigurationSet" )
 public class ConfigurationSet
 {
-	@XmlAttribute (name = "type", namespace = "i")
-	private String configurationSetTypeAttribute = "LinuxProvisioningConfiguration";
+    @XmlAttribute ( name = "type", namespace = "i" )
+    private String configurationSetTypeAttribute = "LinuxProvisioningConfiguration";
 
-	@XmlElement (name = "ConfigurationSetType")
-	private String configurationSetType = "LinuxProvisioningConfiguration";
+    @XmlElement ( name = "ConfigurationSetType" )
+    private String configurationSetType = "LinuxProvisioningConfiguration";
 
-	@XmlElement ( name = "ComputerName" )
-	private String computerName;
+    @XmlElement ( name = "ComputerName" )
+    private String computerName;
 
-	@XmlElement ( name = "AdminPassword" )
-	private String adminPassword;
+    @XmlElement ( name = "AdminPassword" )
+    private String adminPassword;
 
-	@XmlElement ( name = "EnableAutomaticUpdates" )
-	private Boolean enableAutomaticUpdates;
-	
-	@XmlElement ( name = "WinRM" )
-	private WinRM winRm;
+    @XmlElement ( name = "EnableAutomaticUpdates" )
+    private Boolean enableAutomaticUpdates;
 
-	@XmlElement ( name = "AdminUsername" )
-	private String adminUsername;
+    @XmlElement ( name = "WinRM" )
+    private WinRM winRm;
 
-	@XmlElement (name = "HostName")
-	private String hostName;
+    @XmlElement ( name = "AdminUsername" )
+    private String adminUsername;
 
-	@XmlElement (name = "UserName")
-	private String userName;
+    @XmlElement ( name = "HostName" )
+    private String hostName;
 
-	@XmlElement (name = "UserPassword")
-	private String userPassword;
+    @XmlElement ( name = "UserName" )
+    private String userName;
 
-	@XmlElement (name = "DisableSshPasswordAuthentication")
-	private Boolean disableSshPasswordAuthentication = Boolean.TRUE;
+    @XmlElement ( name = "UserPassword" )
+    private String userPassword;
 
-	@XmlElement (name = "SSH")
-	private SshKeyContainer ssh;
+    @XmlElement ( name = "DisableSshPasswordAuthentication" )
+    private Boolean disableSshPasswordAuthentication = Boolean.TRUE;
 
-	@XmlElement (name = "InputEndpoints")
-	private InputEndpoints inputEndpoints;
+    @XmlElement ( name = "SSH" )
+    private SshKeyContainer ssh;
 
-	@XmlElement (name = "StaticVirtualNetworkIPAddress")
-	private String staticVirtualNetworkIPAddress;
+    @XmlElement ( name = "InputEndpoints" )
+    private InputEndpoints inputEndpoints;
 
-	@XmlElement (name = "PublicIPs")
-	private PublicIPs publicIPs;
+    @XmlElement ( name = "StaticVirtualNetworkIPAddress" )
+    private String staticVirtualNetworkIPAddress;
 
-	public void setConfigurationSetTypeAttribute( String configurationSetTypeAttribute )
-	{
-		this.configurationSetTypeAttribute = configurationSetTypeAttribute;
-	}
+    @XmlElement ( name = "PublicIPs" )
+    private PublicIPs publicIPs;
 
-	public void setConfigurationSetType( String configurationSetType )
-	{
-		this.configurationSetType = configurationSetType;
-	}
+    public void setConfigurationSetTypeAttribute( String configurationSetTypeAttribute )
+    {
+        this.configurationSetTypeAttribute = configurationSetTypeAttribute;
+    }
 
-	public String getConfigurationSetTypeAttribute()
-	{
-		return configurationSetTypeAttribute;
-	}
+    public void setConfigurationSetType( String configurationSetType )
+    {
+        this.configurationSetType = configurationSetType;
+    }
 
-	public String getConfigurationSetType()
-	{
-		return configurationSetType;
-	}
+    public String getConfigurationSetTypeAttribute()
+    {
+        return configurationSetTypeAttribute;
+    }
 
-	public void setComputerName ( String computerName )
-	{
-		this.computerName = computerName;
-	}
+    public String getConfigurationSetType()
+    {
+        return configurationSetType;
+    }
 
-	public String getComputerName ()
-	{
-		return computerName;
-	}
+    public void setComputerName( String computerName )
+    {
+        this.computerName = computerName;
+    }
 
-	public void setEnableAutomaticUpdates ( Boolean enableAutomaticUpdates )
-	{
-		this.enableAutomaticUpdates = enableAutomaticUpdates;
-	}
+    public String getComputerName()
+    {
+        return computerName;
+    }
 
-	public void setAdminPassword ( String adminPassword )
-	{
-		this.adminPassword = adminPassword;
-	}
+    public void setEnableAutomaticUpdates( Boolean enableAutomaticUpdates )
+    {
+        this.enableAutomaticUpdates = enableAutomaticUpdates;
+    }
 
-	public String getAdminPassword ()
-	{
-		return adminPassword;
-	}
+    public void setAdminPassword( String adminPassword )
+    {
+        this.adminPassword = adminPassword;
+    }
 
-	public Boolean getEnableAutomaticUpdates ()
-	{
-		return enableAutomaticUpdates;
-	}
+    public String getAdminPassword()
+    {
+        return adminPassword;
+    }
 
-	public WinRM getWinRm ()
-	{
-		return winRm;
-	}
+    public Boolean getEnableAutomaticUpdates()
+    {
+        return enableAutomaticUpdates;
+    }
 
-	public void setWinRm ( WinRM winRm )
-	{
-		this.winRm = winRm;
-	}
+    public WinRM getWinRm()
+    {
+        return winRm;
+    }
 
-	public String getAdminUsername ()
-	{
-		return adminUsername;
-	}
+    public void setWinRm( WinRM winRm )
+    {
+        this.winRm = winRm;
+    }
 
-	public void setAdminUsername ( String adminUsername )
-	{
-		this.adminUsername = adminUsername;
-	}
+    public String getAdminUsername()
+    {
+        return adminUsername;
+    }
 
-	public String getHostName()
-	{
-		return hostName;
-	}
+    public void setAdminUsername( String adminUsername )
+    {
+        this.adminUsername = adminUsername;
+    }
 
-	public void setHostName( String hostName )
-	{
-		this.hostName = hostName;
-	}
+    public String getHostName()
+    {
+        return hostName;
+    }
 
-	public String getUserName()
-	{
-		return userName;
-	}
+    public void setHostName( String hostName )
+    {
+        this.hostName = hostName;
+    }
 
-	public void setUserName( String userName )
-	{
-		this.userName = userName;
-	}
+    public String getUserName()
+    {
+        return userName;
+    }
 
-	public String getUserPassword()
-	{
-		return userPassword;
-	}
+    public void setUserName( String userName )
+    {
+        this.userName = userName;
+    }
 
-	public void setUserPassword( String userPassword )
-	{
-		this.userPassword = userPassword;
-	}
+    public String getUserPassword()
+    {
+        return userPassword;
+    }
 
-	public Boolean getDisableSshPasswordAuthentication()
-	{
-		return disableSshPasswordAuthentication;
-	}
+    public void setUserPassword( String userPassword )
+    {
+        this.userPassword = userPassword;
+    }
 
-	public void setDisableSshPasswordAuthentication( Boolean disableSshPasswordAuthentication )
-	{
-		this.disableSshPasswordAuthentication = disableSshPasswordAuthentication;
-	}
+    public Boolean getDisableSshPasswordAuthentication()
+    {
+        return disableSshPasswordAuthentication;
+    }
 
-	public SshKeyContainer getSsh()
-	{
-		return ssh;
-	}
+    public void setDisableSshPasswordAuthentication( Boolean disableSshPasswordAuthentication )
+    {
+        this.disableSshPasswordAuthentication = disableSshPasswordAuthentication;
+    }
 
-	public void setSsh( SshKeyContainer ssh )
-	{
-		this.ssh = ssh;
-	}
+    public SshKeyContainer getSsh()
+    {
+        return ssh;
+    }
 
-	public InputEndpoints getInputEndpoints()
-	{
-		return inputEndpoints;
-	}
+    public void setSsh( SshKeyContainer ssh )
+    {
+        this.ssh = ssh;
+    }
 
-	public void setInputEndpoints( InputEndpoints inputEndpoints )
-	{
-		this.inputEndpoints = inputEndpoints;
-	}
+    public InputEndpoints getInputEndpoints()
+    {
+        return inputEndpoints;
+    }
 
-	public String getStaticVirtualNetworkIPAddress()
-	{
-		return staticVirtualNetworkIPAddress;
-	}
+    public void setInputEndpoints( InputEndpoints inputEndpoints )
+    {
+        this.inputEndpoints = inputEndpoints;
+    }
 
-	public void setStaticVirtualNetworkIPAddress( String staticVirtualNetworkIPAddress )
-	{
-		this.staticVirtualNetworkIPAddress = staticVirtualNetworkIPAddress;
-	}
+    public String getStaticVirtualNetworkIPAddress()
+    {
+        return staticVirtualNetworkIPAddress;
+    }
 
-	public PublicIPs getPublicIPs() {
-		return publicIPs;
-	}
+    public void setStaticVirtualNetworkIPAddress( String staticVirtualNetworkIPAddress )
+    {
+        this.staticVirtualNetworkIPAddress = staticVirtualNetworkIPAddress;
+    }
 
-	public void setPublicIPs(PublicIPs publicIPs) {
-		this.publicIPs = publicIPs;
-	}
+    public PublicIPs getPublicIPs()
+    {
+        return publicIPs;
+    }
 
-	@Override
-	public String toString ()
-	{
-		return "ConfigurationSet [configurationSetTypeAttribute=" + configurationSetTypeAttribute
-				+ ", configurationSetType=" + configurationSetType + ", computerName=" + computerName
-				+ ", adminPassword=" + adminPassword + ", adminUsername=" + adminUsername + ", hostName=" + hostName
-				+ ", userName=" + userName + ", userPassword=" + userPassword + ", disableSshPasswordAuthentication="
-				+ disableSshPasswordAuthentication + ", ssh=" + ssh + ", inputEndpoints=" + inputEndpoints
-				+ ", staticVirtualNetworkIPAddress=" + staticVirtualNetworkIPAddress + "]";
-	}
+    public void setPublicIPs( PublicIPs publicIPs )
+    {
+        this.publicIPs = publicIPs;
+    }
+
+    @Override
+    public String toString()
+    {
+        return "ConfigurationSet [configurationSetTypeAttribute=" + configurationSetTypeAttribute
+                + ", configurationSetType=" + configurationSetType + ", computerName=" + computerName
+                + ", adminPassword=" + adminPassword + ", adminUsername=" + adminUsername + ", hostName=" + hostName
+                + ", userName=" + userName + ", userPassword=" + userPassword + ", disableSshPasswordAuthentication="
+                + disableSshPasswordAuthentication + ", ssh=" + ssh + ", inputEndpoints=" + inputEndpoints
+                + ", staticVirtualNetworkIPAddress=" + staticVirtualNetworkIPAddress + "]";
+    }
 
 }

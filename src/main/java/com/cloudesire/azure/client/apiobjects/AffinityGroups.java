@@ -6,20 +6,20 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.util.List;
 
-@XmlRootElement (name = "AffinityGroups")
-@XmlAccessorType (value = XmlAccessType.FIELD)
+@XmlRootElement ( name = "AffinityGroups" )
+@XmlAccessorType ( value = XmlAccessType.FIELD )
 public class AffinityGroups
 {
-	@XmlElement (name = "AffinityGroup")
-	private List<AffinityGroup> affinityGroups;
+    @XmlElement ( name = "AffinityGroup" )
+    private List<AffinityGroup> affinityGroups;
 
-	public List<AffinityGroup> getAffinityGroups()
-	{
-		return affinityGroups;
-	}
+    public List<AffinityGroup> getAffinityGroups()
+    {
+        return affinityGroups;
+    }
 
-	public void setAffinityGroups( List<AffinityGroup> affinityGroups )
-	{
-		this.affinityGroups = affinityGroups;
-	}
+    public void setAffinityGroups( List<AffinityGroup> affinityGroups )
+    {
+        this.affinityGroups = affinityGroups;
+    }
 }

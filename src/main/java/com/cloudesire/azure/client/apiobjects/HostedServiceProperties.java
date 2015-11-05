@@ -8,35 +8,35 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
-@XmlRootElement(name = "HostedServiceProperties")
-@XmlAccessorType(value = XmlAccessType.FIELD)
+@XmlRootElement ( name = "HostedServiceProperties" )
+@XmlAccessorType ( value = XmlAccessType.FIELD )
 public class HostedServiceProperties
 {
-    @XmlElement(name = "Description")
+    @XmlElement ( name = "Description" )
     private String description;
 
-    @XmlElement (name = "AffinityGroup")
+    @XmlElement ( name = "AffinityGroup" )
     private String affinityGroup;
 
-    @XmlElement (name = "Location")
+    @XmlElement ( name = "Location" )
     private String location;
 
-    @XmlElement (name = "Label")
+    @XmlElement ( name = "Label" )
     private String label;
 
-    @XmlElement (name = "Status")
+    @XmlElement ( name = "Status" )
     private String status;
 
-    @XmlElement (name = "DateCreated")
+    @XmlElement ( name = "DateCreated" )
     private Date dateCreated;
 
-    @XmlElement (name = "DateLastModified")
+    @XmlElement ( name = "DateLastModified" )
     private Date dateLastModified;
 
-    @XmlElement (name = "ReverseDnsFqdn")
+    @XmlElement ( name = "ReverseDnsFqdn" )
     private String reverseDnsFqdn;
 
-    @XmlElement (name = "ExtendedProperties")
+    @XmlElement ( name = "ExtendedProperties" )
     private List<ExtendedProperty> extendedProperties = new LinkedList<>();
 
     public List<ExtendedProperty> getExtendedProperties()

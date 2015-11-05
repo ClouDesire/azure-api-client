@@ -7,38 +7,38 @@ import javax.xml.bind.annotation.XmlType;
 import java.util.LinkedList;
 import java.util.List;
 
-@XmlType (name = "InputEndpoints")
-@XmlAccessorType (value = XmlAccessType.FIELD)
+@XmlType ( name = "InputEndpoints" )
+@XmlAccessorType ( value = XmlAccessType.FIELD )
 public class InputEndpoints
 {
-	@XmlElement (name = "InputEndpoint")
-	private List<InputEndpoint> endpoints = new LinkedList<>(  );
+    @XmlElement ( name = "InputEndpoint" )
+    private List<InputEndpoint> endpoints = new LinkedList<>();
 
-	public List<InputEndpoint> getEndpoints()
-	{
-		return endpoints;
-	}
+    public List<InputEndpoint> getEndpoints()
+    {
+        return endpoints;
+    }
 
-	public void setEndpoints( List<InputEndpoint> endpoints )
-	{
-		this.endpoints = endpoints;
-	}
+    public void setEndpoints( List<InputEndpoint> endpoints )
+    {
+        this.endpoints = endpoints;
+    }
 
-	@Override
-	public String toString()
-	{
-		StringBuilder sb = new StringBuilder( "InputEndpoints{ " );
-		if (endpoints == null)
-		{
-			sb.append( "null" );
-		}
-		else
-		{
-			for ( InputEndpoint ie : endpoints )
-				sb.append( ie + " " );
-		}
-		return "InputEndpoints{" +
-				 sb.toString() +
-				" }";
-	}
+    @Override
+    public String toString()
+    {
+        StringBuilder sb = new StringBuilder( "InputEndpoints{ " );
+        if ( endpoints == null )
+        {
+            sb.append( "null" );
+        }
+        else
+        {
+            for ( InputEndpoint ie : endpoints )
+                sb.append( ie + " " );
+        }
+        return "InputEndpoints{" +
+                sb.toString() +
+                " }";
+    }
 }

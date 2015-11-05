@@ -7,37 +7,37 @@ import javax.xml.bind.annotation.XmlType;
 import java.util.Iterator;
 import java.util.List;
 
-@XmlType (name = "RoleList")
-@XmlAccessorType (value = XmlAccessType.FIELD)
+@XmlType ( name = "RoleList" )
+@XmlAccessorType ( value = XmlAccessType.FIELD )
 public class RoleList implements Iterable<Role>
 {
-	@XmlElement (name = "Role")
-	private List<Role> roles;
+    @XmlElement ( name = "Role" )
+    private List<Role> roles;
 
-	@Override
-	public Iterator<Role> iterator()
-	{
-		return roles.iterator();
-	}
+    @Override
+    public Iterator<Role> iterator()
+    {
+        return roles.iterator();
+    }
 
-	public List<Role> getRoles()
-	{
-		return roles;
-	}
+    public List<Role> getRoles()
+    {
+        return roles;
+    }
 
-	public void setRoles( List<Role> roles )
-	{
-		this.roles = roles;
-	}
+    public void setRoles( List<Role> roles )
+    {
+        this.roles = roles;
+    }
 
-	@Override
-	public String toString()
-	{
-		String ret = " RoleList: ";
-		for ( Role role : roles )
-		{
-			ret += " Role: " + role;
-		}
-		return ret;
-	}
+    @Override
+    public String toString()
+    {
+        String ret = " RoleList: ";
+        for ( Role role : roles )
+        {
+            ret += " Role: " + role;
+        }
+        return ret;
+    }
 }
