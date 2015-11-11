@@ -97,7 +97,7 @@ public class AzureClient
         return sslContext;
     }
 
-    public ConfigurationClient getConfigurationClient() throws AzureClientException
+    public ConfigurationClient getConfigurationClient() throws AzureClientException, MalformedURLException
     {
         return new ConfigurationClientImpl( endpoint, this );
     }
