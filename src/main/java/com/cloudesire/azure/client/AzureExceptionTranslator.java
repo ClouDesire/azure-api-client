@@ -14,7 +14,6 @@ import java.io.InputStream;
 
 public class AzureExceptionTranslator implements ExceptionTranslator
 {
-    @SuppressWarnings ( "unchecked" )
     @Override
     public AzureResponseException translateException( int responseCode, String responseMessage, String bodyMessage,
             ResponseMessage returnMessageRef, Header[] headers )

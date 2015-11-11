@@ -12,16 +12,17 @@ import java.net.URL;
 import java.util.List;
 import java.util.Map;
 
-class ConfigurationClientImpl implements ConfigurationClient
+class ConfigurationClientImpl extends BaseClientImpl implements ConfigurationClient
 {
-
-    private final URL endpoint;
-    private final AzureClient restClient;
-
-    public ConfigurationClientImpl( URL endpoint, AzureClient restClient )
+    public ConfigurationClientImpl( URL endpoint, AzureClient restClient ) throws MalformedURLException
     {
-        this.endpoint = endpoint;
-        this.restClient = restClient;
+        super( endpoint, restClient );
+    }
+
+    @Override
+    protected String getEndpoint()
+    {
+        return null;
     }
 
     @Override
@@ -59,5 +60,4 @@ class ConfigurationClientImpl implements ConfigurationClient
                 .get( new URL( ConfigurationClientImpl.this.endpoint, "affinitygroups" ), AffinityGroups.class )
                 .getAffinityGroups();
     }
-
 }

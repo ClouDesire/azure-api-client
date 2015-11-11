@@ -168,7 +168,7 @@ public class ClientTest
 	}
 
 	private static void attachDataDisk ( final AzureClient client, final String serviceName,
-			Deployment deployment ) throws Exception, MalformedURLException
+			Deployment deployment ) throws Exception
 	{
 		log.info("Attaching disk...");
 		DataVirtualHardDisk disk = new DataVirtualHardDisk();
