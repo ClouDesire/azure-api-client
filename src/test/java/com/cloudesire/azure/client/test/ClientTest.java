@@ -25,12 +25,12 @@ public class ClientTest
 
 	private static String cert = "/etc/cloudesire/certs/WindowsAzureKeyStore.jks";
 	private static String password = "test123";
-	private static String id = "7462339e-0ec5-49d6-842f-f49553bac47a";
+	private static String id = "";
 	private static String windows = "bd507d3a70934695bc2128e3e5a255ba__RightImage-Windows-2008R2-x64-v14";
 	private static String linux = "b39f27a8b8c64d52b05eac6a62ebad85__Ubuntu-12_04_3-LTS-amd64-server-20140130-en-us-30GB";
 
 	private static String storageName = "scriptslol";
-	private static String storageKey = "B/m8dJJduTB/LTmE81oFuNveXwNeHmZ8dzDSW0MsMnJ/E3qepgxLHsCvg2UpWOdyyBXw169wfCtw8zaMPSn02A==";
+	private static String storageKey = "";
 	private static String scriptURI = "https://scriptslol.blob.core.windows.net/scripts/test.ps1";
 	private static String scriptFileName = "test.ps1";
 
