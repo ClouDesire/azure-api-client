@@ -36,16 +36,8 @@ public class ServiceClientImpl extends BaseClientImpl implements ServiceClient
     public ServiceClientImpl( URL endpoint, final AzureClient restClient ) throws MalformedURLException
     {
         super( endpoint, restClient );
-        imageCache = new ObjectCache<>( new ObjectCache.CacheLoader<Images>()
-        {
-            @Override
-            public Images loadObjects() throws AzureClientException, MalformedURLException, RestException
-            {
-                return restClient.getClient()
-                        .get( new URL( ServiceClientImpl.this.endpoint, "images" ), Images.class );
-            }
-
-        }, 1, TimeUnit.SECONDS );
+        imageCache = new ObjectCache<>( () -> restClient.getClient()
+                .get( new URL( this.endpoint, "images" ), Images.class ), 1, TimeUnit.SECONDS );
     }
 
     @Override
@@ -88,8 +80,7 @@ public class ServiceClientImpl extends BaseClientImpl implements ServiceClient
     {
 
         return restClient.getClient().get( new URL( this.endpoint,
-                        "hostedservices/" + serviceName + "/deploymentslots/" + deploymentSlot.toString() ),
-                Deployment.class );
+                "hostedservices/" + serviceName + "/deploymentslots/" + deploymentSlot.toString() ), Deployment.class );
     }
 
     @Override
@@ -98,7 +89,7 @@ public class ServiceClientImpl extends BaseClientImpl implements ServiceClient
     {
         RestClient restClient = this.restClient.getClient();
 
-        restClient.post( new URL( ServiceClientImpl.this.endpoint, "hostedservices" ), cloudService, null, null );
+        restClient.post( new URL( this.endpoint, "hostedservices" ), cloudService, null, null );
 
         return getOperationId( restClient );
     }
@@ -108,7 +99,7 @@ public class ServiceClientImpl extends BaseClientImpl implements ServiceClient
             throws MalformedURLException, RestException, AzureClientException
     {
         RestClient restClient = this.restClient.getClient();
-        restClient.post( new URL( ServiceClientImpl.this.endpoint, "storageservices" ), storageService, null,
+        restClient.post( new URL( this.endpoint, "storageservices" ), storageService, null,
                 null );
 
         return getOperationId( restClient );
@@ -119,14 +110,14 @@ public class ServiceClientImpl extends BaseClientImpl implements ServiceClient
             throws MalformedURLException, RestException, AzureClientException
     {
         restClient.getClient()
-                .delete( new URL( ServiceClientImpl.this.endpoint, "storageservices/" + storageServiceName ) );
+                .delete( new URL( this.endpoint, "storageservices/" + storageServiceName ) );
     }
 
     @Override
     public List<StorageService> listStorageServices() throws MalformedURLException, RestException, AzureClientException
     {
         return restClient.getClient()
-                .get( new URL( ServiceClientImpl.this.endpoint, "storageservices" ), StorageServices.class )
+                .get( new URL( this.endpoint, "storageservices" ), StorageServices.class )
                 .getStorageServices();
     }
 
@@ -141,7 +132,7 @@ public class ServiceClientImpl extends BaseClientImpl implements ServiceClient
 
         RestClient restClient = this.restClient.getClient();
         restClient.post(
-                new URL( ServiceClientImpl.this.endpoint, "hostedservices/" + serviceName + "/certificates" ),
+                new URL( this.endpoint, "hostedservices/" + serviceName + "/certificates" ),
                 certificate, null, null );
 
         return getOperationId( restClient );
@@ -153,7 +144,7 @@ public class ServiceClientImpl extends BaseClientImpl implements ServiceClient
     {
         RestClient restClient = this.restClient.getClient();
         restClient.post(
-                new URL( ServiceClientImpl.this.endpoint, "hostedservices/" + serviceName + "/deployments" ),
+                new URL( this.endpoint, "hostedservices/" + serviceName + "/deployments" ),
                 deployment, null, null );
 
         return getOperationId( restClient );
@@ -164,7 +155,7 @@ public class ServiceClientImpl extends BaseClientImpl implements ServiceClient
             throws MalformedURLException, RestException, AzureClientException
     {
         if ( cascadeDelete ) serviceName = serviceName.concat( "?comp=media" );
-        URL url = new URL( ServiceClientImpl.this.endpoint, "hostedservices/" + serviceName );
+        URL url = new URL( this.endpoint, "hostedservices/" + serviceName );
         RestClient restClient = this.restClient.getClient();
         restClient.delete( url );
 
@@ -179,7 +170,7 @@ public class ServiceClientImpl extends BaseClientImpl implements ServiceClient
         startRoleOperation.setOperationType( "StartRoleOperation" );
 
         RestClient restClient = this.restClient.getClient();
-        restClient.post( new URL( ServiceClientImpl.this.endpoint,
+        restClient.post( new URL( this.endpoint,
                 "hostedservices/" + serviceName + "/deployments/" + deploymentName + "/roleinstances/" + roleName
                         + "/Operations" ), startRoleOperation, null, null );
 
@@ -194,7 +185,7 @@ public class ServiceClientImpl extends BaseClientImpl implements ServiceClient
         shutdownRoleOperation.setOperationType( "ShutdownRoleOperation" );
 
         RestClient restClient = this.restClient.getClient();
-        restClient.post( new URL( ServiceClientImpl.this.endpoint,
+        restClient.post( new URL( this.endpoint,
                 "hostedservices/" + serviceName + "/deployments/" + deploymentName + "/roleinstances/" + roleName
                         + "/Operations" ), shutdownRoleOperation, null, null );
 
@@ -206,7 +197,7 @@ public class ServiceClientImpl extends BaseClientImpl implements ServiceClient
             throws MalformedURLException, RestException, AzureClientException
     {
         AvailabilityResponse availabilityResponse = restClient.getClient()
-                .get( new URL( ServiceClientImpl.this.endpoint,
+                .get( new URL( this.endpoint,
                         "hostedservices/operations/isavailable/" + serviceName ), AvailabilityResponse.class );
 
         return Boolean.valueOf( availabilityResponse.getResult() );
@@ -217,7 +208,7 @@ public class ServiceClientImpl extends BaseClientImpl implements ServiceClient
             throws MalformedURLException, RestException, AzureClientException
     {
         RestClient restClient = this.restClient.getClient();
-        restClient.post( new URL( ServiceClientImpl.this.endpoint,
+        restClient.post( new URL( this.endpoint,
                 "hostedservices/" + serviceName + "/deployments/" + deploymentName + "/roles/" + roleName
                         + "/DataDisks" ), disk, null, null );
 
@@ -230,7 +221,7 @@ public class ServiceClientImpl extends BaseClientImpl implements ServiceClient
     {
         RestClient restClient = this.restClient.getClient();
         restClient
-                .post( new URL( ServiceClientImpl.this.endpoint, "networking/reservedips" ), reservedIP, null,
+                .post( new URL( this.endpoint, "networking/reservedips" ), reservedIP, null,
                         null );
 
         return getOperationId( restClient );
@@ -240,7 +231,7 @@ public class ServiceClientImpl extends BaseClientImpl implements ServiceClient
     public ReservedIP getReservedIP( String name ) throws MalformedURLException, RestException, AzureClientException
     {
         return restClient.getClient()
-                .get( new URL( ServiceClientImpl.this.endpoint, "networking/reservedips/" + name ),
+                .get( new URL( this.endpoint, "networking/reservedips/" + name ),
                         ReservedIP.class );
     }
 
@@ -256,7 +247,7 @@ public class ServiceClientImpl extends BaseClientImpl implements ServiceClient
     public void deleteReservedIP( String name ) throws MalformedURLException, RestException, AzureClientException
     {
         restClient.getClient()
-                .delete( new URL( ServiceClientImpl.this.endpoint, "networking/reservedips/" + name ) );
+                .delete( new URL( this.endpoint, "networking/reservedips/" + name ) );
     }
 
     @Override
@@ -278,7 +269,7 @@ public class ServiceClientImpl extends BaseClientImpl implements ServiceClient
     public List<ExtensionImage> listExtensionImages() throws MalformedURLException, RestException, AzureClientException
     {
         return restClient.getClient()
-                .get( new URL( ServiceClientImpl.this.endpoint, "extensions" ), ExtensionImages.class )
+                .get( new URL( this.endpoint, "extensions" ), ExtensionImages.class )
                 .getExtensionImages();
     }
 
@@ -294,7 +285,7 @@ public class ServiceClientImpl extends BaseClientImpl implements ServiceClient
     public List<HostedService> listCloudServices() throws MalformedURLException, RestException, AzureClientException
     {
         return restClient.getClient()
-                .get( new URL( ServiceClientImpl.this.endpoint, "hostedservices" ), HostedServices.class )
+                .get( new URL( this.endpoint, "hostedservices" ), HostedServices.class )
                 .getHostedServices();
     }
 
@@ -303,7 +294,7 @@ public class ServiceClientImpl extends BaseClientImpl implements ServiceClient
             throws MalformedURLException, RestException, AzureClientException
     {
         return restClient.getClient()
-                .get( new URL( ServiceClientImpl.this.endpoint, "hostedservices/" + serviceName ),
+                .get( new URL( this.endpoint, "hostedservices/" + serviceName ),
                         HostedService.class );
     }
 }

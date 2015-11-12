@@ -5,12 +5,12 @@ import com.cloudesire.azure.client.apiobjects.AffinityGroups;
 import com.cloudesire.azure.client.apiobjects.Location;
 import com.cloudesire.azure.client.apiobjects.Locations;
 import com.cloudesire.azure.client.exceptions.AzureClientException;
+import com.cloudesire.tisana4j.RestClient;
 import com.cloudesire.tisana4j.exceptions.RestException;
 
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
-import java.util.Map;
 
 class ConfigurationClientImpl extends BaseClientImpl implements ConfigurationClient
 {
@@ -36,13 +36,9 @@ class ConfigurationClientImpl extends BaseClientImpl implements ConfigurationCli
     public String createAffinityGroup( AffinityGroup group )
             throws MalformedURLException, AzureClientException, RestException
     {
-        restClient.getClient()
-                .post( new URL( ConfigurationClientImpl.this.endpoint, "affinitygroups" ), group, null, null );
-
-        Map<String, List<String>> responseHeaders = restClient.getClient().getLastResponseHeaders();
-
-        if ( !responseHeaders.containsKey( "x-ms-request-id" ) ) return null;
-        return responseHeaders.get( "x-ms-request-id" ).get( 0 );
+        RestClient restClient = this.restClient.getClient();
+        restClient.post( new URL( ConfigurationClientImpl.this.endpoint, "affinitygroups" ), group, null, null );
+        return getOperationId( restClient );
     }
 
     @Override
